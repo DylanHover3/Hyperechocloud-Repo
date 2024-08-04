@@ -1,0 +1,81 @@
+{% if site.data.settings.testimonials.enable == true %}
+<!-- begin testimonials -->
+<section class="section testimonials animate">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <div class="section__info section__info__center">
+          <div class="section__head">
+            {% if site.data.settings.testimonials.testimonials_intro %}
+            <span class="section__intro">{{ site.data.settings.testimonials.testimonials_intro }}</span>
+            {% endif %}
+            {% if site.data.settings.testimonials.testimonials_title %}
+            <h2 class="section__title">{{ site.data.settings.testimonials.testimonials_title }}</h2>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="testimonials__slider splide">
+          <div class="splide__track">
+            <div class="splide__list">
+              {% for testimonial_item in site.data.settings.testimonial_items %}
+              <div class="testimonial-item splide__slide">
+                <div class="testimonial-content">
+
+                  <i class="testimonial-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" fill="none"><path fill="var(--heading-font-color)" d="M.02 10.954V7.886c0-.87.17-1.761.51-2.67.342-.91.792-1.766 1.35-2.571C2.44 1.84 3.045 1.168 3.7.628l2.67 1.577a14.04 14.04 0 0 0-1.307 2.613c-.331.91-.497 1.923-.497 3.04v3.096H.02Zm7.173 0V7.886c0-.87.17-1.761.511-2.67.341-.91.79-1.766 1.35-2.571.558-.805 1.164-1.477 1.818-2.017l2.67 1.577a14.04 14.04 0 0 0-1.307 2.613c-.331.91-.497 1.923-.497 3.04v3.096H7.193Z"/></svg>
+                  </i>
+
+                  {% if testimonial_item.title %}
+                  <h3 class="client-title">{{ testimonial_item.title }}</h3>
+                  {% endif %}
+
+                  {% if testimonial_item.content %}
+                  <p class="client-text">{{ testimonial_item.content }}</p>
+                  {% endif %}
+
+                  <div class="client-meta">
+                    {% if testimonial_item.image %}
+                    <div class="image-container">
+                      <img class="client-avatar" src="{{ testimonial_item.image | relative_url }}" alt="{{ testimonial_item.name }}">
+                    </div>
+                    {% endif %}
+                    <div class="client-info">
+                      {% if testimonial_item.name %}
+                      <h4 class="client-name">
+                        {{ testimonial_item.name }}
+                      </h4>
+                      {% endif %}
+                      {% if testimonial_item.designation %}
+                      <p class="client-designation">{{ testimonial_item.designation }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="client-list">
+          {% if site.data.settings.testimonials.testimonials_info %}
+          <div class="client-list__info">{{ site.data.settings.testimonials.testimonials_info }}</div>
+          {% endif %}
+          <div class="client-list__box">
+            {% for testimonial_item in site.data.settings.testimonial_items %}
+            <div class="client-list__image">
+              <img class="client-list__avatar lazy" data-src="{{ testimonial_item.image | relative_url }}" alt="{{ testimonial_item.name }}">
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end testimonials -->
+{% endif %}

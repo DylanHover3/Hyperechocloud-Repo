@@ -1,0 +1,35 @@
+{% if site.data.settings.mailchimp.enable == true %}
+<!-- begin subscribe -->
+<section class="section subscribe animate">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="subscribe__inner">
+          <div class="test">
+            <svg class="round-left" xmlns="http://www.w3.org/2000/svg" width="261" height="276" fill="none"><circle cx="29.377" cy="44.536" r="181.464" stroke="url(#a)" stroke-opacity=".6" stroke-width="100"/><defs><linearGradient id="a" x1="-137.612" x2="150.259" y1="-130.522" y2="157.35" gradientUnits="userSpaceOnUse"><stop stop-color="var(--primary-color)"/><stop offset="1" stop-color="var(--primary-color)" stop-opacity=".08"/></linearGradient></defs></svg>
+          </div>
+
+          <div class="subscribe__content">
+            {% if site.data.settings.mailchimp.mailchimp_title %}
+            <h3 class="subscribe__title">{{ site.data.settings.mailchimp.mailchimp_title }}</h3>
+            {% endif %}
+            {% if site.data.settings.mailchimp.mailchimp_description %}
+            <p class="subscribe__description">{{ site.data.settings.mailchimp.mailchimp_description }}</p>
+            {% endif %}
+          </div>
+
+          <form class="subscribe-form validate"
+            action="{% if site.data.settings.mailchimp.mailchimp_identifier %}//{{site.data.settings.mailchimp.mailchimp_identifier}}{% else %}#{% endif %}" method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+            <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
+            <input class="subscribe-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="{% if site.data.settings.mailchimp.mailchimp_input_text %}{{ site.data.settings.mailchimp.mailchimp_input_text }}{% else %}Email address{% endif %}">
+            <button class="subscribe-button" id="membedded-subscribe" type="submit" name="subscribe"><span class="screen-reader-text">Subscribe</span> <i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+
+          <svg class="round-right" xmlns="http://www.w3.org/2000/svg" width="261" height="276" fill="none"><circle cx="29.377" cy="44.536" r="181.464" stroke="url(#a)" stroke-opacity=".6" stroke-width="100"/><defs><linearGradient id="b" x1="-137.612" x2="150.259" y1="-130.522" y2="157.35" gradientUnits="userSpaceOnUse"><stop stop-color="var(--primary-color)"/><stop offset="1" stop-color="var(--primary-color)" stop-opacity=".08"/></linearGradient></defs></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end subscribe -->
+{% endif %}

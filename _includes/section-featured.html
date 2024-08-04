@@ -1,0 +1,71 @@
+{% for post in site.projects %}
+  {% if post.featured == true %}
+    {% assign is-featured = true %}
+  {% endif %}
+{% endfor %}
+
+{% if is-featured == true and site.data.settings.featured.enable == true %}
+<!-- begin featured section -->
+<section class="section featured-section">
+  <div class="featured__slider">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <div class="featured__slider__inner splide">
+
+            <div class="featured__info">
+              <div class="featured__head">
+                {% if site.data.settings.featured.featured_title %}
+                <h2 class="featured__title">{{ site.data.settings.featured.featured_title }}</h2>
+                {% endif %}
+                <div class="splide__arrows slider-controls">
+                  <button class="splide__arrow--prev prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+                  <button class="splide__arrow--next next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="splide__track animate">
+              <div class="splide__list">
+                {% assign sorted = site.projects | sort: 'date' | reverse %}
+                {% for project in sorted %}
+                {% if project.featured == true %}
+                <article class="project col-4 col-d-6 col-t-12 splide__slide">
+                  <div class="project__content">
+                    <a href="{{ project.url | relative_url }}" class="project__image">
+                      {% if project.image and project.video_embed %}
+                      <div class="video-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                          <polygon points="40,30 70,50 40,70"></polygon>
+                        </svg>
+                      </div>
+                      {% endif %}
+                      <img class="lazy" data-src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+                    </a>
+                    <div class="project__info">
+                      {% if project.label %}
+                      <div class="project__label">{{ project.label }}</div>
+                      {% endif %}
+                      {% if project.title %}
+                      <h3 class="project__title"><a class="project__link" href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+                      {% endif %}
+                    </div>
+                  </div>
+                </article>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end featured section -->
+{% endif %}

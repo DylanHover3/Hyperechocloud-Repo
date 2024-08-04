@@ -1,0 +1,47 @@
+{% if site.data.settings.hero.enable == true %}
+<!-- begin hero -->
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero__inner">
+
+          {% if site.data.settings.author.author_avatar %}
+          <div class="hero__avatar">
+            <img class="lazy" data-src="{{ site.data.settings.author.author_avatar }}" alt="{{ site.data.settings.author.author_name }}" width="48" height="48">
+          </div>
+          {% endif %}
+
+          {% if site.data.settings.author.author_name %}
+          <span class="hero__author">{{ site.data.settings.author.author_name }}</span>
+          {% endif %}
+
+          {% if site.data.settings.hero.hero_title %}
+          <h1 class="hero__title">{{ site.data.settings.hero.hero_title }}</h1>
+          {% endif %}
+
+          {% if site.data.settings.hero.hero_description %}
+          <p class="hero__description">{{ site.data.settings.hero.hero_description }}</p>
+          {% endif %}
+
+          {% if site.data.settings.hero_logo_image and site.data.settings.hero_logos.enable == true %}
+          <div class="hero__logos splide">
+            <div class="splide__track">
+              <div class="hero__logos__inner splide__list">
+                {% for hero_logo_image in site.data.settings.hero_logo_image %}
+                <div class="hero__logo__image splide__slide">
+                  <img src="{{ hero_logo_image.image | relative_url }}" alt="{{ hero_logo_image.alt }}" loading="eager">
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end hero -->
+{% endif %}

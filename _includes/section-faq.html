@@ -1,0 +1,37 @@
+{% if site.data.settings.faq.enable == true %}
+<!-- begin section faq -->
+<section class="section section-faq animate">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <div class="section__info section__info__center">
+          <div class="section__head">
+            {% if site.data.settings.faq.faq_intro %}
+            <span class="section__intro">{{ site.data.settings.faq.faq_intro }}</span>
+            {% endif %}
+            {% if site.data.settings.faq.faq_title %}
+            <h2 class="section__title">{{ site.data.settings.faq.faq_title }}</h2>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if site.data.settings.faq.faq_items %}
+        <div class="faq">
+          {% for faq_item in site.data.settings.faq.faq_items %}
+          <div class="faq__item" tabindex="0" data-name="closed">
+            <h3 class="faq__title">{{ faq_item.title }}<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none"><path fill="var(--heading-font-color)" d="M8.654 1.168a1.153 1.153 0 1 0-2.308 0V6.36H1.154a1.153 1.153 0 1 0 0 2.308h5.192v5.192a1.153 1.153 0 1 0 2.308 0V8.668h5.192c.638 0 1.154-.516 1.154-1.154 0-.639-.516-1.154-1.154-1.154H8.654V1.168Z"/></svg></h3>
+            <div class="faq__description">
+              <p>{{ faq_item.description }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section faq -->
+{% endif %}

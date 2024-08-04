@@ -1,0 +1,32 @@
+{% if site.data.settings.blog.enable == true %}
+<!-- begin blog -->
+<section class="section blog animate">
+  <div class="container">
+
+    <div class="section__info section__info__center">
+      <div class="section__head">
+        {% if site.data.settings.blog.blog_intro %}
+        <span class="section__intro">{{ site.data.settings.blog.blog_intro }}</span>
+        {% endif %}
+        {% if site.data.settings.blog.blog_title %}
+        <h2 class="section__title">{{ site.data.settings.blog.blog_title }}</h2>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+    {% if site.posts.size > 0 %}
+      {% for post in site.posts offset:0 limit:3 %}
+        {% include article.html %}
+      {% endfor %}
+    {% endif %}
+    </div>
+
+  </div>
+
+  <div class="section__navigation">
+    <a href="{{ '/posts' | relative_url }}" class="section__link">See all posts</a>
+  </div>
+</section>
+<!-- end blog -->
+{% endif %}

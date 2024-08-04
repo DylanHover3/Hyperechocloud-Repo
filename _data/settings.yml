@@ -1,0 +1,224 @@
+#-------------------------------
+# Site Settings
+title: Gerous
+description: Gerous is a modern portfolio Jekyll theme
+logo: "/images/logo.svg" # You can add own logo. For example "/images/logo.svg".
+logo_dark: "/images/logo-dark.svg"
+color_scheme: auto # You can choose three modes auto, light, and dark. By default, the auto mode is set, which means the user can choose the light or dark mode themself.
+
+
+#-------------------------------
+# Navigation Settings
+menu_settings:
+  menu_items:
+    - title: "Home"
+      url: "/"
+    - title: "Projects"
+      url: "/projects/"
+    - title: "Posts"
+      url: "/posts/"
+    - title: "Resources"
+      submenu:
+      - url: "/posts/the-psychology-of-mobile-app-colors-influencing-user-perception"
+        title: "News"
+      - url: "/posts/gamifying-the-user-experience-strategies-beyond-mobile-games"
+        title: "Games"
+      - url: "/posts/harmonizing-aesthetics-and-functionality-in-ux-ui-mobile-design"
+        title: "Mobile"
+      - url: "/elements/"
+        title: "Elements"
+    - title: "About Me"
+      url: "/about/"
+
+# Call to action button
+cta_button:
+  enable: true
+  cta_button_link: '/contact/'
+  cta_button_text: Get in touch
+
+
+#-------------------------------
+# Author Settings
+author:
+  author_name: "Daryl Mercer"
+  author_avatar: "/images/01-1.jpg"
+
+
+#-------------------------------
+# Hero Settings
+hero:
+  enable: true
+  hero_title: I'm an expert user experience strategist and mobile developer.
+  hero_description: Leveraging my expertise, I'm here to collaborate with you on crafting design solutions that transcend expectations. Let's embark on a journey of innovation together!
+
+# Hero Logos
+hero_logos:
+  enable: true
+
+hero_logo_image:
+  - alt: "Apple Logo"
+    image: "/images/apple.svg"
+
+  - alt: "Adobe Logo"
+    image: "/images/adobe.svg"
+
+  - alt: "HP Logo"
+    image: "/images/hp.svg"
+
+  - alt: "Netlify Logo"
+    image: "/images/netlify.svg"
+
+  - alt: "Dropbox Logo"
+    image: "/images/dropbox.svg"
+
+  - alt: "EA Logo"
+    image: "/images/ea.svg"
+
+  - alt: "Chrome Logo"
+    image: "/images/chrome.svg"
+
+
+#-------------------------------
+# Slider Featured Settings
+featured:
+  enable: true
+  featured_title: Selected Work
+
+
+#-------------------------------
+# Projects Section Settings
+projects:
+  enable: true
+  projects_title: Recent Work
+  projects_description:
+
+
+#-------------------------------
+# Testimonials Section Settings
+testimonials:
+  enable: true
+  testimonials_intro: Don't take my word for it
+  testimonials_title: See what our happy clients say...
+  testimonials_info: Join over <b>10K+</b> Prefessionals
+
+testimonial_items:
+  - name: "Martin Vetrovs"
+    image: "/images/client-1.jpg"
+    designation: "Data Scientist"
+    title: "Incredible attention to detail"
+    content : "The incredible attention to detail displayed by this team is commendable. Every aspect of our project, no matter how small, was handled with precision and care. The result is a product that reflects their commitment to excellence."
+
+  - name: "Hanna Herwitz"
+    image: "/images/client-2.jpg"
+    designation: "Designer"
+    title: "Collaborative partnership"
+    content : "Our partnership with this team was characterized by open communication and collaborative efforts. They took the time to understand our goals and delivered a solution that perfectly aligns with our business objectives. Looking forward to future collaborations."
+
+  - name: "Carter Curtis"
+    image: "/images/client-3.jpg"
+    designation: "DevOps Engineer"
+    title: "Creative brilliance unleashed"
+    content : "Working with this creative powerhouse was an enlightening experience. Their brilliance in design thinking and creative solutions brought our project to life in ways we hadn't imagined. The team's passion for innovation is truly infectious."
+
+  - name: "Marcus Vaccaro"
+    image: "/images/client-4.jpg"
+    designation: "Systems Analyst"
+    title: "Efficient problem solvers"
+    content : "This team proved to be efficient problem solvers throughout our project. When faced with challenges, they tackled them with creativity and resourcefulness. Their ability to overcome obstacles ensured a smooth and successful project delivery."
+
+
+#-------------------------------
+# Faq (Frequently asked questions) Settings
+faq:
+  enable: true
+  faq_title: Frequently asked questions
+  faq_intro: Need some answers?
+  faq_items:
+    - title: What distinguishes you as a mobile developer?
+      description: I bring a wealth of experience in crafting seamless user experiences and developing mobile solutions that prioritize functionality and innovation.
+    - title: How do you approach designing user-friendly mobile applications?
+      description: My approach involves a user-centric design philosophy, focusing on intuitive interfaces and fluid interactions to enhance the overall mobile experience.
+    - title: Can you walk us through your mobile app development process?
+      description: Certainly! From concept to deployment, I follow a structured development process, incorporating user feedback and iterative testing to ensure a polished and functional mobile application.
+    - title: How do you stay updated on the latest trends mobile development?
+      description: Continuous learning is key. I stay updated through industry publications, attending conferences, and actively participating in professional communities to stay at the forefront of industry trends.
+    - title: How do you ensure the security of mobile applications you develop?
+      description: Security is a top priority. I follow industry best practices, conduct thorough testing, and implement robust security measures to safeguard mobile applications and user data.
+    - title: What role does user feedback play in your development process?
+      description: User feedback is integral. I actively seek and incorporate user insights to refine designs and optimize mobile applications, ensuring they align with user expectations and preferences.
+
+
+#-------------------------------
+# Blog Section Settings
+blog:
+  enable: true
+  blog_intro: What’s new?
+  blog_title: Latest from blog
+
+
+#-------------------------------
+# Author Section Settings
+author_section:
+  enable: true
+  author_section_title: "Hi there 👋 ! Welcome to my fun zone. I'm Daryl, the playmaker of ideas."
+  author_section_description: When I'm not crafting digital wonders, you can catch me sipping on coffee, cruising around on my bike, diving into games, and grooving to some tunes. Let's connect, share stories, and make this digital space our cozy corner. Cheers to good vibes and creative adventures!
+  author_section_image: "/images/01.jpg"
+  author_section_image_alt: Daryl Mercer
+  author_section_button_text: Let's сonnect!
+  author_section_button_link: "/contact/"
+
+
+#-------------------------------
+# Footer Settings
+
+# Footer Navigation
+footer_menu__settings:
+  menu__items:
+    - title: 'Home'
+      url: '/'
+    - title: 'Projects'
+      url: '/projects/'
+    - title: 'Posts'
+      url: '/posts/'
+    - url: '/about/'
+      title: 'About Me'
+
+# Social Links
+social:
+- {icon: "fa-brands fa-facebook-f", name: "Facebook", link: "https://facebook.com"}
+- {icon: "fa-brands fa-x-twitter", name: "Twitter", link: "https://twitter.com"}
+- {icon: "fa-brands fa-tiktok", name: "Tiktok", link: "https://www.tiktok.com"}
+- {icon: "fa-brands fa-instagram", name: "Instagram", link: "https://instagram.com"}
+
+# Example of adding a new link to the footer - {icon: "fa-brands fa-youtube", name: "Youtube", link: https://youtube.com"}
+# Other icons can be found at https://fontawesome.com/icons
+
+
+#-------------------------------
+# Newsletter Settings
+mailchimp:
+  enable: true
+  mailchimp_title: Stay inspired weekly 📬 Your friendly dose of tips & insights!
+  mailchimp_description: Every Sunday, I deliver actionable tips for enhancing productivity, practical life advice, and top-notch insights gathered from various sources, right to your email inbox.
+  mailchimp_identifier: gmail.us21.list-manage.com/subscribe/post?u=8aeb9c31a5c97a3a5f9ff2740&amp;id=0e31fd7793&amp # Add your MailChimp form identifier. For example - gmail.us21.list-manage.com/subscribe/post?u=8aeb9c31a5c97a3a5f9ff2740&amp;id=0e31fd7793&amp
+  mailchimp_input_text: Your email address
+
+
+#-------------------------------
+# Contact Settings
+contact:
+  email: your@email.com # Add your form_id
+  description: Gerous comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want. # Add a description of your form
+
+# NOTE
+# Gerous theme comes with a contact form built-in. You can use this form with Formspree (https://formspree.io/) service and get up to 50 submissions for free. Also, you can easily switch to another service if you want.
+
+
+#-------------------------------
+# Comment Section (Disqus)
+disqus_identifier: anvod-studio-test # Add your shortname for Disqus Comment. For example anvod-studio-test
+
+
+#-------------------------------
+# Google Analytics
+google_analytics: # Add your GA Tracking Id

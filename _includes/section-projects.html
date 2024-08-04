@@ -1,0 +1,59 @@
+{% if site.data.settings.projects.enable == true %}
+<!-- begin projects -->
+<section class="section projects animate">
+  <div class="container">
+    <div class="container__inner">
+
+      <div class="section__info">
+        <div class="section__head">
+          <h2 class="section__title">{{ site.data.settings.projects.projects_title }}</h2>
+          <a class="section__link" href="{{ '/projects' | relative_url }}">View all <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        {% if site.data.settings.projects.projects_description %}
+        <p class="section__description">{{ site.data.settings.projects.projects_description }}</p>
+        {% endif %}
+      </div>
+
+      <div class="row">
+      {% assign sorted = site.projects | sort: 'date' | reverse %}
+      {% assign displayed_projects = 0 %}
+
+      {% for project in sorted %}
+        {% unless project.featured == true %}
+        {% assign displayed_projects = displayed_projects | plus: 1 %}
+        <article class="project col col-4 col-d-6 col-t-12">
+          <div class="project__content">
+            <a href="{{ project.url }}" class="project__image">
+              {% if project.image and project.video_embed %}
+              <div class="video-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                  <polygon points="40,30 70,50 40,70"></polygon>
+                </svg>
+              </div>
+              {% endif %}
+              <img class="lazy" data-src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+            </a>
+            <div class="project__info">
+              {% if project.label %}
+              <div class="project__label">{{ project.label }}</div>
+              {% endif %}
+              {% if project.title %}
+              <h3 class="project__title"><a class="project__link" href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+        {% endunless %}
+
+        {% if displayed_projects >= 6 %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<!-- end projects -->
+{% endif %}

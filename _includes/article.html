@@ -1,0 +1,53 @@
+<div class="article article__grid animate col col-4 col-d-6 col-t-12">
+  <div class="article__inner">
+
+    <div class="article__head">
+      {% if post.image %}
+      <a href="{{ post.url | prepend: site.baseurl }}" class="article__image">
+        {% if post.image and post.video_embed %}
+        <div class="video-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <polygon points="40,30 70,50 40,70"></polygon>
+          </svg>
+        </div>
+        {% endif %}
+        <img class="lazy" data-src="{{site.baseurl}}{{post.image}}" alt="{{post.title}}">
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="article__content">
+
+      <div class="article__meta">
+        {% if post.tags.size >= 1 %}
+        <div class="article__tags">
+        {% for tag in post.tags %}
+          <a href="{{ site.baseurl }}/tags/?tag={{ tag | downcase | url_encode }}" class="article__tag">{{ tag }}</a>
+        {% endfor %}
+        </div>
+        {% endif %}
+        <span class="article__date">•<time datetime="{{ post.date | date_to_xmlschema }}">{% assign date_format = site.minima.date_format | default: "%d %-b, %Y" %}{{ post.date | date: date_format }}</time></span>
+      </div>
+
+      <h2 class="article__title">
+        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      </h2>
+
+
+      <p class="article__excerpt">{% if post.description %}{{ post.description }}{% else %}{{ post.content | strip_html | truncate: 250 }}{% endif %}</p>
+
+      <div class="article__info">
+        <a class="article__author" href="/about/">
+          {{ if .Site.Params.author.author_avatar }}
+            <img class="article__author__avatar lazy" data-src="{{ site.data.settings.author.author_avatar }}" alt="{{ site.data.settings.author.author_name }}" width="32" height="32">
+          {{ endif }}
+          By
+          {% if site.data.settings.author.author_name %}
+            <span class="article__author__name">{{ site.data.settings.author.author_name }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
