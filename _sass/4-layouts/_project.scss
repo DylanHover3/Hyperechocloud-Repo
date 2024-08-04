@@ -1,0 +1,133 @@
+/* Project */
+.project-head {
+  max-width: 960px;
+  margin: 64px auto 40px;
+
+  @media (max-width: $tablet) {
+    margin: 48px auto 32px;
+  }
+
+  @media (max-width: $tablet) {
+    margin: 32px 0;
+  }
+}
+
+.project-info {
+
+  .project-label {
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-alt-color);
+  }
+
+  .project-title {
+    font-size: 52px;
+  }
+
+  @media (max-width: $tablet) {
+    .project-label {
+      font-size: inherit;
+    }
+
+    .project-title {
+      font-size: 42px;
+    }
+  }
+
+  @media (max-width: $mobile) {
+    .project-title {
+      font-size: 32px;
+    }
+  }
+}
+
+.project-image {
+  position: relative;
+  transform: translate(0);
+  padding-top: 80%;
+  min-height: 280px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--background-alt-color);
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+  }
+
+  @media (max-width: $tablet) {
+    border-radius: 16px;
+  }
+
+  @media (max-width: $mobile) {
+    padding-top: 100%;
+  }
+}
+
+.project-video {
+  border-radius: 22px;
+  overflow: hidden;
+  transform: translate(0);
+  background-color: var(--background-alt-color);
+
+  .project-video__wrap {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 80%;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media (max-width: $tablet) {
+    border-radius: 16px;
+  }
+
+  @media (max-width: $mobile) {
+    .project-video__wrap {
+      padding-bottom: 100%;
+    }
+  }
+}
+
+.project-content {
+  max-width: 780px;
+  margin: 0 auto 96px;
+
+  img,
+  .js-reframe {
+    border-radius: 22px;
+    overflow: hidden;
+
+    &.lightense-open {
+      border-radius: 0;
+    }
+  }
+
+  @media (max-width: $tablet) {
+    margin: 0 auto 80px;
+
+    img,
+    .js-reframe {
+      border-radius: 16px;
+    }
+  }
+}
+
+@media (max-width: $desktop) {
+  .row .col:last-child.project {
+    flex-grow: 1;
+  }
+}

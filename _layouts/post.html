@@ -1,0 +1,64 @@
+---
+layout: default
+---
+
+<div class="container">
+
+  <div class="post__head">
+    <div class="post__meta">
+      {% if page.tags.size >= 1 %}
+      <div class="post__tags">
+      {% for tag in page.tags %}
+      <a href="{{ site.baseurl }}/tags/?tag={{ tag | downcase | url_encode }}" class="post__tag">{{ tag }}</a>
+      {% endfor %}
+      </div>
+      {% endif %}
+      <span class="article__date">•<time datetime="{{ page.date | date_to_xmlschema }}">{% assign date_format = site.minima.date_format | default: "%d %-b, %Y" %}{{ page.date | date: date_format }}</time></span>
+    </div>
+
+    {% if page.title %}
+    <h1 class="post__title">{{ page.title | escape }}</h1>
+    {% endif %}
+
+    {% if page.description %}
+    <div class="post__description">{{ page.description }}</div>
+    {% endif %}
+
+    {% if page.video_embed %}
+    <div class="post-video">
+      <div class="post-video__wrap">
+        <iframe src="{{ page.video_embed }}" loading="lazy" width="640" height="360" frameborder="0" webkitallowfullscreen
+          mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+    {% else %}
+    {%if page.image %}
+    <div class="post-image">
+      <img class="lazy" data-src="{{site.baseurl}}{{page.image}}" alt="{{page.title}}">
+    </div>
+    {% endif %}
+    {% endif %}
+  </div>
+
+  <!-- begin post -->
+  <article class="post">
+    <div class="post__content">
+      {{ content }}
+    </div>
+    {% include share-buttons.html %}
+  </article>
+  <!-- end post -->
+
+</div>
+
+{% include post-navigation.html %}
+
+{% if site.data.settings.disqus_identifier %}
+  {% include disqus-comments.html %}
+{% endif %}
+
+{% include related-posts.html %}
+
+{% include section-faq.html %}
+
+{% include section-subscribe.html %}
