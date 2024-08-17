@@ -128,18 +128,16 @@ faq:
   faq_title: Frequently asked questions
   faq_intro: Need some answers?
   faq_items:
-    - title: What distinguishes you as a mobile developer?
-      description: I bring a wealth of experience in crafting seamless user experiences and developing mobile solutions that prioritize functionality and innovation.
-    - title: How do you approach designing user-friendly mobile applications?
-      description: My approach involves a user-centric design philosophy, focusing on intuitive interfaces and fluid interactions to enhance the overall mobile experience.
-    - title: Can you walk us through your mobile app development process?
-      description: Certainly! From concept to deployment, I follow a structured development process, incorporating user feedback and iterative testing to ensure a polished and functional mobile application.
-    - title: How do you stay updated on the latest trends mobile development?
-      description: Continuous learning is key. I stay updated through industry publications, attending conferences, and actively participating in professional communities to stay at the forefront of industry trends.
-    - title: How do you ensure the security of mobile applications you develop?
-      description: Security is a top priority. I follow industry best practices, conduct thorough testing, and implement robust security measures to safeguard mobile applications and user data.
-    - title: What role does user feedback play in your development process?
-      description: User feedback is integral. I actively seek and incorporate user insights to refine designs and optimize mobile applications, ensuring they align with user expectations and preferences.
+    - title: What distinguishes you as a cloud solutions architect?
+      description: My ability to seamlessly bridge on-premises and cloud environments with a focus on aligning technical solutions with business objectives sets me apart. I leverage innovative technologies to design architectures that are secure, scalable, and future-ready.
+    - title: How do you approach designing cost effective solutions to businesses?
+      description: I prioritize understanding the unique needs and budget constraints of the business, then design solutions that maximize resource efficiency. I leverage cloud-native services, right-sizing, and automation to optimize costs without sacrificing performance.
+    - title: How can you help our business to develop resilient, and scalable technology solutions?
+      description: I design architectures with built-in redundancy, automated failover, and scalability to ensure high availability and resilience. By adopting a modular approach, I enable easy scaling and adaptability as the business grows and evolves.
+    - title: How do you stay updated on the latest trends in the technology industry?
+      description: Continuous learning is key. I regularly engage with industry publications, attend webinars and conferences, and participate in professional communities. Continuous learning and hands-on experimentation with new technologies ensure I remain at the forefront of industry developments.
+    - title: How do you implement security best practices in your cloud architecture solutions?
+      description: I incorporate security from the outset by following the principle of least privilege, encrypting data in transit and at rest, and implementing robust identity and access management controls. Regular audits and updates to security policies ensure ongoing protection against emerging threats.
 
 #-------------------------------
 # Blog Section Settings
