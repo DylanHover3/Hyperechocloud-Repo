@@ -2,9 +2,10 @@
 title: Web animation magic and adding motion to enhance user experiences
 date: 2024-01-05 08:01:35 +0300
 label: Development
-image: '/images/project-12.jpg'
+image: "/images/project-12.jpg"
 featured:
 ---
+
 The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.
 
 From wireframes to prototypes, logo design to UI/UX, we strive to unravel the mysteries of exceptional design that leaves a lasting impact on users. Let’s craft experiences that inspire and delight, one design at a time.
@@ -21,7 +22,7 @@ From wireframes to prototypes, logo design to UI/UX, we strive to unravel the my
 At the heart of successful UX/UI design is empathy. We explore how putting ourselves in users’ shoes allows us to create designs that truly resonate with their desires and aspirations.
 
 ![iPad](/images/project-example-1.jpg)
-*Photo by [Balázs Kétyi](https://unsplash.com/@balazsketyi) on [Unsplash](https://unsplash.com/)*
+_Photo by [Balázs Kétyi](https://unsplash.com/@balazsketyi) on [Unsplash](https://unsplash.com/)_
 
 Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts. In this blog, we will explore methods and tools that will help you gather valuable data and transform it into unique design solutions.
 

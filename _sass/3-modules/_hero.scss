@@ -10,7 +10,7 @@
 
   .hero__title {
     margin-bottom: 24px;
-    font-size: 80px;
+    font-size: 40px;
     line-height: 1;
     color: var(--heading-font-color);
   }
@@ -50,8 +50,20 @@
     margin-top: 32px;
     will-change: transform;
     overflow: hidden;
-    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
     background: var(--background-color);
   }
 

@@ -1,19 +1,20 @@
 ---
 layout: page
 title: About Me
-description: I am an expert user experience strategist and mobile developer, driven by a relentless pursuit of innovation and excellence. My journey in the tech world has been shaped by a commitment to creating solutions that not only meet but exceed user expectations.
+description: As an experienced Enterprise-level Systems Administrator and Cloud Solutions Architect, I have a deep understanding of both the business and technological landscapes. My approach is rooted in identifying and grasping the unique challenges that organizations face, whether in on-premises environments or the cloud.
 permalink: /about/
-image: '/images/01.jpg'
+image: "/images/Profile-Pic2.png"
 ---
-As a user experience strategist, I specialize in understanding the intricacies of user behavior and translating them into intuitive and enjoyable digital interfaces. My approach is rooted in empathy, ensuring that every design decision considers the end-user's perspective.
 
-## Mobile development maven
+As a systems design specialist, I specialize in designing and implementing scalable, secure, and efficient solutions that align with business goals. By bridging the gap between traditional IT and cloud technologies, I ensure that each solution not only meets immediate needs but also positions organizations for future growth and innovation.
 
-In the realm of mobile development, I thrive on turning ideas into functional and aesthetically pleasing applications. From concept to deployment, I am dedicated to delivering mobile solutions that seamlessly integrate with users' lives.
+## Azure Systems Administrator
 
-> To design is to communicate clearly by whatever means you can control or master - Milton Glaser
+In the realm of Azure administration, I have experience with both on-premises and cloud based systems for enterprises that are 2500+ in size. I also have personally assisted with moving business critical workloads from on-premises to the cloud, designed with resiliency and scalability.
 
-In the realm of mobile development, I thrive on turning ideas into functional and aesthetically pleasing applications. From concept to deployment, I am dedicated to delivering mobile solutions that seamlessly integrate with users' lives.
+> I strive for two things in design: simplicity and clarity. - Lindon Leader
+
+In the systems security, I believe in using industry standard best practices and
 
 <div class="gallery-box">
   <div class="gallery">
