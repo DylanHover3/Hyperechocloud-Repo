@@ -2,7 +2,7 @@
 title: Web animation magic and adding motion to enhance user experiences
 date: 2024-01-05 08:01:35 +0300
 label: Development
-image: "/images/project-1.jpg"
+image: "/images/Cloud-1-2.jpg"
 featured:
 ---
 
@@ -12,9 +12,9 @@ From wireframes to prototypes, logo design to UI/UX, we strive to unravel the my
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/project-example-2.jpg" loading="lazy" alt="Project">
-    <img src="/images/project-example-3.jpg" loading="lazy" alt="Project">
-    <img src="/images/project-example-4.jpg" loading="lazy" alt="Project">
+    <img src="/images/cloud-3.jpg" loading="lazy" alt="Project">
+    <img src="/images/Cloud-12.jpg" loading="lazy" alt="Project">
+    <img src="/images/Cloud-4.jpg" loading="lazy" alt="Project">
   </div>
   <em>Gallery / <a href="https://unsplash.com/" target="_blank">Unsplash</a></em>
 </div>

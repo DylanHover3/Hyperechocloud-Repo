@@ -2,19 +2,19 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://localhost:4000/about/</loc>
-<lastmod>2024-12-31T15:02:20-06:00</lastmod>
+<lastmod>2024-12-31T16:07:54-06:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/contact/</loc>
-<lastmod>2024-12-31T15:02:20-06:00</lastmod>
+<lastmod>2024-12-31T16:07:54-06:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/elements/</loc>
-<lastmod>2024-12-31T15:02:20-06:00</lastmod>
+<lastmod>2024-12-31T16:07:54-06:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/tags/</loc>
-<lastmod>2024-12-31T15:02:20-06:00</lastmod>
+<lastmod>2024-12-31T16:07:54-06:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/posts/designing-user-friendly-shopping-apps-for-mobile-e-commerce</loc>
@@ -25,7 +25,7 @@
 <lastmod>2024-01-08T06:01:35-06:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/project/web-animation-magic-and-adding-motion-to-enhance-user-experiences</loc>
+<loc>http://localhost:4000/project/web-animation-magic-and-adding-motion-to-enhance-user-experiences-copy</loc>
 <lastmod>2024-01-04T23:01:35-06:00</lastmod>
 </url>
 <url>
