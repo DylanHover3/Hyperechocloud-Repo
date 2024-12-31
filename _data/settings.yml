@@ -152,7 +152,7 @@ author_section:
   enable: true
   author_section_title: "Welcome to my journey into the cloud. My name is Dylan. I am a cloud enthusiast, fly-fisherman, husband to my lovely wife and father to three beautiful kids."
   author_section_description: When I'm not designing cloud architecture solutions, you'll find me enjoying a hot cup of coffee, camping with my family, fly fishing in the rivers of the Northwest, or planning our next adventure. Let's collaborate together, and build the applications of the future. Cheers to good vibes and creative adventures!
-  author_section_image: "/images/Profile_Pic3.jpg"
+  author_section_image: "/images/Profile-Pic3.jpg"
   author_section_image_alt: Dylan Hover
   author_section_button_text: Let's сonnect!
   author_section_button_link: "/contact/"
