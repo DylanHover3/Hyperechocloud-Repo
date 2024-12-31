@@ -6,7 +6,7 @@ permalink: /about/
 image: "/images/Dylan-Profile-Pic.png"
 ---
 
-As an experienced enterprise-level Systems Administrator and Cloud Solutions Architect, I have a deeply familiar with the intersection between business and technology. My passion lies in identifying the unique challenges organizations face and crafting innovative, scalable, and secure solutions that address these needs effectively. By bridging the gap between traditional IT and cloud technologies, I have designed systems that not only meet immediate requirements but also position organizations for future growth and innovation.
+As an experienced enterprise-level Systems Administrator and Cloud Solutions Architect, I am deeply familiar with the intersection between business and technology. My passion lies in identifying the unique challenges organizations face and crafting innovative, scalable, and secure solutions that address these needs effectively. By bridging the gap between traditional IT and cloud technologies, I have designed systems that not only meet immediate requirements but also position organizations for future growth and innovation.
 
 ## Azure Systems Administrator
 
