@@ -3,7 +3,7 @@ title: Web animation magic and adding motion to enhance user experiences
 date: 2024-01-05 08:01:35 +0300
 label: Development
 image: "/images/Cloud-1-2.jpg"
-featured:
+featured: true
 ---
 
 The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.
