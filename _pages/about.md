@@ -1,10 +1,12 @@
 ---
 layout: page
 title: About Me
-description: Greetings my name is Dylan Hover a System Administrator and cloud technology enthusiast. My interests include reading about emerging technologies, crafting scalable, resilient, and cost-effective infrastructure solutions, learning new skills that I can apply to my IT career, going camping with my family, and fly-fishing for beautiful trout and other fresh water species. I am passionate about helping people to overcome the challenges they face by leveraging technology to meet their business needs. As an experienced enterprise-level Systems Administrator and Cloud Solutions Architect, I have a deeply familiar with the intersection between business and technology. My passion lies in identifying the unique challenges organizations face and crafting innovative, scalable, and secure solutions that address these needs effectively. By bridging the gap between traditional IT and cloud technologies, I have designed systems that not only meet immediate requirements but also position organizations for future growth and innovation.
+description: Greetings my name is Dylan Hover a System Administrator and cloud technology enthusiast. My interests include reading about emerging technologies, crafting scalable, resilient, and cost-effective infrastructure solutions, learning new skills that I can apply to my IT career, going camping with my family, and fly-fishing for beautiful trout and other fresh water species. I am passionate about helping people to overcome the challenges they face by leveraging technology to meet their business needs.
 permalink: /about/
 image: "/images/Dylan-Profile-Pic.png"
 ---
+
+As an experienced enterprise-level Systems Administrator and Cloud Solutions Architect, I have a deeply familiar with the intersection between business and technology. My passion lies in identifying the unique challenges organizations face and crafting innovative, scalable, and secure solutions that address these needs effectively. By bridging the gap between traditional IT and cloud technologies, I have designed systems that not only meet immediate requirements but also position organizations for future growth and innovation.
 
 ## Azure Systems Administrator
 
