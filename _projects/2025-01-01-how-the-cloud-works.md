@@ -1,7 +1,7 @@
 ---
-title: Web animation magic and adding motion to enhance user experiences
-date: 2024-01-05 08:01:35 +0300
-label: Development
+title: How the Cloud Works?
+date: 2025-01-01 08:01:35 +0300
+label: Cloud Deployment
 image: "/images/Cloud-1-2.jpg"
 featured: true
 ---
@@ -16,7 +16,7 @@ From wireframes to prototypes, logo design to UI/UX, we strive to unravel the my
     <img src="/images/Cloud-12.jpg" loading="lazy" alt="Project">
     <img src="/images/Cloud-4.jpg" loading="lazy" alt="Project">
   </div>
-  <em>Gallery / <a href="https://unsplash.com/" target="_blank">Unsplash</a></em>
+  <!-- <em>Gallery / <a href="https://unsplash.com/" target="_blank">Unsplash</a></em> -->
 </div>
 
 At the heart of successful UX/UI design is empathy. We explore how putting ourselves in users’ shoes allows us to create designs that truly resonate with their desires and aspirations.

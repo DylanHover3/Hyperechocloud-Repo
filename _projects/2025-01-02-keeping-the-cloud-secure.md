@@ -1,26 +1,25 @@
 ---
-title: Revolutionizing development pioneering the latest technologies
-date: 2024-01-06 08:01:35 +0300
-label: Branding
-image: '/images/project-5.jpg'
+title: Keeping the Cloud Secure
+date: 2025-01-02 08:01:35 +0300
+label: Security
+image: "/images/Cloud-Security-1.jpg"
 featured: true
 ---
+
 The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.
 
 From wireframes to prototypes, logo design to UI/UX, we strive to unravel the mysteries of exceptional design that leaves a lasting impact on users. Let’s craft experiences that inspire and delight, one design at a time.
 
-![iPad](/images/project-example-1.jpg)
-*Photo by [Balázs Kétyi](https://unsplash.com/@balazsketyi) on [Unsplash](https://unsplash.com/)*
+![iPad](/images/Programmer.jpg)
+_Photo by [Jefferson Santos](https://unsplash.com/@jefflssantos) on [Unsplash](https://unsplash.com/)_
 
 At the heart of successful UX/UI design is empathy. We explore how putting ourselves in users’ shoes allows us to create designs that truly resonate with their desires and aspirations.
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/project-example-2.jpg" loading="lazy" alt="Project">
-    <img src="/images/project-example-3.jpg" loading="lazy" alt="Project">
-    <img src="/images/project-example-4.jpg" loading="lazy" alt="Project">
+    <img src="/images/Cloud-Tech-1.jpg" loading="lazy" alt="Project">
   </div>
-  <em>Gallery / <a href="https://unsplash.com/" target="_blank">Unsplash</a></em>
+  <!-- <em>Gallery / <a href="https://unsplash.com/" target="_blank">Unsplash</a></em> -->
 </div>
 
 Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts. In this blog, we will explore methods and tools that will help you gather valuable data and transform it into unique design solutions.
