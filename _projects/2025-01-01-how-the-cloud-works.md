@@ -12,7 +12,7 @@ From wireframes to prototypes, logo design to UI/UX, we strive to unravel the my
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/cloud-3.jpg" loading="lazy" alt="Project">
+    <img src="/images/Cloud-3.jpg" loading="lazy" alt="Project">
     <img src="/images/Cloud-12.jpg" loading="lazy" alt="Project">
     <img src="/images/Cloud-4.jpg" loading="lazy" alt="Project">
   </div>
