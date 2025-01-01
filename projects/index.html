@@ -1,16 +1,21 @@
 ---
 layout: default
-title: Works
-description: Embark on a journey through a handpicked selection of projects that embody the essence of passion, simplicity, and creativity.
+title: Projects
+description: Embark with me as we build cloud based infrastructure that is cost-effective, scalable, and resilient. These projects are meant to document my journey into cloud and on-premises technology as well as providing technical documentation on how to deploy these solutions.
 ---
 
 <div class="container">
   <div class="page-section-head">
-    <h1 class="page-title">{% if page.title %}{{ page.title }}{% else %}{{ site.data.settings.projects.projects_title }}{% endif %}</h1>
+    <h1 class="page-title">
+      {% if page.title %}{{ page.title }}{% else %}{{
+      site.data.settings.projects.projects_title }}{% endif %}
+    </h1>
     {% if page.description %}
     <p class="page-description">{{ page.description }}</p>
     {% else site.data.settings.projects.projects_description %}
-    <p class="page-description">{{ site.data.settings.projects.projects_description }}</p>
+    <p class="page-description">
+      {{ site.data.settings.projects.projects_description }}
+    </p>
     {% endif %}
   </div>
 </div>
@@ -31,14 +36,21 @@ description: Embark on a journey through a handpicked selection of projects that
                 </svg>
               </div>
               {% endif %}
-              <img class="lazy" data-src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+              <img
+                class="lazy"
+                data-src="{{ project.image | relative_url }}"
+                alt="{{ project.title }}"
+              />
             </a>
             <div class="project__info">
               {% if project.label %}
               <div class="project__label">{{ project.label }}</div>
-              {% endif %}
-              {% if project.title %}
-              <h3 class="project__title"><a class="project__link" href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+              {% endif %} {% if project.title %}
+              <h3 class="project__title">
+                <a class="project__link" href="{{ project.url | relative_url }}"
+                  >{{ project.title }}</a
+                >
+              </h3>
               {% endif %}
             </div>
           </div>
@@ -50,8 +62,5 @@ description: Embark on a journey through a handpicked selection of projects that
 </section>
 <!-- end projects -->
 
-{% include section-faq.html %}
-
-{% include section-author.html %}
-
-{% include section-subscribe.html %}
+{% include section-faq.html %} {% include section-author.html %} {% include
+section-subscribe.html %}

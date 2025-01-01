@@ -1,6 +1,6 @@
 ---
 title: User Experience and Design
-date: 2025-01-01 08:01:35 +0300
+date: 2025-01-01 08:02:35 +0300
 label: Design
 image: "/images/Cloud-3.jpg"
 featured: true

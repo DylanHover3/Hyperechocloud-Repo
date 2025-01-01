@@ -60,6 +60,9 @@ hero_logo_image:
   - alt: "Docker Logo"
     image: "/images/docker.svg"
 
+  - alt: "Kubernetes Logo"
+    image: "/images/kubernetes.svg"
+
   - alt: "Terraform Logo"
     image: "/images/terraform.svg"
 

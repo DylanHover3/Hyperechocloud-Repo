@@ -1,6 +1,6 @@
 ---
 title: Keeping the Cloud Secure
-date: 2025-01-01 08:01:35 +0300
+date: 2025-01-01 08:03:35 +0300
 label: Security
 image: "/images/Cloud-Security-1.jpg"
 featured: true
