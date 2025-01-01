@@ -5,8 +5,8 @@
         <description>Homebase for cloud solution projects and innovative technology blogs!</description>
         <link>http://localhost:4000/</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Wed, 01 Jan 2025 09:53:19 -0600</pubDate>
-        <lastBuildDate>Wed, 01 Jan 2025 09:53:19 -0600</lastBuildDate>
+        <pubDate>Wed, 01 Jan 2025 10:12:06 -0600</pubDate>
+        <lastBuildDate>Wed, 01 Jan 2025 10:12:06 -0600</lastBuildDate>
         <generator>Jekyll v4.3.3</generator>
         
             <item>
@@ -57,16 +57,14 @@
             </item>
         
             <item>
-                <title>Designing user-friendly shopping apps for mobile e-commerce</title>
+                <title>Challenges that Systems Administrators Face</title>
                 <description>&lt;p&gt;Design and user experience are critical factors in creating successful interactions with the target audience. Unique and intuitive interfaces, designed with user needs in mind, can leave a positive impression and satisfy their expectations.&lt;/p&gt;
 
 &lt;p&gt;From user-centered design methodologies to sustainable practices, we explore the ethical dimensions of design and its impact on society and the environment.&lt;/p&gt;
 
 &lt;div class=&quot;gallery-box&quot;&gt;
   &lt;div class=&quot;gallery&quot;&gt;
-    &lt;img src=&quot;/images/post-1.jpg&quot; loading=&quot;lazy&quot; alt=&quot;Post&quot; /&gt;
-    &lt;img src=&quot;/images/post-2.jpg&quot; loading=&quot;lazy&quot; alt=&quot;Post&quot; /&gt;
-    &lt;img src=&quot;/images/post-3.jpg&quot; loading=&quot;lazy&quot; alt=&quot;Post&quot; /&gt;
+    &lt;img src=&quot;/images/Cloud-8.jpg&quot; loading=&quot;lazy&quot; alt=&quot;Post&quot; /&gt;
   &lt;/div&gt;
   &lt;em&gt;Gallery / &lt;a href=&quot;https://unsplash.com/&quot; target=&quot;_blank&quot;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;
 &lt;/div&gt;
@@ -79,8 +77,8 @@
 
 &lt;p&gt;Effective design goes beyond visual aspects. It extends to information architecture, content organization, and microinteractions. Attention to detail is the key to creating a comprehensive user experience that retains users and engages them in actions. We will provide practical tips on optimizing user interfaces and enhancing usability.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/09.jpg&quot; alt=&quot;Books&quot; /&gt;
-&lt;em&gt;Photo by &lt;a href=&quot;https://unsplash.com/@lazizli&quot;&gt;Lala Azizli&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com&quot;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/Workstation-1.jpg&quot; alt=&quot;Computer&quot; /&gt;
+&lt;em&gt;Photo by &lt;a href=&quot;https://unsplash.com/@domenicoloia&quot;&gt;Domenico Loia&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com&quot;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;From user-centered design methodologies to sustainable practices, we explore the ethical dimensions of design and its impact on society and the environment.&lt;/p&gt;
 
@@ -96,9 +94,9 @@
                 <link>http://localhost:4000/posts/designing-user-friendly-shopping-apps-for-mobile-e-commerce</link>
                 <guid isPermaLink="true">http://localhost:4000/posts/designing-user-friendly-shopping-apps-for-mobile-e-commerce</guid>
                 
-                <category>Space</category>
+                <category>Administration</category>
                 
-                <category>technology</category>
+                <category>Servers</category>
                 
                 
             </item>
