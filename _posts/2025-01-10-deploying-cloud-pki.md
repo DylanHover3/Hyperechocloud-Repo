@@ -2,7 +2,7 @@
 title: Deploying Cloud PKI
 description: Simple overview and walkthrough for deploying Intune's Cloud PKI for device certification management.
 date: 2025-01-10 15:01:35 +0300
-image: "/images/07.jpg"
+image: "/images/CloudPKI-26.jpg"
 tags: [Security, Certificates, MDM]
 ---
 
