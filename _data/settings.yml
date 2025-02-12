@@ -214,7 +214,7 @@ mailchimp:
 # Contact Settings
 contact:
   email: dylan.m.hover@gmail.com # Add your form_id
-  description: Gerous comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want. # Add a description of your form
+  description: Have a question or interested in collaborating? Feel free to reach out! Use the form below to send me a message, and I'll get back to you as soon as possible. Whether it's about cloud solutions, hybrid infrastructure, or a new project idea, I'm happy to connect! # Add a description of your form
 
 # NOTE
 # Gerous theme comes with a contact form built-in. You can use this form with Formspree (https://formspree.io/) service and get up to 50 submissions for free. Also, you can easily switch to another service if you want.
