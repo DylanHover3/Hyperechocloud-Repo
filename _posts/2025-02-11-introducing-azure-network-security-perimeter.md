@@ -8,13 +8,6 @@ tags: [Security, New Features, Virtual Networks]
 
 As organizations continue their migration to the cloud, securing the digital estate becomes increasingly complex. Microsoft’s new Azure Network Security Perimeter is designed to address these challenges by providing a unified, policy-driven approach to isolate and protect resources. In this article, we explore what the network security perimeter is, how it differs from existing Azure network security tools, its relationship to Private Endpoints, and provide an example of deploying it in an existing environment.
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/Cloud-8.jpg" loading="lazy" alt="Post">
-  </div>
-  <em>Gallery / <a href="https://unsplash.com/" target="_blank">Unsplash</a></em>
-</div>
-
 ## What Is the Azure Network Security Perimeter?
 
 The Azure Network Security Perimeter is a new security construct that allows you to define a clear boundary around your cloud resources. It implements a zero-trust security model by ensuring that only explicitly permitted traffic can enter or leave the designated perimeter. Key characteristics include:
