@@ -31,9 +31,6 @@ A more scalable approach to tracking app secrets and certificates involves lever
 - Identify secrets and certificates that are nearing expiration.
 - Send an automated email notification with a summary of expiring credentials.
 
-![Computer](/images/Workstation-1.jpg)
-_Photo by [Domenico Loia](https://unsplash.com/@domenicoloia) on [Unsplash](https://unsplash.com)_
-
 ## Understanding the PowerShell Script
 
 This script automates the expiration tracking process and includes key functionalities:
@@ -59,7 +56,7 @@ The script accepts key parameters to customize execution:
 
 ### 2. Connecting to Microsoft Graph
 
-```
+```powershell
 Connect-MgGraph -TenantId $TenantId -ClientId $ClientId -ClientSecret $ClientSecret
 ```
 
@@ -67,17 +64,18 @@ This command authenticates to Microsoft Graph with the necessary permissions to 
 
 ### 3. Retrieving Azure AD App Registrations
 
-```
-$apps = Get-MgApplication -All
+```powershell
+$appRegistrations = Get-MgApplication
 ```
 
 This retrieves all applications registered in Azure AD.
 
 ### 4. Extracting Expiring Secrets and Certificates
 
-```
-$expiringSecrets = $apps | Where-Object {
-    $_.PasswordCredentials | Where-Object { $_.EndDateTime -lt (Get-Date).AddDays($DaysToCheck) }
+```powershell
+foreach ($app in $AppRegistrations) {
+        $certs = $app.KeyCredentials
+        $secrets = $app.PasswordCredentials...
 }
 ```
 
@@ -87,15 +85,260 @@ This filters client secrets that are expiring within the specified timeframe.
 
 If the $SendEmail flag is enabled, the script formats the expiring credentials into an email-friendly format and sends a notification using Microsoft Graph's email API:
 
-```
-Send-MgUserMail -UserId $EmailFrom -Message @{ ... }
+```powershell
+try {
+        # Send email using Microsoft Graph
+        Send-MgUserMail -UserId $From -BodyParameter $params
+        Write-Output "Email notification sent successfully using Microsoft Graph."
+    }
 ```
 
 ## Sample Email Output
 
 When the script detects an expiring credential, it generates an email similar to this:
 
-## Conclusion
+> ### Subject: Azure AD App Registration - Expiring Certificates and Secrets
+>
+> #### The following certificates and secrets will expire within the next 30 days:
+>
+> | App Name | App ID        | Type        | Expiry Date | Days Remaining |
+> | -------- | ------------- | ----------- | ----------- | -------------- |
+> | AppOne   | 12345678-ABCD | Certificate | 2024-08-15  | 15             |
+> | AppTwo   | 87654321-DCBA | Secret      | 2024-08-20  | 20             |
+> | AppThree | 11223344-EFGH | Certificate | 2024-08-29  | 29             |
+>
+> ##### Please take action to renew these items before they expire.
+
+## Here is the PowerShell Script
+
+```powershell
+param(
+    [Parameter(Mandatory = $false)]
+    [int]$DaysToCheck = 30,
+
+    [Parameter(Mandatory = $false)]
+    [switch]$SendEmail = $false,
+
+    [Parameter(Mandatory = $false)]
+    [string]$EmailTo = "<RecipientEmail>",
+
+    [Parameter(Mandatory = $false)]
+    [string]$EmailFrom = "<SenderEmail",
+
+    [Parameter(Mandatory = $false)]
+    [string]$TenantId = "<TenantID>",
+
+    [Parameter(Mandatory = $false)]
+    [string]$AppId = "<ApplicationClientID",
+
+    [Parameter(Mandatory = $false)]
+    [string]$ClientSecret = "<ApplicationSecretValue>"
+)
+
+function Connect-ToMicrosoftGraph {
+    param (
+        [Parameter(Mandatory = $false)]
+        [string]$TenantId,
+
+        [Parameter(Mandatory = $false)]
+        [string]$ClientId,
+
+        [Parameter(Mandatory = $false)]
+        [string]$ClientSecret
+    )
+
+    try {
+        if ([string]::IsNullOrEmpty($TenantId) -or [string]::IsNullOrEmpty($ClientId) -or [string]::IsNullOrEmpty($ClientSecret)) {
+            # For Azure Automation, use Managed Identity
+            Connect-MgGraph -Identity -Scopes "Application.Read.All", "Mail.Send"
+            Write-Output "Successfully connected to Microsoft Graph using Managed Identity."
+        } else {
+            # Use client credentials flow
+            $SecureSecret = ConvertTo-SecureString -String $ClientSecret -AsPlainText -Force
+            $ClientSecretCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ClientId, $SecureSecret
+            Connect-MgGraph -TenantId $TenantId -ClientSecretCredential $ClientSecretCredential
+            Write-Output "Successfully connected to Microsoft Graph using Client Credentials."
+        }
+    }
+    catch {
+        Write-Error "Failed to connect to Microsoft Graph: $_"
+        throw
+    }
+}
+
+function Get-AppRegistrations {
+    try {
+        $appRegistrations = Get-MgApplication
+        Write-Output "Retrieved $($appRegistrations.Count) app registrations."
+        return $appRegistrations
+    }
+    catch {
+        Write-Error "Failed to retrieve app registrations: $_"
+        throw
+    }
+}
+
+function Get-ExpiringItems {
+    param (
+        [Parameter(Mandatory = $true)]
+        [object[]]$AppRegistrations,
+
+        [Parameter(Mandatory = $true)]
+        [datetime]$ExpirationDate
+    )
+
+    $expiringItems = @()
+
+    foreach ($app in $AppRegistrations) {
+        $certs = $app.KeyCredentials
+        $secrets = $app.PasswordCredentials
+
+        # Check certificates
+        foreach ($cert in $certs) {
+            if ($cert.EndDateTime -lt $ExpirationDate) {
+                $expiringItems += [PSCustomObject]@{
+                    AppName = $app.DisplayName
+                    AppId = $app.AppId
+                    Type = "Certificate"
+                    ExpiryDate = $cert.EndDateTime
+                    DaysRemaining = [math]::Floor(($cert.EndDateTime - (Get-Date)).TotalDays)
+                }
+            }
+        }
+
+        # Check secrets
+        foreach ($secret in $secrets) {
+            if ($secret.EndDateTime -lt $ExpirationDate) {
+                $expiringItems += [PSCustomObject]@{
+                    AppName = $app.DisplayName
+                    AppId = $app.AppId
+                    Type = "Secret"
+                    ExpiryDate = $secret.EndDateTime
+                    DaysRemaining = [math]::Floor(($secret.EndDateTime - (Get-Date)).TotalDays)
+                }
+            }
+        }
+    }
+
+    return $expiringItems
+}
+
+function Send-GraphEmail {
+    param (
+        [Parameter(Mandatory = $true)]
+        [object[]]$ExpiringItems,
+
+        [Parameter(Mandatory = $true)]
+        [string]$To,
+
+        [Parameter(Mandatory = $true)]
+        [string]$From
+    )
+
+    $subject = "Azure AD App Registration - Expiring Certificates and Secrets Alert"
+
+    # Create HTML table content
+    $tableRows = ""
+    foreach ($item in $ExpiringItems) {
+        $tableRows += @"
+<tr>
+    <td style='padding:8px;border:1px solid #ddd;'>$($item.AppName)</td>
+    <td style='padding:8px;border:1px solid #ddd;'>$($item.AppId)</td>
+    <td style='padding:8px;border:1px solid #ddd;'>$($item.Type)</td>
+    <td style='padding:8px;border:1px solid #ddd;'>$($item.ExpiryDate)</td>
+    <td style='padding:8px;border:1px solid #ddd;'>$($item.DaysRemaining)</td>
+</tr>
+"@
+    }
+
+    # Complete HTML body
+    $htmlContent = @"
+<h2>Azure AD App Registration - Expiring Certificates and Secrets</h2>
+<p>The following certificates and secrets will expire within the next $DaysToCheck days:</p>
+<table style='border-collapse:collapse;width:100%;border:1px solid #ddd;'>
+    <tr style='background-color:#f2f2f2;'>
+        <th style='padding:8px;border:1px solid #ddd;'>App Name</th>
+        <th style='padding:8px;border:1px solid #ddd;'>App ID</th>
+        <th style='padding:8px;border:1px solid #ddd;'>Type</th>
+        <th style='padding:8px;border:1px solid #ddd;'>Expiry Date</th>
+        <th style='padding:8px;border:1px solid #ddd;'>Days Remaining</th>
+    </tr>
+    $tableRows
+</table>
+<p>Please take action to renew these items before they expire.</p>
+"@
+
+    # Create email parameters for Microsoft Graph
+    $params = @{
+        message = @{
+            subject = $subject
+            body = @{
+                contentType = "HTML"
+                content = $htmlContent
+            }
+            toRecipients = @(
+                @{
+                    emailAddress = @{
+                        address = $To
+                    }
+                }
+            )
+        }
+        saveToSentItems = "true"
+    }
+
+    try {
+        # Send email using Microsoft Graph
+        Send-MgUserMail -UserId $From -BodyParameter $params
+        Write-Output "Email notification sent successfully using Microsoft Graph."
+    }
+    catch {
+        Write-Error "Failed to send email notification through Microsoft Graph: $_"
+    }
+}
+
+# Main Script Execution
+try {
+    # Connect to Microsoft Graph with appropriate credentials
+    Connect-ToMicrosoftGraph -TenantId $TenantId -ClientId $AppId -ClientSecret $ClientSecret
+
+    # Calculate expiration date
+    $expirationDate = (Get-Date).AddDays($DaysToCheck)
+    Write-Output "Checking for items expiring before: $expirationDate"
+
+    # Get all App Registrations
+    $appRegistrations = Get-AppRegistrations
+
+    # Get expiring items
+    $expiringItems = Get-ExpiringItems -AppRegistrations $appRegistrations -ExpirationDate $expirationDate
+
+    # Output results
+    if ($expiringItems.Count -eq 0) {
+        Write-Output "No certificates or secrets are expiring within the next $DaysToCheck days."
+    }
+    else {
+        Write-Output "Found $($expiringItems.Count) expiring items:"
+        $expiringItems | Sort-Object -Property DaysRemaining | Format-Table -Property AppName, Type, ExpiryDate, DaysRemaining -AutoSize
+
+
+        # Send email notification if enabled
+        $sendEmail = $true
+        if ($SendEmail -and -not [string]::IsNullOrEmpty($EmailTo) -and -not [string]::IsNullOrEmpty($EmailFrom)) {
+            Send-GraphEmail -ExpiringItems $expiringItems -To $EmailTo -From $EmailFrom
+        }
+    }
+}
+catch {
+    Write-Error "An error occurred during script execution: $_"
+}
+finally {
+    # Disconnect from Microsoft Graph
+    Disconnect-MgGraph
+    Write-Output "Disconnected from Microsoft Graph."
+}
+```
+
+# Conclusion
 
 Manually tracking Azure AD App Registration secrets and certificates is not scalable for enterprise environments. By leveraging Microsoft Graph PowerShell SDK, administrators can:
 
