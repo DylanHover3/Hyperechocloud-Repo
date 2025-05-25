@@ -1,3 +1,35 @@
+name: Update Jekyll Site from Contentful
+
 on:
   repository_dispatch:
     types: [contentful-update]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.x'
+
+      - name: Install Bundler dependencies
+        run: bundle install
+
+      - name: Fetch Contentful data
+        run: ruby scripts/fetch_contentful_data.rb
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Automated Contentful update"
+          git push
