@@ -1,5 +1,5 @@
 ---
-title: Getting Started with Microsoft Graph PowerShell SDK: A Practical Guide
+title: Getting Started with Microsoft Graph PowerShell SDK A Practical Guide
 description: Learn how to install, configure, and use the Microsoft Graph PowerShell SDK for automating Microsoft 365 administration through scripts and secure authentication.
 date: 2024-04-27
 image: "placeholderforimage.jpg"
