@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Projects */
 .projects {
   .container__inner {
@@ -21,7 +23,7 @@
   transform: translate(0);
   overflow: hidden;
   background-color: var(--background-alt-color);
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
 
   &:hover {
     transform: translateY(-6px);
@@ -50,10 +52,10 @@
     object-fit: cover;
     border-radius: 22px;
     pointer-events: none;
-    transition: transform .3s ease, opacity .3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     border-radius: 16px;
 
     img {
@@ -84,7 +86,7 @@
       text-decoration-thickness: 1.5px;
       text-underline-offset: 3px;
       color: var(--heading-font-color);
-      transition: $global-transition;
+      transition: variables.$global-transition;
 
       &:hover {
         text-decoration-color: var(--heading-font-color);

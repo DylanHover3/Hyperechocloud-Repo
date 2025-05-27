@@ -1,19 +1,20 @@
+@use "0-settings/variables" as variables;
+
 /* Project */
 .project-head {
   max-width: 960px;
   margin: 64px auto 40px;
 
-  @media (max-width: $tablet) {
+  @media (max-width: 1024px) {
     margin: 48px auto 32px;
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     margin: 32px 0;
   }
 }
 
 .project-info {
-
   .project-label {
     margin-bottom: 8px;
     font-size: 18px;
@@ -25,7 +26,7 @@
     font-size: 52px;
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 1024px) {
     .project-label {
       font-size: inherit;
     }
@@ -35,7 +36,7 @@
     }
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     .project-title {
       font-size: 32px;
     }
@@ -61,11 +62,11 @@
     user-select: none;
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 1024px) {
     border-radius: 16px;
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     padding-top: 100%;
   }
 }
@@ -91,11 +92,11 @@
     }
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 1024px) {
     border-radius: 16px;
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     .project-video__wrap {
       padding-bottom: 100%;
     }
@@ -116,7 +117,7 @@
     }
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 1024px) {
     margin: 0 auto 80px;
 
     img,
@@ -126,7 +127,7 @@
   }
 }
 
-@media (max-width: $desktop) {
+@media (max-width: 1024px) {
   .row .col:last-child.project {
     flex-grow: 1;
   }

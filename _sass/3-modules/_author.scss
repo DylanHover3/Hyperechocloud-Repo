@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Author */
 .author__inner {
   display: flex;
@@ -40,7 +42,7 @@
     }
   }
 
-  @media (max-width: $wide) {
+  @media (max-width: 1400px) {
     .author__image {
       height: 484px;
       max-width: 484px;
@@ -55,7 +57,7 @@
     }
   }
 
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     flex-direction: column;
 
     .author__image {
@@ -72,7 +74,7 @@
     }
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     .author__image {
       border-radius: 16px;
 
@@ -82,7 +84,7 @@
     }
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     .author__content {
       .author__title {
         font-size: 32px;

@@ -1,4 +1,8 @@
-*, *::after, *::before {
+@use "../../_sass/0-settings/variables" as variables;
+
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -7,10 +11,10 @@ html {
 }
 
 body {
-  font-family: $base-font-family;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
-  letter-spacing: $base-letter-spacing;
+  font-family: variables.$base-font-family;
+  font-size: variables.$base-font-size;
+  line-height: variables.$base-line-height;
+  letter-spacing: variables.$base-letter-spacing;
   overflow-x: hidden;
   color: var(--text-color);
   background-color: var(--background-color);
@@ -19,12 +23,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   &.disable-animation {
-    *, *::after, *::before {
+    *,
+    *::after,
+    *::before {
       transition: none !important;
     }
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     font-size: 16px;
   }
 }
@@ -35,42 +41,42 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $heading-font-family;
-  font-weight: $heading-font-weight;
-  line-height: $heading-line-height;
-  letter-spacing: $heading-letter-spacing;
+  font-family: variables.$heading-font-family;
+  font-weight: variables.$heading-font-weight;
+  line-height: variables.$heading-line-height;
+  letter-spacing: variables.$heading-letter-spacing;
   color: var(--heading-font-color);
 }
 
 h1 {
-  font-size: $font-size-h1;
+  font-size: variables.$font-size-h1;
 }
 
 h2 {
-  font-size: $font-size-h2;
+  font-size: variables.$font-size-h2;
 }
 
 h3 {
-  font-size: $font-size-h3;
+  font-size: variables.$font-size-h3;
 }
 
 h4 {
-  font-size: $font-size-h4;
+  font-size: variables.$font-size-h4;
 }
 
 h5 {
-  font-size: $font-size-h5;
+  font-size: variables.$font-size-h5;
 }
 
 h6 {
-  font-size: $font-size-h6;
+  font-size: variables.$font-size-h6;
 }
 
 blockquote {
   position: relative;
   margin: 48px 0;
   padding-left: 32px;
-  font-family: $heading-font-family;
+  font-family: variables.$heading-font-family;
   font-size: 28px;
   line-height: 1.6;
   font-style: normal;
@@ -89,19 +95,18 @@ blockquote {
     font-weight: 400;
     font-style: normal;
     color: var(--heading-font-color);
-
   }
 
-  @media (max-width: $wide) {
+  @media (max-width: 1400px) {
     margin: 40px 0;
     font-size: 28px;
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     font-size: 22px;
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     margin: 32px 0;
     padding-left: 20px;
     font-size: 20px;
@@ -129,7 +134,7 @@ img,
 img,
 .lightense-wrap,
 .gallery {
-  &+em {
+  & + em {
     display: block;
     margin-top: 16px;
     font-size: 12px;
@@ -137,21 +142,19 @@ img,
     font-weight: normal;
     text-align: center;
     color: var(--text-alt-color);
-
     a {
       font-weight: 500;
       text-decoration: underline;
       text-decoration-color: transparent;
       text-decoration-thickness: 1px;
       text-underline-offset: 2px;
-      transition: $global-transition;
+      transition: variables.$global-transition;
 
       &:hover {
         text-decoration-color: var(--link-color);
       }
     }
-
-    @media (max-width: $mobile) {
+    @media (max-width: 576px) {
       margin-top: 12px;
     }
   }
@@ -169,7 +172,7 @@ hr {
   border: 0;
   background-color: var(--border-color);
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     margin: 40px 0;
   }
 }
@@ -201,7 +204,7 @@ table th {
 
 table tr {
   background-color: var(--tr-color);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   &:nth-child(even) {
     background-color: transparent;
   }
@@ -228,7 +231,7 @@ table td {
   background: var(--white);
   overflow: hidden;
   pointer-events: none;
-  transition: $global-transition;
+  transition: variables.$global-transition;
   will-change: transform;
 
   svg {
@@ -242,7 +245,7 @@ table td {
 
 .lazy {
   opacity: 0;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .lazy.loaded {

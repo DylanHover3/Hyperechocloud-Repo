@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Buttons */
 .button {
   display: inline-flex;
@@ -12,7 +14,7 @@
   outline: none;
   color: var(--button-color);
   background: var(--button-background-color);
-  transition: $global-transition;
+  transition: variables.$global-transition;
   will-change: transform;
   cursor: pointer;
 

@@ -6,24 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>User Experience and Design</title>
-  <meta name='description' content='Homebase for cloud solution projects and innovative technology blogs!'>
+  <title>Getting Started with Microsoft Graph PowerShell SDK A Practical Guide</title>
+  <meta name='description' content='Learn how to install, configure, and use the Microsoft Graph PowerShell SDK for automating Microsoft 365 administration through scripts and secure authentica...'>
 
-  <link rel="canonical" href="http://localhost:4000/project/user-experience-and-design">
+  <link rel="canonical" href="http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk">
   <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="User Experience and Design – HyperEcho">
-  <meta name="twitter:description" content="The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.
-">
-  <meta name="twitter:image:src" content="http://localhost:4000/images/Cloud-3.jpg">
+  <meta name="twitter:title" content="Getting Started with Microsoft Graph PowerShell SDK A Practical Guide – HyperEcho">
+  <meta name="twitter:description" content="Learn how to install, configure, and use the Microsoft Graph PowerShell SDK for automating Microsoft 365 administration through scripts and secure authentication.">
+  <meta name="twitter:image:src" content="http://localhost:4000/placeholderforimage.jpg">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="User Experience and Design – HyperEcho">
-  <meta property="og:description" content="The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.
-">
-  <meta property="og:image" content="http://localhost:4000/images/Cloud-3.jpg">
+  <meta property="og:title" content="Getting Started with Microsoft Graph PowerShell SDK A Practical Guide – HyperEcho">
+  <meta property="og:description" content="Learn how to install, configure, and use the Microsoft Graph PowerShell SDK for automating Microsoft 365 administration through scripts and secure authentication.">
+  <meta property="og:image" content="http://localhost:4000/placeholderforimage.jpg">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -156,148 +154,541 @@
   <main class="content" aria-label="Content">
     <div class="container">
 
-  <div class="project-head">
+  <div class="post__head">
+    <div class="post__meta">
+      
+      <div class="post__tags">
+      
+      <a href="/tags/?tag=microsoft+graph" class="post__tag">Microsoft Graph</a>
+      
+      <a href="/tags/?tag=powershell" class="post__tag">PowerShell</a>
+      
+      <a href="/tags/?tag=automation" class="post__tag">Automation</a>
+      
+      <a href="/tags/?tag=microsoft+365" class="post__tag">Microsoft 365</a>
+      
+      <a href="/tags/?tag=azure+ad" class="post__tag">Azure AD</a>
+      
+      </div>
+      
+      <span class="article__date">•<time datetime="2024-04-27T00:00:00-05:00">27 Apr, 2024</time></span>
+    </div>
+
+    
+    <h1 class="post__title">Getting Started with Microsoft Graph PowerShell SDK A Practical Guide</h1>
+    
+
+    
+    <div class="post__description">Learn how to install, configure, and use the Microsoft Graph PowerShell SDK for automating Microsoft 365 administration through scripts and secure authentication.</div>
+    
+
     
     
-    <div class="project-image">
-      <img class="lazy" data-src="/images/Cloud-3.jpg" alt="User Experience and Design">
+    <div class="post-image">
+      <img class="lazy" data-src="placeholderforimage.jpg" alt="Getting Started with Microsoft Graph PowerShell SDK A Practical Guide">
     </div>
     
     
   </div>
 
-  <div class="project-content">
+  <!-- begin post -->
+  <article class="post">
+    <div class="post__content">
+      <h1 id="getting-started-with-microsoft-graph-powershell-sdk-a-practical-guide">Getting Started with Microsoft Graph PowerShell SDK: A Practical Guide</h1>
 
-    <div class="project-info">
-      
-      <div class="project-label">Design</div>
-      
-      
-      <h1 class="project-title">User Experience and Design</h1>
-      
+<h2 id="overview-what-is-the-microsoft-graph-powershell-sdk">Overview: What is the Microsoft Graph PowerShell SDK?</h2>
+
+<p>The <strong>Microsoft Graph PowerShell SDK</strong> is a module that enables administrators and developers to interact with Microsoft Graph via PowerShell. Microsoft Graph itself is a RESTful web API that acts as a single endpoint to access data and intelligence from Microsoft 365 services such as Exchange Online, Microsoft Teams, SharePoint, OneDrive, and Azure Active Directory (Azure AD).</p>
+
+<p>This SDK abstracts the complexities of direct API calls by providing a structured, PowerShell-native interface. It allows scripting and automation of various administrative tasks without writing raw HTTP requests.</p>
+
+<h3 id="use-cases">Use Cases</h3>
+
+<p>Common scenarios where the SDK is especially useful include:</p>
+
+<ul>
+  <li><strong>Automating Microsoft 365 administration</strong>: Tasks like managing Teams policies, provisioning mailboxes, or handling Azure AD users can be scripted and scheduled.</li>
+  <li><strong>Querying and modifying user data</strong>: Retrieve user profiles, update properties, or manage licenses programmatically.</li>
+  <li><strong>Batch operations and scheduled jobs</strong>: Integrate with task schedulers or CI/CD pipelines to perform repetitive jobs, like compliance checks or usage reporting.</li>
+</ul>
+
+<h3 id="key-benefits">Key Benefits</h3>
+
+<ul>
+  <li><strong>Unified authentication and permissions model</strong>: Uses the Microsoft identity platform for consistent access control across services.</li>
+  <li><strong>Flexible authentication options</strong>: Supports interactive login (useful for testing) and non-interactive authentication such as certificate-based or client secret flows for service accounts.</li>
+  <li><strong>Cross-platform compatibility</strong>: Operates across Windows PowerShell 5.1 and PowerShell Core (v7+), enabling use on Windows, Linux, and macOS.</li>
+  <li><strong>Standardized, discoverable cmdlets</strong>: Cmdlets follow a predictable naming pattern (e.g., <code class="language-plaintext highlighter-rouge">Get-MgUser</code>, <code class="language-plaintext highlighter-rouge">New-MgTeam</code>) and are grouped by service area, simplifying learning and usage. (<a href="https://www.lee-ford.co.uk/graph-api-powershell-sdk/?utm_source=openai">lee-ford.co.uk</a>)</li>
+</ul>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-V0XOg8NIFUgSFlFeZOhHiceE.png?st=2025-05-26T22%3A49%3A03Z&amp;se=2025-05-27T00%3A49%3A03Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-26T17%3A15%3A43Z&amp;ske=2025-05-27T17%3A15%3A43Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=PIxfJQ9gikE22tJdAy%2BjemCK3zZst/A0rDmna3MiQT8%3D" alt="" /></p>
+
+<h2 id="prerequisites--environment-setup">Prerequisites &amp; Environment Setup</h2>
+
+<h3 id="installation-requirements">Installation Requirements</h3>
+
+<p>To begin working with the Microsoft Graph PowerShell SDK, confirm that your environment meets the following requirements:</p>
+
+<ul>
+  <li><strong>PowerShell 5.1 or later</strong>: This is the minimum version required. PowerShell Core (7+) is supported across Windows, macOS, and Linux.</li>
+  <li><strong>.NET Core Runtime</strong>: Required for PowerShell Core usage. Ensure the appropriate version is installed based on your PowerShell version.</li>
+  <li><strong>Microsoft 365 Tenant Access</strong>: You need access to a Microsoft 365 tenant. This typically requires:
+    <ul>
+      <li>A Microsoft work or school account.</li>
+      <li>An Exchange Online mailbox.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>For more details on account prerequisites, refer to the <a href="https://learn.microsoft.com/en-us/graph/tutorials/powershell?utm_source=openai">Microsoft Graph PowerShell tutorial</a>.</p>
+
+<h3 id="sdk-installation">SDK Installation</h3>
+
+<p>To install the Microsoft Graph PowerShell SDK, use the following command:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Install-Module</span><span class="w"> </span><span class="nx">Microsoft.Graph</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This installs the latest version of the SDK for the current user. If you encounter module name conflicts, append the <code class="language-plaintext highlighter-rouge">-AllowClobber</code> flag:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Install-Module</span><span class="w"> </span><span class="nx">Microsoft.Graph</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="w"> </span><span class="nt">-AllowClobber</span><span class="w">
+</span></code></pre></div></div>
+
+<p>For installing a specific version (e.g., version 2.x.x), use:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Install-Module</span><span class="w"> </span><span class="nx">Microsoft.Graph</span><span class="w"> </span><span class="nt">-RequiredVersion</span><span class="w"> </span><span class="s2">"2.x.x"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Version 2 of the SDK introduces a modular structure, reducing installation size and improving load performance. For a detailed overview of these improvements, see the <a href="https://www.techtarget.com/searchWindowsServer/tip/Whats-new-in-Microsoft-Graph-PowerShell-v2?utm_source=openai">TechTarget summary</a>.</p>
+
+<p>Once installed, verify the module is available:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-Module</span><span class="w"> </span><span class="nt">-ListAvailable</span><span class="w"> </span><span class="nx">Microsoft.Graph</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You’re now ready to authenticate and begin making Microsoft Graph requests.</p>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-IYvF2dNZTj9eTLQzn3I5hJJt.png?st=2025-05-26T22%3A49%3A20Z&amp;se=2025-05-27T00%3A49%3A20Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-26T11%3A47%3A39Z&amp;ske=2025-05-27T11%3A47%3A39Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=xiyUuFBJN7KEJWiTEjQeifnZXq0diw4c%2BtqnlGhJWMQ%3D" alt="" /></p>
+
+<h2 id="authentication--authorization">Authentication &amp; Authorization</h2>
+
+<h3 id="authentication-modes">Authentication Modes</h3>
+
+<p>Microsoft Graph PowerShell SDK supports multiple authentication modes, depending on the use case. Each mode uses OAuth2 under the hood but differs in interactivity and credential flow.</p>
+
+<h4 id="interactive-device-code">Interactive (Device Code)</h4>
+
+<p>This mode is suitable for testing or running scripts manually. It prompts the user to sign in through a browser using a device code.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Connect-MgGraph</span><span class="w"> </span><span class="nt">-Scopes</span><span class="w"> </span><span class="s2">"User.Read, Mail.Send"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This command initiates a device code flow and requests delegated permissions for the specified scopes.</p>
+
+<h4 id="client-credential-flow">Client Credential Flow</h4>
+
+<p>Designed for automation scenarios, this mode requires an app registration in Azure AD and uses certificates or secrets for authentication. It provides application-level access without a signed-in user.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Connect-MgGraph</span><span class="w"> </span><span class="nt">-ClientId</span><span class="w"> </span><span class="err">&lt;</span><span class="nx">app-id</span><span class="err">&gt;</span><span class="w"> </span><span class="nt">-TenantId</span><span class="w"> </span><span class="err">&lt;</span><span class="nx">tenant-id</span><span class="err">&gt;</span><span class="w"> </span><span class="nt">-CertificateThumbprint</span><span class="w"> </span><span class="err">&lt;</span><span class="nx">thumbprint</span><span class="err">&gt;</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This command authenticates using a certificate tied to the registered application.</p>
+
+<h3 id="registering-an-app-in-azure-ad">Registering an App in Azure AD</h3>
+
+<p>To use the client credential flow, you must register an application in Azure Active Directory:</p>
+
+<ol>
+  <li>Navigate to <strong>Azure Active Directory</strong> in the Azure portal.</li>
+  <li>Select <strong>App registrations</strong>, then click <strong>New registration</strong>.</li>
+  <li>Provide a name and, if needed, specify redirect URIs.</li>
+  <li>Under <strong>API permissions</strong>, assign required permissions:
+    <ul>
+      <li><strong>Delegated</strong> permissions for user-context operations.</li>
+      <li><strong>Application</strong> permissions for app-only access.</li>
+    </ul>
+  </li>
+  <li>Click <strong>Grant admin consent</strong> to finalize permission changes.</li>
+</ol>
+
+<p>For a detailed walkthrough, see <a href="https://thesleepyadmins.com/2020/11/22/using-microsoft-graph-powershell-sdk/?utm_source=openai">thesleepyadmins.com</a>.</p>
+
+<h3 id="token-handling">Token Handling</h3>
+
+<p>The SDK handles OAuth2 tokens automatically. It caches tokens and refreshes them as needed, reducing manual intervention.</p>
+
+<p>Use the following command to inspect the current authentication context and token details:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-MgContext</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This reveals the current scopes, tenant, and token expiration.</p>
+
+<p>More information on token behavior is available at <a href="https://www.lee-ford.co.uk/graph-api-powershell-sdk/?utm_source=openai">lee-ford.co.uk</a>.</p>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-yyIYixKb2NAP6bG66SmgbAoM.png?st=2025-05-26T22%3A49%3A37Z&amp;se=2025-05-27T00%3A49%3A37Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-26T15%3A12%3A44Z&amp;ske=2025-05-27T15%3A12%3A44Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=s6Pey5UHyE7Z2GIG3S6FS4Jjb4fz4TysviiKpM5rOGU%3D" alt="" /></p>
+
+<h2 id="core-concepts-cmdlet-structure-modules-and-permissions">Core Concepts: Cmdlet Structure, Modules, and Permissions</h2>
+
+<h3 id="cmdlet-naming-convention">Cmdlet Naming Convention</h3>
+
+<p>Microsoft Graph PowerShell SDK cmdlets follow a consistent naming convention designed around the format:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Verb-Mg</span><span class="err">&lt;</span><span class="nx">Resource</span><span class="err">&gt;</span><span class="w">
+</span></code></pre></div></div>
+
+<p>For example:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Get-MgUser</code> — Retrieves a user object from Microsoft Graph.</li>
+  <li><code class="language-plaintext highlighter-rouge">Send-MgUserMail</code> — Sends email on behalf of a user.</li>
+</ul>
+
+<p>To discover all available cmdlets across Microsoft Graph modules, use:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-Command</span><span class="w"> </span><span class="nt">-Module</span><span class="w"> </span><span class="nx">Microsoft.Graph</span><span class="o">*</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This command lists all cmdlets from installed Microsoft Graph modules, making it easier to explore functionality by resource.</p>
+
+<h3 id="module-structure-v2">Module Structure (v2+)</h3>
+
+<p>Starting with version 2, the Microsoft Graph PowerShell SDK is modular. Instead of installing a monolithic package, you can now install only the modules you need. This leads to smaller install footprints and faster import times.</p>
+
+<p>For example, to work with users:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Install-Module</span><span class="w"> </span><span class="nx">Microsoft.Graph.Users</span><span class="w">
+</span><span class="n">Import-Module</span><span class="w"> </span><span class="nx">Microsoft.Graph.Users</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This modular design improves performance and aligns with PowerShell best practices. <a href="https://www.techtarget.com/searchWindowsServer/tip/Whats-new-in-Microsoft-Graph-PowerShell-v2?utm_source=openai">TechTarget explains the advantages in more detail</a>.</p>
+
+<h3 id="permissions-model">Permissions Model</h3>
+
+<p>Microsoft Graph enforces a robust permissions model. Cmdlets require either <strong>delegated</strong> or <strong>application</strong> permissions, depending on the execution context.</p>
+
+<ul>
+  <li>
+    <p><strong>Delegated Permissions</strong>: These run under a signed-in user’s context. They are suitable for interactive scenarios—e.g., a script run by an admin in their own session.</p>
+  </li>
+  <li>
+    <p><strong>Application Permissions</strong>: These are used in app-only contexts, such as background services or daemon processes. They require certificate-based authentication or client secrets.</p>
+  </li>
+</ul>
+
+<p>For a deeper dive into permission types and how to configure them, see <a href="https://practical365.com/introduction-to-the-microsoft-graph-powershell-sdk/?utm_source=openai">Practical365’s introduction</a>.</p>
+
+<p>Understanding the interplay between cmdlets, modules, and permissions is critical for building secure, maintainable scripts with the Microsoft Graph PowerShell SDK.</p>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-FFjn2Y5a8FqHHBqP5SEx8y9I.png?st=2025-05-26T22%3A49%3A54Z&amp;se=2025-05-27T00%3A49%3A54Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-26T15%3A38%3A30Z&amp;ske=2025-05-27T15%3A38%3A30Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=OkIuzKUm2OgxwgWyb5SdM/CuEpnm1bpkFi4LNsX2jgk%3D" alt="" /></p>
+
+<h2 id="hands-on-examples">Hands-On Examples</h2>
+
+<p>The Microsoft Graph PowerShell SDK provides a PowerShell interface to the Microsoft Graph API, enabling access to Microsoft 365 data. Below are practical examples demonstrating common use cases.</p>
+
+<h3 id="1-get-current-user-info">1. Get Current User Info</h3>
+
+<p>To retrieve information about the currently signed-in user:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Connect-MgGraph</span><span class="w"> </span><span class="nt">-Scopes</span><span class="w"> </span><span class="s2">"User.Read"</span><span class="w">
+</span><span class="n">Get-MgUser</span><span class="w"> </span><span class="nt">-UserId</span><span class="w"> </span><span class="nx">me</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">-Scopes</code> parameter specifies the permission scope required. <code class="language-plaintext highlighter-rouge">me</code> is a special alias referring to the authenticated user.</p>
+
+<h3 id="2-list-inbox-messages">2. List Inbox Messages</h3>
+
+<p>To fetch the five most recent messages in the signed-in user’s inbox:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-MgUserMessage</span><span class="w"> </span><span class="nt">-UserId</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="nt">-Top</span><span class="w"> </span><span class="nx">5</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">-Top</code> parameter controls pagination by limiting the number of results returned.</p>
+
+<h3 id="3-send-an-email">3. Send an Email</h3>
+
+<p>To send an email from the authenticated user:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Send-MgUserMail</span><span class="w"> </span><span class="nt">-UserId</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="nt">-Message</span><span class="w"> </span><span class="p">@{</span><span class="w">
+    </span><span class="nx">Subject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Demo"</span><span class="w">
+    </span><span class="nx">Body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@{</span><span class="w"> </span><span class="nx">ContentType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Text"</span><span class="p">;</span><span class="w"> </span><span class="nx">Content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"This is a test."</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="nx">ToRecipients</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@(@{</span><span class="w"> </span><span class="nx">EmailAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@{</span><span class="w"> </span><span class="nx">Address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"example@domain.com"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">})</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="nt">-SaveToSentItems</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This sends a plain-text email and saves a copy in the Sent Items folder. Adjust the <code class="language-plaintext highlighter-rouge">ContentType</code> to <code class="language-plaintext highlighter-rouge">HTML</code> for rich formatting.</p>
+
+<h3 id="4-use-filters-and-pagination">4. Use Filters and Pagination</h3>
+
+<p>To filter users whose display names start with “Dylan” and limit results to ten entries:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-MgUser</span><span class="w"> </span><span class="nt">-Filter</span><span class="w"> </span><span class="s2">"startsWith(displayName,'Dylan')"</span><span class="w"> </span><span class="nt">-Top</span><span class="w"> </span><span class="nx">10</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This uses OData-style filtering supported by Microsoft Graph. Note that not all properties are filterable.</p>
+
+<h3 id="5-schedule-a-script-with-non-interactive-auth">5. Schedule a Script with Non-Interactive Auth</h3>
+
+<p>For automation scenarios (e.g., scripts running as scheduled tasks or background jobs), use certificate-based authentication. This avoids interactive sign-ins.</p>
+
+<ol>
+  <li>Register an Azure AD app and upload a certificate.</li>
+  <li>Use the <code class="language-plaintext highlighter-rouge">-CertificateThumbprint</code> parameter with <code class="language-plaintext highlighter-rouge">Connect-MgGraph</code>:</li>
+</ol>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Connect-MgGraph</span><span class="w"> </span><span class="nt">-ClientId</span><span class="w"> </span><span class="s2">"&lt;app-id&gt;"</span><span class="w"> </span><span class="nt">-TenantId</span><span class="w"> </span><span class="s2">"&lt;tenant-id&gt;"</span><span class="w"> </span><span class="nt">-CertificateThumbprint</span><span class="w"> </span><span class="s2">"&lt;thumbprint&gt;"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This enables secure, unattended access—suitable for CI/CD pipelines or service accounts.</p>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-CKzItIxgrhkBPDDK2PL12BDQ.png?st=2025-05-26T22%3A50%3A11Z&amp;se=2025-05-27T00%3A50%3A11Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-26T13%3A37%3A03Z&amp;ske=2025-05-27T13%3A37%3A03Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=tNZwnejR8F8RB%2Bhk0WSjJ8jSks//45L38ZuWAp%2BME7M%3D" alt="" /></p>
+
+<h2 id="troubleshooting--best-practices">Troubleshooting &amp; Best Practices</h2>
+
+<h3 id="common-issues">Common Issues</h3>
+
+<p><strong>Permission Denied</strong><br />
+This typically occurs when the signed-in user or app lacks the necessary Microsoft Graph permissions. Verify that admin consent has been granted for the required scopes. You can inspect current permissions using <code class="language-plaintext highlighter-rouge">Get-MgContext</code> and consult the Azure Portal to confirm role assignments.</p>
+
+<p><strong>Token Expiry</strong><br />
+Access tokens issued by Microsoft Identity Platform are short-lived (usually 1 hour). If you receive authentication-related errors after a time delay, re-authentication may be necessary. For long-running scripts, implement token refresh logic or use <code class="language-plaintext highlighter-rouge">Connect-MgGraph</code> with certificate-based authentication.</p>
+
+<p><strong>Cmdlet Not Found</strong><br />
+This usually indicates that the appropriate module or command set is not installed or imported. Use <code class="language-plaintext highlighter-rouge">Get-Command -Module Microsoft.Graph*</code> to list installed cmdlets. You can install the latest SDK modules with:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Install-Module</span><span class="w"> </span><span class="nx">Microsoft.Graph</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Check for specific workloads (e.g., Users, Groups) with:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Find-MgGraphCommand</span><span class="w"> </span><span class="nt">-Command</span><span class="w"> </span><span class="s2">"Get-MgUser"</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="tips">Tips</h3>
+
+<ul>
+  <li>Apply the <strong>principle of least privilege</strong> when assigning API permissions. Grant only the scopes needed by the script or user context.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">Select-MgProfile -Name beta</code> to target Microsoft Graph beta endpoints. Be aware that these APIs are subject to change and not supported for production workloads.</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">Disconnect-MgGraph</code> at the end of a session to explicitly clear authentication context, especially important when switching users or automating multiple runs.</li>
+</ul>
+
+<h3 id="community--documentation">Community &amp; Documentation</h3>
+
+<ul>
+  <li><a href="https://learn.microsoft.com/en-us/graph/tutorials/powershell?utm_source=openai">Microsoft Official Tutorial</a></li>
+  <li><a href="https://thesleepyadmins.com/2020/11/22/using-microsoft-graph-powershell-sdk/?utm_source=openai">TheSleepyAdmins</a></li>
+  <li><a href="https://practical365.com/introduction-to-the-microsoft-graph-powershell-sdk/?utm_source=openai">Practical365</a></li>
+</ul>
+
+<p>By mastering the Microsoft Graph PowerShell SDK, IT professionals can build reliable, scalable automation for cloud-based environments—using familiar tools with enterprise-grade extensibility.</p>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-5WyxWo4Ty6wiFC8cZw2Qy4V2.png?st=2025-05-26T22%3A50%3A27Z&amp;se=2025-05-27T00%3A50%3A27Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-26T13%3A02%3A30Z&amp;ske=2025-05-27T13%3A02%3A30Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=nRy/SKFxCKht7vgXoc0f5Kukd9HvWt63%2BHPWi2XqmpE%3D" alt="" /></p>
+
     </div>
-
-    <p>The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.</p>
-
-<p>From wireframes to prototypes, logo design to UI/UX, we strive to unravel the mysteries of exceptional design that leaves a lasting impact on users. Let’s craft experiences that inspire and delight, one design at a time.</p>
-
-<p><img src="/images/Workstation-1.jpg" alt="Computer" />
-<em>Photo by <a href="https://unsplash.com/@domenicoloia">Domenico Loia</a> on <a href="https://unsplash.com/">Unsplash</a></em></p>
-
-<p>At the heart of successful UX/UI design is empathy. We explore how putting ourselves in users’ shoes allows us to create designs that truly resonate with their desires and aspirations.</p>
-
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/Cloud-Tech-2.jpg" loading="lazy" alt="Project" />
-    <img src="/images/Cloud-Tech-3.jpg" loading="lazy" alt="Project" />
-  </div>
-</div>
-
-<p>Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts. In this blog, we will explore methods and tools that will help you gather valuable data and transform it into unique design solutions.</p>
-
-<h2 id="designing-for-multi-platform-experiences">Designing for Multi-Platform Experiences</h2>
-
-<p>In a multi-device world, consistency is key. We discuss the challenges and opportunities that arise when designing experiences that seamlessly transition between devices.</p>
-
-<blockquote>
-  <p>Design is an opportunity to continue telling the story, not just to sum everything up. - Tate Linden</p>
-</blockquote>
-
-<p>We invite you to join us on this creative expedition as we explore the diverse facets of design and user experiences. Design and user experience are critical factors in creating successful interactions with the target audience. Unique and intuitive interfaces, designed with user needs in mind, can leave a positive impression and satisfy their expectations.</p>
-
-<p>As designers, our task is not only to convey brand values and emotions through visual elements but also to create a unique personality that stands out among competitors. We will discuss creating a strong brand identity and managing its perception through design.</p>
-
-
     <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
       <a class="share__link share__facebook"
-        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/project/user-experience-and-design"
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook-f"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__twitter"
-        href="https://twitter.com/intent/tweet?text=User%20Experience%20and%20Design&url=http://localhost:4000/project/user-experience-and-design"
+        href="https://twitter.com/intent/tweet?text=Getting%20Started%20with%20Microsoft%20Graph%20PowerShell%20SDK%20A%20Practical%20Guide&url=http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-x-twitter"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/project/user-experience-and-design&amp;media=http://localhost:4000/images/Cloud-3.jpg&amp;description=User%20Experience%20and%20Design"
+        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk&amp;media=http://localhost:4000placeholderforimage.jpg&amp;description=Getting%20Started%20with%20Microsoft%20Graph%20PowerShell%20SDK%20A%20Practical%20Guide"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" rel="nofollow"><i class="fa-brands fa-pinterest"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/project/user-experience-and-design&title=User%20Experience%20and%20Design&summary=&source="
+        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk&title=Getting%20Started%20with%20Microsoft%20Graph%20PowerShell%20SDK%20A%20Practical%20Guide&summary=Learn%20how%20to%20install,%20configure,%20and%20use%20the%20Microsoft%20Graph%20PowerShell%20SDK%20for%20automating%20Microsoft%20365%20administration%20through%20scripts%20and%20secure%20authentication.&source="
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
   </ul>
 </div>
-  </div>
+  </article>
+  <!-- end post -->
 
-  <section class="section section-related">
+</div>
+
+<div class="container">
+  <div class="post__navigation">
+    
+
+    
+    <div class="post__next">
+      <div class="next__box">
+        <span class="post__nav post__nav__next">Newer post</span>
+        <h2 class="post__nav__title"><a href="/posts/deploying-cloud-pki">Deploying Cloud PKI</a></h2>
+      </div>
+      <a href="/posts/deploying-cloud-pki" class="next__image">
+        
+        <img class="lazy" data-src="/images/CloudPKI-26.jpg" alt="Getting Started with Microsoft Graph PowerShell SDK A Practical Guide" loading="lazy">
+      </a>
+    </div>
+    
+  </div>
+</div>
+
+
+  <!-- begin comments -->
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+
+      <section class="section show-comments">
+        <button class="button disqus-button" id="show-comments-button" onclick="disqus();return false;">Show Comments</button>
+      
+        <div id="disqus_thread" class="post__comments">
+          <div id="disqus_empty"></div>
+        </div>
+      </section>
+      
+      <script>
+        var disqus_loaded = false;
+        var disqus_shortname = 'anvod-studio-test';
+        var disqus_container = document.getElementById("disqus_thread");
+        function disqus() {
+          if (!disqus_loaded) {
+            disqus_loaded = true;
+            var e = document.createElement("script");
+            e.type = "text/javascript";
+            e.async = true;
+            e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+            (document.getElementsByTagName("head")[0] ||
+              document.getElementsByTagName("body")[0])
+              .appendChild(e);
+            // Hide the button after opening
+            document.getElementById("show-comments-button").style.display = "none";
+            // Show disqus comments
+            disqus_container.classList.add("is-open");
+          }
+        }
+      </script>
+      
+      <noscript>Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+      </noscript>
+    </div>
+  </div>
+</div>
+<!-- end comments -->
+
+
+
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="section related-posts is-related">
     <div class="section__info section__info__center">
       <div class="section__head">
-        <span class="section__intro">Unleash creativity...</span>
-        <h2 class="section__title">Explore more works</h2>
+        <span class="section__intro">Related Posts</span>
+        <h2 class="section__title">In case you missed it</h2>
       </div>
     </div>
-
     <div class="row">
     
-    
-    
       
-      <article class="project col col-4 col-d-6 col-t-12">
-        <div class="project__content">
-          <a href="/project/how-the-cloud-works" class="project__image">
-            
-            <img class="lazy" data-src="/images/Cloud-1-2.jpg" alt="How the Cloud Works?">
-          </a>
-          <div class="project__info">
-            
-            <div class="project__label">Cloud Deployment</div>
-            
-            
-            <h3 class="project__title"><a class="project__link" href="/project/how-the-cloud-works">How the Cloud Works?</a></h3>
-            
-          </div>
+      
+
+      
+
+      
+
+      <div class="article article__grid animate col col-4 col-d-6 col-t-12">
+  <div class="article__inner">
+
+    <div class="article__head">
+      
+      <a href="/posts/steamlining-credential-management-for-azure-ad-apps" class="article__image">
+        
+        <img class="lazy" data-src="/images/Cloud-Tech-1.jpg" alt="Streamlining Credential Management in Azure AD App Registrations">
+      </a>
+      
+    </div>
+
+    <div class="article__content">
+
+      <div class="article__meta">
+        
+        <div class="article__tags">
+        
+          <a href="/tags/?tag=administration" class="article__tag">Administration</a>
+        
+          <a href="/tags/?tag=microsoft+graph" class="article__tag">Microsoft Graph</a>
+        
+          <a href="/tags/?tag=azure+ad" class="article__tag">Azure AD</a>
+        
+          <a href="/tags/?tag=entra" class="article__tag">Entra</a>
+        
         </div>
-      </article>
+        
+        <span class="article__date">•<time datetime="2025-02-19T05:50:00-06:00">19 Feb, 2025</time></span>
+      </div>
+
+      <h2 class="article__title">
+        <a href="/posts/steamlining-credential-management-for-azure-ad-apps">Streamlining Credential Management in Azure AD App Registrations</a>
+      </h2>
+
+
+      <p class="article__excerpt">As organizations grow and adopt cloud services, managing the lifecycle of Azure AD App Registration credentials—namely, secrets and certificates—becomes a critical, yet often cumbersome administrative task. With these credentials being essential for securing API integrations and application access, missing an expiration date can lead to unexpected downtime or security vulnerabilities. This article explores the administrative challenges associated with managing these expirations and demonstrates how a Microsoft Graph PowerShell SDK script can automate the process, ensuring that administrators stay ahead of potential issues.</p>
+
+      <div class="article__info">
+        <a class="article__author" href="/about/">
+          
+            <img class="article__author__avatar lazy" data-src="/images/Profile-Pic.jpg" alt="Dylan Hover" width="32" height="32">
+          
+          By
+          
+            <span class="article__author__name">Dylan Hover</span>
+          
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
       
       
       
     
       
-      <article class="project col col-4 col-d-6 col-t-12">
-        <div class="project__content">
-          <a href="/project/keeping-the-cloud-secure" class="project__image">
-            
-            <img class="lazy" data-src="/images/Cloud-Security-1.jpg" alt="Keeping the Cloud Secure">
-          </a>
-          <div class="project__info">
-            
-            <div class="project__label">Security</div>
-            
-            
-            <h3 class="project__title"><a class="project__link" href="/project/keeping-the-cloud-secure">Keeping the Cloud Secure</a></h3>
-            
-          </div>
-        </div>
-      </article>
       
+
       
+
       
     
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+
       
     
     </div>
   </section>
-
 </div>
+<!-- end related posts -->
 
 
 <!-- begin section faq -->
@@ -363,6 +754,7 @@
   </div>
 </section>
 <!-- end section faq -->
+
 
 
 

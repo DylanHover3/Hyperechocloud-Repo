@@ -1,14 +1,16 @@
+@use "../0-settings/variables" as variables;
+
 /* Featured Section */
 .featured-section {
   margin-top: 96px;
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     margin-top: 80px;
   }
 }
 
 .featured__info {
-  width: calc(100% - #{$base-spacing-unit});
+  width: calc(100% - #{variables.$base-spacing-unit});
 }
 
 .featured__head {
@@ -23,7 +25,7 @@
   margin-bottom: 0;
   font-size: 32px;
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     font-size: 24px;
   }
 }

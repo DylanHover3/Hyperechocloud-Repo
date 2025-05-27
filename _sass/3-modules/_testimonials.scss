@@ -1,7 +1,15 @@
+@use "../0-settings/variables" as variables;
+
 /* Testimonials */
 .testimonials__slider {
   overflow: hidden;
-  -webkit-mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 5%,
+    white 95%,
+    transparent
+  );
   mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
 
   .splide__list {
@@ -91,17 +99,17 @@
     }
   }
 
-  @media (max-width: $wide) {
+  @media (max-width: 1400px) {
     .testimonial-content {
       padding: 32px;
     }
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     border-radius: 16px;
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     .testimonial-content {
       .client-title {
         font-size: 20px;
@@ -131,7 +139,8 @@
     font-size: 16px;
     color: var(--text-alt-color);
 
-    b, strong {
+    b,
+    strong {
       color: var(--heading-font-color);
     }
   }

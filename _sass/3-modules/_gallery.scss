@@ -1,8 +1,10 @@
+@use "../0-settings/variables" as variables;
+
 /* Gallery */
 .gallery-box {
   margin: 32px -90px 32px -90px;
 
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     margin: 32px 0;
   }
 }
@@ -31,8 +33,7 @@
       object-fit: cover;
     }
   }
-
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     margin-left: -12px;
     margin-bottom: -12px;
 

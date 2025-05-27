@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Article */
 .article {
   position: relative;
@@ -32,7 +34,7 @@
   outline: none;
   overflow: hidden;
   background: var(--background-alt-color);
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
 
   img {
     position: absolute;
@@ -40,14 +42,14 @@
     height: 100%;
     object-fit: cover;
     user-select: none;
-    transition: transform .3s ease, opacity .3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   @supports not (aspect-ratio: 4/3) {
     padding-bottom: 75%;
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     border-radius: 16px;
   }
 }
@@ -73,7 +75,7 @@
     text-transform: capitalize;
     border-radius: 60px;
     color: var(--heading-font-color);
-    transition: $global-transition;
+    transition: variables.$global-transition;
     background-color: var(--background-alt-color);
 
     &:hover {
@@ -114,7 +116,7 @@
     text-decoration-thickness: 1.5px;
     text-underline-offset: 3px;
     color: var(--heading-font-color);
-    transition: $global-transition;
+    transition: variables.$global-transition;
 
     &:hover {
       text-decoration-color: var(--heading-font-color);
@@ -161,7 +163,7 @@
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
     color: var(--heading-font-color);
-    transition: $global-transition;
+    transition: variables.$global-transition;
 
     &:hover {
       text-decoration-color: var(--heading-font-color);
@@ -169,7 +171,7 @@
   }
 }
 
-@media (max-width: $desktop) {
+@media (max-width: 1024px) {
   .row .col:last-child.article {
     flex-grow: 1;
   }

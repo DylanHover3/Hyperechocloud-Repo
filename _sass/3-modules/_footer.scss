@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Footer */
 .footer__inner {
   padding: 60px 0;
@@ -7,14 +9,13 @@
   .row .col {
     flex-grow: 1;
   }
+  @media (max-width: 1024px) {
+    padding: 48px 0;
+  }
 
-   @media (max-width: $desktop) {
-     padding: 48px 0;
-   }
-
-   @media (max-width: $mobile) {
-     padding: 40px 0;
-   }
+  @media (max-width: 576px) {
+    padding: 40px 0;
+  }
 }
 
 /* Footer Info */
@@ -34,14 +35,13 @@
   .logo-footer__image__dark {
     display: none;
   }
-
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     width: 100%;
     margin-bottom: 16px;
     text-align: center;
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     text-align: left;
   }
 }
@@ -83,7 +83,7 @@
       text-underline-offset: 3px;
       text-decoration-color: transparent;
       will-change: transform;
-      transition: $global-transition;
+      transition: variables.$global-transition;
 
       &:hover {
         text-decoration-color: var(--link-color);
@@ -91,11 +91,11 @@
     }
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     justify-content: flex-start;
 
     .footer__navigation__item {
-      margin-right:24px;
+      margin-right: 24px;
     }
   }
 }
@@ -134,21 +134,20 @@
     border-radius: 50%;
     color: var(--heading-font-color);
     background-color: var(--background-alt-color);
-    transition: $global-transition;
+    transition: variables.$global-transition;
 
     &:hover {
       background-color: var(--background-alt-color-2);
     }
   }
-
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     .footer__social__list {
       margin-top: 16px;
       justify-content: center;
     }
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     .footer__social__list {
       justify-content: flex-start;
     }
@@ -169,14 +168,13 @@
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
     color: var(--heading-font-color);
-    transition: $global-transition;
+    transition: variables.$global-transition;
 
     &:hover {
       text-decoration-color: var(--heading-font-color);
     }
   }
-
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     text-align: left;
   }
 }

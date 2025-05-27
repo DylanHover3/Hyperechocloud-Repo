@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Subscribe */
 .subscribe__inner {
   position: relative;
@@ -26,8 +28,8 @@
 
   .subscribe__description {
     font-size: 16px;
-    letter-spacing: -.6px;
-    opacity: .8;
+    letter-spacing: -0.6px;
+    opacity: 0.8;
   }
 
   .subscribe-form {
@@ -77,7 +79,7 @@
       outline: none;
       color: var(--button-color);
       background-color: var(--button-background-color);
-      transition: $global-transition;
+      transition: variables.$global-transition;
       cursor: pointer;
 
       &:hover {
@@ -100,11 +102,11 @@
     transform: rotate(-180deg);
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     padding: 64px 32px;
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     padding: 32px;
 
     .subscribe__title {
@@ -117,7 +119,7 @@
 
     .round-left,
     .round-right {
-      opacity: .7;
+      opacity: 0.7;
     }
   }
 }

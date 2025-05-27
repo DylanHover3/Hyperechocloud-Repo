@@ -1,12 +1,13 @@
+@use "../0-settings/variables" as variables;
+
 /* Sections */
 .section {
   margin-bottom: 120px;
-
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     margin-bottom: 96px;
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     margin-bottom: 80px;
   }
 }
@@ -46,7 +47,7 @@
     color: var(--text-alt-color);
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     margin-bottom: 24px;
 
     .section__intro {
@@ -69,7 +70,7 @@
     }
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     .section__head {
       .section__title {
         font-size: 24px;
@@ -88,7 +89,7 @@
   line-height: 1.4;
   border-radius: 60px;
   background-color: var(--background-alt-color);
-  transition: $global-transition;
+  transition: variables.$global-transition;
 
   i {
     margin-left: 4px;

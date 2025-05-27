@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Hero */
 .hero {
   margin: 64px 0 96px;
@@ -84,13 +86,13 @@
     }
   }
 
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     .hero__title {
       font-size: 67px;
     }
   }
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     margin: 48px 0 80px;
 
     .hero__author {
@@ -111,7 +113,7 @@
     }
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: 576px) {
     margin: 32px 0 80px;
 
     .hero__avatar {

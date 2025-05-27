@@ -1,31 +1,35 @@
-/* Grid */
+@use "../../_sass/0-settings/variables" as variables;
+
 $columns: 12;
 $container-base-width: 1332px;
-$container-offset: $base-spacing-unit;
 
 $wide: 1400px;
 $desktop: 1024px;
 $tablet: 768px;
 $mobile: 576px;
 
-$mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
+$mq: (
+  $mobile: $columns,
+  $tablet: $columns,
+  $desktop: $columns,
+);
 
 .container {
   max-width: $container-base-width;
-  padding-left: $container-offset;
-  padding-right: $container-offset;
+  padding-left: variables.$base-spacing-unit;
+  padding-right: variables.$base-spacing-unit;
 }
 
 .container-big {
   max-width: 100%;
   margin: 0 auto;
-  padding-left: calc(#{$container-offset} * 2);
-  padding-right: calc(#{$container-offset} * 2);
+  padding-left: calc(#{variables.$base-spacing-unit} * 2);
+  padding-right: calc(#{variables.$base-spacing-unit} * 2);
 
   @media (max-width: $mobile) {
     max-width: 480px;
-    padding-left: calc(#{$container-offset} + 4px);
-    padding-right: calc(#{$container-offset} + 4px);
+    padding-left: calc(#{variables.$base-spacing-unit} + 4px);
+    padding-right: calc(#{variables.$base-spacing-unit} + 4px);
   }
 }
 
@@ -34,8 +38,8 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
 
   @media (max-width: $wide) {
     max-width: 1000px;
-    padding-left: $container-offset;
-    padding-right: $container-offset;
+    padding-left: variables.$base-spacing-unit;
+    padding-right: variables.$base-spacing-unit;
   }
 
   @media (max-width: $desktop) {
@@ -48,8 +52,8 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
 
   @media (max-width: $mobile) {
     max-width: 480px;
-    padding-left: calc(#{$container-offset} + 4px);
-    padding-right: calc(#{$container-offset} + 4px);
+    padding-left: calc(#{variables.$base-spacing-unit} + 4px);
+    padding-right: calc(#{variables.$base-spacing-unit} + 4px);
   }
 }
 
@@ -59,19 +63,18 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
   flex: 0 1 auto;
   flex-direction: row;
   box-sizing: border-box;
-  margin-left: ($base-spacing-unit * -1);
-  margin-right: ($base-spacing-unit * -1);
+  margin-left: (variables.$base-spacing-unit * -1);
+  margin-right: (variables.$base-spacing-unit * -1);
 }
 
 .col {
-  padding-left: $base-spacing-unit;
-  padding-right: $base-spacing-unit;
+  padding-left: variables.$base-spacing-unit;
+  padding-right: variables.$base-spacing-unit;
 }
 
 [class^="col-"] {
   flex: auto;
 }
-
 
 @for $i from 0 through $columns {
   .col-#{$i} {
@@ -91,13 +94,9 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
   }
 }
 
-
-@each $key,
-$val in $mq {
-
+@each $key, $val in $mq {
   // WIDE
-  @media(max-width: $wide) {
-
+  @media (max-width: $wide) {
     @for $i from 0 through $columns {
       .col-w-#{$i} {
         width: calc(#{$i} / #{$columns} * 100%);
@@ -118,8 +117,7 @@ $val in $mq {
   }
 
   // DESKTOP
-  @media(max-width: $desktop) {
-
+  @media (max-width: $desktop) {
     @for $i from 0 through $columns {
       .col-d-#{$i} {
         width: calc(#{$i} / #{$columns} * 100%);
@@ -140,8 +138,7 @@ $val in $mq {
   }
 
   // TABLET
-  @media(max-width: $tablet) {
-
+  @media (max-width: $tablet) {
     @for $i from 0 through $columns {
       .col-t-#{$i} {
         width: calc(#{$i} / #{$columns} * 100%);
@@ -162,8 +159,7 @@ $val in $mq {
   }
 
   // MOBILE
-  @media(max-width: $mobile) {
-
+  @media (max-width: $mobile) {
     @for $i from 0 through $columns {
       .col-m-#{$i} {
         width: calc(#{$i} / #{$columns} * 100%);
@@ -182,5 +178,4 @@ $val in $mq {
       }
     }
   }
-
 }

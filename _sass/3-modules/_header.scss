@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Header */
 .header {
   .header__inner {
@@ -6,7 +8,7 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: $base-spacing-unit;
+    padding: variables.$base-spacing-unit;
   }
 }
 
@@ -44,10 +46,10 @@
   flex: 1 0;
   align-items: center;
 
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     position: absolute;
     top: 68px;
-    right: $base-spacing-unit;
+    right: variables.$base-spacing-unit;
     z-index: -1;
     display: block;
     min-width: 160px;
@@ -57,14 +59,14 @@
     opacity: 0;
     visibility: hidden;
     background-color: var(--background-color);
-    box-shadow: 0 8px 40px -8px rgba(0, 0, 0, .22);
-    transition: all .2s ease;
+    box-shadow: 0 8px 40px -8px rgba(0, 0, 0, 0.22);
+    transition: all 0.2s ease;
 
     &.is-visible {
       z-index: 100;
       opacity: 1;
       visibility: visible;
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
 
     .nav__list {
@@ -117,7 +119,7 @@
   align-items: center;
   margin-left: 64px;
 
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     display: block;
   }
 }
@@ -146,7 +148,7 @@
       text-underline-offset: 3px;
       text-decoration-color: transparent;
       will-change: transform;
-      transition: $global-transition;
+      transition: variables.$global-transition;
 
       &:hover {
         text-decoration-color: var(--link-color);
@@ -164,7 +166,7 @@
         .dropdown-menu {
           opacity: 1;
           visibility: visible;
-          transform: translate3d(0,0,0);
+          transform: translate3d(0, 0, 0);
         }
       }
 
@@ -192,9 +194,9 @@
       padding: 16px;
       opacity: 0;
       visibility: hidden;
-      transition: all .2s ease;
+      transition: all 0.2s ease;
       border-radius: 16px;
-      box-shadow: 0 8px 40px -8px rgba(0, 0, 0, .22);
+      box-shadow: 0 8px 40px -8px rgba(0, 0, 0, 0.22);
       background-color: var(--background-color);
 
       .nav__link {
@@ -210,7 +212,6 @@
         }
       }
     }
-
   }
 }
 
@@ -227,7 +228,7 @@
     .dropdown-menu {
       background-color: var(--background-alt-color);
     }
-    @media (max-width: $desktop) {
+    @media (max-width: 1024px) {
       background-color: var(--background-alt-color);
     }
   }
@@ -240,7 +241,7 @@
   display: none;
   cursor: pointer;
 
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     display: flex;
     align-items: center;
   }
@@ -291,7 +292,7 @@
     margin-left: 32px;
   }
 
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     flex-direction: column;
     align-items: end;
 
@@ -324,10 +325,10 @@
     text-decoration-color: transparent;
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
-    transition: $global-transition;
+    transition: variables.$global-transition;
   }
 
-  @media (max-width: $desktop) {
+  @media (max-width: 1024px) {
     padding: 7px 0;
   }
 }

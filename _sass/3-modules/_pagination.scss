@@ -1,3 +1,5 @@
+@use "../0-settings/variables" as variables;
+
 /* Pagination */
 .pagination {
   display: flex;
@@ -5,7 +7,7 @@
   align-items: center;
   margin-top: 16px;
 
-  @media (max-width: $tablet) {
+  @media (max-width: 768px) {
     margin-top: 8px;
   }
 }
