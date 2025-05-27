@@ -51,6 +51,14 @@ jobs:
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
+      - name: Debug Environment
+        run: |
+          echo "Ruby version:"
+          ruby -v
+          echo "Bundler version:"
+          bundler -v
+          echo "Installed gems:"
+          bundle list
 
   # Deployment job
   deploy:
