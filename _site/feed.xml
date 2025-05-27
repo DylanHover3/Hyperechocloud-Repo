@@ -5,9 +5,318 @@
         <description>Homebase for cloud solution projects and innovative technology blogs!</description>
         <link>http://localhost:4000/</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 27 May 2025 14:37:50 -0500</pubDate>
-        <lastBuildDate>Tue, 27 May 2025 14:37:50 -0500</lastBuildDate>
+        <pubDate>Tue, 27 May 2025 14:51:35 -0500</pubDate>
+        <lastBuildDate>Tue, 27 May 2025 14:51:35 -0500</lastBuildDate>
         <generator>Jekyll v4.4.1</generator>
+        
+            <item>
+                <title>Getting Started with Microsoft Graph PowerShell SDK A Practical Guide</title>
+                <description>&lt;h1 id=&quot;getting-started-with-microsoft-graph-powershell-sdk-a-practical-guide&quot;&gt;Getting Started with Microsoft Graph PowerShell SDK: A Practical Guide&lt;/h1&gt;
+
+&lt;h2 id=&quot;overview-what-is-the-microsoft-graph-powershell-sdk&quot;&gt;Overview: What is the Microsoft Graph PowerShell SDK?&lt;/h2&gt;
+
+&lt;p&gt;The &lt;strong&gt;Microsoft Graph PowerShell SDK&lt;/strong&gt; is a module that enables administrators and developers to interact with Microsoft Graph via PowerShell. Microsoft Graph itself is a RESTful web API that acts as a single endpoint to access data and intelligence from Microsoft 365 services such as Exchange Online, Microsoft Teams, SharePoint, OneDrive, and Azure Active Directory (Azure AD).&lt;/p&gt;
+
+&lt;p&gt;This SDK abstracts the complexities of direct API calls by providing a structured, PowerShell-native interface. It allows scripting and automation of various administrative tasks without writing raw HTTP requests.&lt;/p&gt;
+
+&lt;h3 id=&quot;use-cases&quot;&gt;Use Cases&lt;/h3&gt;
+
+&lt;p&gt;Common scenarios where the SDK is especially useful include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Automating Microsoft 365 administration&lt;/strong&gt;: Tasks like managing Teams policies, provisioning mailboxes, or handling Azure AD users can be scripted and scheduled.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Querying and modifying user data&lt;/strong&gt;: Retrieve user profiles, update properties, or manage licenses programmatically.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Batch operations and scheduled jobs&lt;/strong&gt;: Integrate with task schedulers or CI/CD pipelines to perform repetitive jobs, like compliance checks or usage reporting.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;key-benefits&quot;&gt;Key Benefits&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Unified authentication and permissions model&lt;/strong&gt;: Uses the Microsoft identity platform for consistent access control across services.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Flexible authentication options&lt;/strong&gt;: Supports interactive login (useful for testing) and non-interactive authentication such as certificate-based or client secret flows for service accounts.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Cross-platform compatibility&lt;/strong&gt;: Operates across Windows PowerShell 5.1 and PowerShell Core (v7+), enabling use on Windows, Linux, and macOS.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Standardized, discoverable cmdlets&lt;/strong&gt;: Cmdlets follow a predictable naming pattern (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get-MgUser&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;New-MgTeam&lt;/code&gt;) and are grouped by service area, simplifying learning and usage. (&lt;a href=&quot;https://www.lee-ford.co.uk/graph-api-powershell-sdk/?utm_source=openai&quot;&gt;lee-ford.co.uk&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-V0XOg8NIFUgSFlFeZOhHiceE.png?st=2025-05-26T22%3A49%3A03Z&amp;amp;se=2025-05-27T00%3A49%3A03Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T17%3A15%3A43Z&amp;amp;ske=2025-05-27T17%3A15%3A43Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=PIxfJQ9gikE22tJdAy%2BjemCK3zZst/A0rDmna3MiQT8%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites--environment-setup&quot;&gt;Prerequisites &amp;amp; Environment Setup&lt;/h2&gt;
+
+&lt;h3 id=&quot;installation-requirements&quot;&gt;Installation Requirements&lt;/h3&gt;
+
+&lt;p&gt;To begin working with the Microsoft Graph PowerShell SDK, confirm that your environment meets the following requirements:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;PowerShell 5.1 or later&lt;/strong&gt;: This is the minimum version required. PowerShell Core (7+) is supported across Windows, macOS, and Linux.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;.NET Core Runtime&lt;/strong&gt;: Required for PowerShell Core usage. Ensure the appropriate version is installed based on your PowerShell version.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Microsoft 365 Tenant Access&lt;/strong&gt;: You need access to a Microsoft 365 tenant. This typically requires:
+    &lt;ul&gt;
+      &lt;li&gt;A Microsoft work or school account.&lt;/li&gt;
+      &lt;li&gt;An Exchange Online mailbox.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For more details on account prerequisites, refer to the &lt;a href=&quot;https://learn.microsoft.com/en-us/graph/tutorials/powershell?utm_source=openai&quot;&gt;Microsoft Graph PowerShell tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;sdk-installation&quot;&gt;SDK Installation&lt;/h3&gt;
+
+&lt;p&gt;To install the Microsoft Graph PowerShell SDK, use the following command:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CurrentUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This installs the latest version of the SDK for the current user. If you encounter module name conflicts, append the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-AllowClobber&lt;/code&gt; flag:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CurrentUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-AllowClobber&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For installing a specific version (e.g., version 2.x.x), use:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-RequiredVersion&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2.x.x&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Version 2 of the SDK introduces a modular structure, reducing installation size and improving load performance. For a detailed overview of these improvements, see the &lt;a href=&quot;https://www.techtarget.com/searchWindowsServer/tip/Whats-new-in-Microsoft-Graph-PowerShell-v2?utm_source=openai&quot;&gt;TechTarget summary&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once installed, verify the module is available:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-ListAvailable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’re now ready to authenticate and begin making Microsoft Graph requests.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-IYvF2dNZTj9eTLQzn3I5hJJt.png?st=2025-05-26T22%3A49%3A20Z&amp;amp;se=2025-05-27T00%3A49%3A20Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T11%3A47%3A39Z&amp;amp;ske=2025-05-27T11%3A47%3A39Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=xiyUuFBJN7KEJWiTEjQeifnZXq0diw4c%2BtqnlGhJWMQ%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;authentication--authorization&quot;&gt;Authentication &amp;amp; Authorization&lt;/h2&gt;
+
+&lt;h3 id=&quot;authentication-modes&quot;&gt;Authentication Modes&lt;/h3&gt;
+
+&lt;p&gt;Microsoft Graph PowerShell SDK supports multiple authentication modes, depending on the use case. Each mode uses OAuth2 under the hood but differs in interactivity and credential flow.&lt;/p&gt;
+
+&lt;h4 id=&quot;interactive-device-code&quot;&gt;Interactive (Device Code)&lt;/h4&gt;
+
+&lt;p&gt;This mode is suitable for testing or running scripts manually. It prompts the user to sign in through a browser using a device code.&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Connect-MgGraph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scopes&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;User.Read, Mail.Send&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command initiates a device code flow and requests delegated permissions for the specified scopes.&lt;/p&gt;
+
+&lt;h4 id=&quot;client-credential-flow&quot;&gt;Client Credential Flow&lt;/h4&gt;
+
+&lt;p&gt;Designed for automation scenarios, this mode requires an app registration in Azure AD and uses certificates or secrets for authentication. It provides application-level access without a signed-in user.&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Connect-MgGraph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-ClientId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app-id&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-TenantId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tenant-id&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-CertificateThumbprint&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;thumbprint&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command authenticates using a certificate tied to the registered application.&lt;/p&gt;
+
+&lt;h3 id=&quot;registering-an-app-in-azure-ad&quot;&gt;Registering an App in Azure AD&lt;/h3&gt;
+
+&lt;p&gt;To use the client credential flow, you must register an application in Azure Active Directory:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Navigate to &lt;strong&gt;Azure Active Directory&lt;/strong&gt; in the Azure portal.&lt;/li&gt;
+  &lt;li&gt;Select &lt;strong&gt;App registrations&lt;/strong&gt;, then click &lt;strong&gt;New registration&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Provide a name and, if needed, specify redirect URIs.&lt;/li&gt;
+  &lt;li&gt;Under &lt;strong&gt;API permissions&lt;/strong&gt;, assign required permissions:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Delegated&lt;/strong&gt; permissions for user-context operations.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Application&lt;/strong&gt; permissions for app-only access.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Click &lt;strong&gt;Grant admin consent&lt;/strong&gt; to finalize permission changes.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For a detailed walkthrough, see &lt;a href=&quot;https://thesleepyadmins.com/2020/11/22/using-microsoft-graph-powershell-sdk/?utm_source=openai&quot;&gt;thesleepyadmins.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;token-handling&quot;&gt;Token Handling&lt;/h3&gt;
+
+&lt;p&gt;The SDK handles OAuth2 tokens automatically. It caches tokens and refreshes them as needed, reducing manual intervention.&lt;/p&gt;
+
+&lt;p&gt;Use the following command to inspect the current authentication context and token details:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-MgContext&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This reveals the current scopes, tenant, and token expiration.&lt;/p&gt;
+
+&lt;p&gt;More information on token behavior is available at &lt;a href=&quot;https://www.lee-ford.co.uk/graph-api-powershell-sdk/?utm_source=openai&quot;&gt;lee-ford.co.uk&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-yyIYixKb2NAP6bG66SmgbAoM.png?st=2025-05-26T22%3A49%3A37Z&amp;amp;se=2025-05-27T00%3A49%3A37Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T15%3A12%3A44Z&amp;amp;ske=2025-05-27T15%3A12%3A44Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=s6Pey5UHyE7Z2GIG3S6FS4Jjb4fz4TysviiKpM5rOGU%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;core-concepts-cmdlet-structure-modules-and-permissions&quot;&gt;Core Concepts: Cmdlet Structure, Modules, and Permissions&lt;/h2&gt;
+
+&lt;h3 id=&quot;cmdlet-naming-convention&quot;&gt;Cmdlet Naming Convention&lt;/h3&gt;
+
+&lt;p&gt;Microsoft Graph PowerShell SDK cmdlets follow a consistent naming convention designed around the format:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Verb-Mg&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Resource&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get-MgUser&lt;/code&gt; — Retrieves a user object from Microsoft Graph.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Send-MgUserMail&lt;/code&gt; — Sends email on behalf of a user.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To discover all available cmdlets across Microsoft Graph modules, use:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-Command&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command lists all cmdlets from installed Microsoft Graph modules, making it easier to explore functionality by resource.&lt;/p&gt;
+
+&lt;h3 id=&quot;module-structure-v2&quot;&gt;Module Structure (v2+)&lt;/h3&gt;
+
+&lt;p&gt;Starting with version 2, the Microsoft Graph PowerShell SDK is modular. Instead of installing a monolithic package, you can now install only the modules you need. This leads to smaller install footprints and faster import times.&lt;/p&gt;
+
+&lt;p&gt;For example, to work with users:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph.Users&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Import-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph.Users&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This modular design improves performance and aligns with PowerShell best practices. &lt;a href=&quot;https://www.techtarget.com/searchWindowsServer/tip/Whats-new-in-Microsoft-Graph-PowerShell-v2?utm_source=openai&quot;&gt;TechTarget explains the advantages in more detail&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;permissions-model&quot;&gt;Permissions Model&lt;/h3&gt;
+
+&lt;p&gt;Microsoft Graph enforces a robust permissions model. Cmdlets require either &lt;strong&gt;delegated&lt;/strong&gt; or &lt;strong&gt;application&lt;/strong&gt; permissions, depending on the execution context.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Delegated Permissions&lt;/strong&gt;: These run under a signed-in user’s context. They are suitable for interactive scenarios—e.g., a script run by an admin in their own session.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Application Permissions&lt;/strong&gt;: These are used in app-only contexts, such as background services or daemon processes. They require certificate-based authentication or client secrets.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For a deeper dive into permission types and how to configure them, see &lt;a href=&quot;https://practical365.com/introduction-to-the-microsoft-graph-powershell-sdk/?utm_source=openai&quot;&gt;Practical365’s introduction&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Understanding the interplay between cmdlets, modules, and permissions is critical for building secure, maintainable scripts with the Microsoft Graph PowerShell SDK.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-FFjn2Y5a8FqHHBqP5SEx8y9I.png?st=2025-05-26T22%3A49%3A54Z&amp;amp;se=2025-05-27T00%3A49%3A54Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T15%3A38%3A30Z&amp;amp;ske=2025-05-27T15%3A38%3A30Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=OkIuzKUm2OgxwgWyb5SdM/CuEpnm1bpkFi4LNsX2jgk%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;hands-on-examples&quot;&gt;Hands-On Examples&lt;/h2&gt;
+
+&lt;p&gt;The Microsoft Graph PowerShell SDK provides a PowerShell interface to the Microsoft Graph API, enabling access to Microsoft 365 data. Below are practical examples demonstrating common use cases.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-get-current-user-info&quot;&gt;1. Get Current User Info&lt;/h3&gt;
+
+&lt;p&gt;To retrieve information about the currently signed-in user:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Connect-MgGraph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scopes&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;User.Read&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Get-MgUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-UserId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Scopes&lt;/code&gt; parameter specifies the permission scope required. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;me&lt;/code&gt; is a special alias referring to the authenticated user.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-list-inbox-messages&quot;&gt;2. List Inbox Messages&lt;/h3&gt;
+
+&lt;p&gt;To fetch the five most recent messages in the signed-in user’s inbox:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-MgUserMessage&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-UserId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Top&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Top&lt;/code&gt; parameter controls pagination by limiting the number of results returned.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-send-an-email&quot;&gt;3. Send an Email&lt;/h3&gt;
+
+&lt;p&gt;To send an email from the authenticated user:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Send-MgUserMail&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-UserId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Message&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Subject&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Demo&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Body&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ContentType&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Content&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;This is a test.&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ToRecipients&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@(@{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;EmailAddress&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Address&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;example@domain.com&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-SaveToSentItems&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This sends a plain-text email and saves a copy in the Sent Items folder. Adjust the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ContentType&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTML&lt;/code&gt; for rich formatting.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-use-filters-and-pagination&quot;&gt;4. Use Filters and Pagination&lt;/h3&gt;
+
+&lt;p&gt;To filter users whose display names start with “Dylan” and limit results to ten entries:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-MgUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Filter&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;startsWith(displayName,&apos;Dylan&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Top&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This uses OData-style filtering supported by Microsoft Graph. Note that not all properties are filterable.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-schedule-a-script-with-non-interactive-auth&quot;&gt;5. Schedule a Script with Non-Interactive Auth&lt;/h3&gt;
+
+&lt;p&gt;For automation scenarios (e.g., scripts running as scheduled tasks or background jobs), use certificate-based authentication. This avoids interactive sign-ins.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Register an Azure AD app and upload a certificate.&lt;/li&gt;
+  &lt;li&gt;Use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-CertificateThumbprint&lt;/code&gt; parameter with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Connect-MgGraph&lt;/code&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Connect-MgGraph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-ClientId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;app-id&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-TenantId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;tenant-id&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-CertificateThumbprint&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;thumbprint&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This enables secure, unattended access—suitable for CI/CD pipelines or service accounts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-CKzItIxgrhkBPDDK2PL12BDQ.png?st=2025-05-26T22%3A50%3A11Z&amp;amp;se=2025-05-27T00%3A50%3A11Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T13%3A37%3A03Z&amp;amp;ske=2025-05-27T13%3A37%3A03Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=tNZwnejR8F8RB%2Bhk0WSjJ8jSks//45L38ZuWAp%2BME7M%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;troubleshooting--best-practices&quot;&gt;Troubleshooting &amp;amp; Best Practices&lt;/h2&gt;
+
+&lt;h3 id=&quot;common-issues&quot;&gt;Common Issues&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Permission Denied&lt;/strong&gt;&lt;br /&gt;
+This typically occurs when the signed-in user or app lacks the necessary Microsoft Graph permissions. Verify that admin consent has been granted for the required scopes. You can inspect current permissions using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get-MgContext&lt;/code&gt; and consult the Azure Portal to confirm role assignments.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Token Expiry&lt;/strong&gt;&lt;br /&gt;
+Access tokens issued by Microsoft Identity Platform are short-lived (usually 1 hour). If you receive authentication-related errors after a time delay, re-authentication may be necessary. For long-running scripts, implement token refresh logic or use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Connect-MgGraph&lt;/code&gt; with certificate-based authentication.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Cmdlet Not Found&lt;/strong&gt;&lt;br /&gt;
+This usually indicates that the appropriate module or command set is not installed or imported. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get-Command -Module Microsoft.Graph*&lt;/code&gt; to list installed cmdlets. You can install the latest SDK modules with:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CurrentUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Check for specific workloads (e.g., Users, Groups) with:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Find-MgGraphCommand&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Command&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Get-MgUser&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;tips&quot;&gt;Tips&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Apply the &lt;strong&gt;principle of least privilege&lt;/strong&gt; when assigning API permissions. Grant only the scopes needed by the script or user context.&lt;/li&gt;
+  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Select-MgProfile -Name beta&lt;/code&gt; to target Microsoft Graph beta endpoints. Be aware that these APIs are subject to change and not supported for production workloads.&lt;/li&gt;
+  &lt;li&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Disconnect-MgGraph&lt;/code&gt; at the end of a session to explicitly clear authentication context, especially important when switching users or automating multiple runs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;community--documentation&quot;&gt;Community &amp;amp; Documentation&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/graph/tutorials/powershell?utm_source=openai&quot;&gt;Microsoft Official Tutorial&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://thesleepyadmins.com/2020/11/22/using-microsoft-graph-powershell-sdk/?utm_source=openai&quot;&gt;TheSleepyAdmins&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://practical365.com/introduction-to-the-microsoft-graph-powershell-sdk/?utm_source=openai&quot;&gt;Practical365&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;By mastering the Microsoft Graph PowerShell SDK, IT professionals can build reliable, scalable automation for cloud-based environments—using familiar tools with enterprise-grade extensibility.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-5WyxWo4Ty6wiFC8cZw2Qy4V2.png?st=2025-05-26T22%3A50%3A27Z&amp;amp;se=2025-05-27T00%3A50%3A27Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T13%3A02%3A30Z&amp;amp;ske=2025-05-27T13%3A02%3A30Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=nRy/SKFxCKht7vgXoc0f5Kukd9HvWt63%2BHPWi2XqmpE%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+                <pubDate>Tue, 27 May 2025 00:00:00 -0500</pubDate>
+                <link>http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk</link>
+                <guid isPermaLink="true">http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk</guid>
+                
+                <category>Microsoft Graph</category>
+                
+                <category>PowerShell</category>
+                
+                <category>Automation</category>
+                
+                <category>Microsoft 365</category>
+                
+                <category>Azure AD</category>
+                
+                
+            </item>
         
             <item>
                 <title>Streamlining Credential Management in Azure AD App Registrations</title>
@@ -631,315 +940,6 @@
                 <category>Certificates</category>
                 
                 <category>MDM</category>
-                
-                
-            </item>
-        
-            <item>
-                <title>Getting Started with Microsoft Graph PowerShell SDK A Practical Guide</title>
-                <description>&lt;h1 id=&quot;getting-started-with-microsoft-graph-powershell-sdk-a-practical-guide&quot;&gt;Getting Started with Microsoft Graph PowerShell SDK: A Practical Guide&lt;/h1&gt;
-
-&lt;h2 id=&quot;overview-what-is-the-microsoft-graph-powershell-sdk&quot;&gt;Overview: What is the Microsoft Graph PowerShell SDK?&lt;/h2&gt;
-
-&lt;p&gt;The &lt;strong&gt;Microsoft Graph PowerShell SDK&lt;/strong&gt; is a module that enables administrators and developers to interact with Microsoft Graph via PowerShell. Microsoft Graph itself is a RESTful web API that acts as a single endpoint to access data and intelligence from Microsoft 365 services such as Exchange Online, Microsoft Teams, SharePoint, OneDrive, and Azure Active Directory (Azure AD).&lt;/p&gt;
-
-&lt;p&gt;This SDK abstracts the complexities of direct API calls by providing a structured, PowerShell-native interface. It allows scripting and automation of various administrative tasks without writing raw HTTP requests.&lt;/p&gt;
-
-&lt;h3 id=&quot;use-cases&quot;&gt;Use Cases&lt;/h3&gt;
-
-&lt;p&gt;Common scenarios where the SDK is especially useful include:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Automating Microsoft 365 administration&lt;/strong&gt;: Tasks like managing Teams policies, provisioning mailboxes, or handling Azure AD users can be scripted and scheduled.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Querying and modifying user data&lt;/strong&gt;: Retrieve user profiles, update properties, or manage licenses programmatically.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Batch operations and scheduled jobs&lt;/strong&gt;: Integrate with task schedulers or CI/CD pipelines to perform repetitive jobs, like compliance checks or usage reporting.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;key-benefits&quot;&gt;Key Benefits&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Unified authentication and permissions model&lt;/strong&gt;: Uses the Microsoft identity platform for consistent access control across services.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Flexible authentication options&lt;/strong&gt;: Supports interactive login (useful for testing) and non-interactive authentication such as certificate-based or client secret flows for service accounts.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Cross-platform compatibility&lt;/strong&gt;: Operates across Windows PowerShell 5.1 and PowerShell Core (v7+), enabling use on Windows, Linux, and macOS.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Standardized, discoverable cmdlets&lt;/strong&gt;: Cmdlets follow a predictable naming pattern (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get-MgUser&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;New-MgTeam&lt;/code&gt;) and are grouped by service area, simplifying learning and usage. (&lt;a href=&quot;https://www.lee-ford.co.uk/graph-api-powershell-sdk/?utm_source=openai&quot;&gt;lee-ford.co.uk&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-V0XOg8NIFUgSFlFeZOhHiceE.png?st=2025-05-26T22%3A49%3A03Z&amp;amp;se=2025-05-27T00%3A49%3A03Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T17%3A15%3A43Z&amp;amp;ske=2025-05-27T17%3A15%3A43Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=PIxfJQ9gikE22tJdAy%2BjemCK3zZst/A0rDmna3MiQT8%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;prerequisites--environment-setup&quot;&gt;Prerequisites &amp;amp; Environment Setup&lt;/h2&gt;
-
-&lt;h3 id=&quot;installation-requirements&quot;&gt;Installation Requirements&lt;/h3&gt;
-
-&lt;p&gt;To begin working with the Microsoft Graph PowerShell SDK, confirm that your environment meets the following requirements:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;PowerShell 5.1 or later&lt;/strong&gt;: This is the minimum version required. PowerShell Core (7+) is supported across Windows, macOS, and Linux.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;.NET Core Runtime&lt;/strong&gt;: Required for PowerShell Core usage. Ensure the appropriate version is installed based on your PowerShell version.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Microsoft 365 Tenant Access&lt;/strong&gt;: You need access to a Microsoft 365 tenant. This typically requires:
-    &lt;ul&gt;
-      &lt;li&gt;A Microsoft work or school account.&lt;/li&gt;
-      &lt;li&gt;An Exchange Online mailbox.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For more details on account prerequisites, refer to the &lt;a href=&quot;https://learn.microsoft.com/en-us/graph/tutorials/powershell?utm_source=openai&quot;&gt;Microsoft Graph PowerShell tutorial&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;sdk-installation&quot;&gt;SDK Installation&lt;/h3&gt;
-
-&lt;p&gt;To install the Microsoft Graph PowerShell SDK, use the following command:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CurrentUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This installs the latest version of the SDK for the current user. If you encounter module name conflicts, append the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-AllowClobber&lt;/code&gt; flag:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CurrentUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-AllowClobber&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For installing a specific version (e.g., version 2.x.x), use:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-RequiredVersion&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2.x.x&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Version 2 of the SDK introduces a modular structure, reducing installation size and improving load performance. For a detailed overview of these improvements, see the &lt;a href=&quot;https://www.techtarget.com/searchWindowsServer/tip/Whats-new-in-Microsoft-Graph-PowerShell-v2?utm_source=openai&quot;&gt;TechTarget summary&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Once installed, verify the module is available:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-ListAvailable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You’re now ready to authenticate and begin making Microsoft Graph requests.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-IYvF2dNZTj9eTLQzn3I5hJJt.png?st=2025-05-26T22%3A49%3A20Z&amp;amp;se=2025-05-27T00%3A49%3A20Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T11%3A47%3A39Z&amp;amp;ske=2025-05-27T11%3A47%3A39Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=xiyUuFBJN7KEJWiTEjQeifnZXq0diw4c%2BtqnlGhJWMQ%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;authentication--authorization&quot;&gt;Authentication &amp;amp; Authorization&lt;/h2&gt;
-
-&lt;h3 id=&quot;authentication-modes&quot;&gt;Authentication Modes&lt;/h3&gt;
-
-&lt;p&gt;Microsoft Graph PowerShell SDK supports multiple authentication modes, depending on the use case. Each mode uses OAuth2 under the hood but differs in interactivity and credential flow.&lt;/p&gt;
-
-&lt;h4 id=&quot;interactive-device-code&quot;&gt;Interactive (Device Code)&lt;/h4&gt;
-
-&lt;p&gt;This mode is suitable for testing or running scripts manually. It prompts the user to sign in through a browser using a device code.&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Connect-MgGraph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scopes&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;User.Read, Mail.Send&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This command initiates a device code flow and requests delegated permissions for the specified scopes.&lt;/p&gt;
-
-&lt;h4 id=&quot;client-credential-flow&quot;&gt;Client Credential Flow&lt;/h4&gt;
-
-&lt;p&gt;Designed for automation scenarios, this mode requires an app registration in Azure AD and uses certificates or secrets for authentication. It provides application-level access without a signed-in user.&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Connect-MgGraph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-ClientId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app-id&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-TenantId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tenant-id&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-CertificateThumbprint&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;thumbprint&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This command authenticates using a certificate tied to the registered application.&lt;/p&gt;
-
-&lt;h3 id=&quot;registering-an-app-in-azure-ad&quot;&gt;Registering an App in Azure AD&lt;/h3&gt;
-
-&lt;p&gt;To use the client credential flow, you must register an application in Azure Active Directory:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Navigate to &lt;strong&gt;Azure Active Directory&lt;/strong&gt; in the Azure portal.&lt;/li&gt;
-  &lt;li&gt;Select &lt;strong&gt;App registrations&lt;/strong&gt;, then click &lt;strong&gt;New registration&lt;/strong&gt;.&lt;/li&gt;
-  &lt;li&gt;Provide a name and, if needed, specify redirect URIs.&lt;/li&gt;
-  &lt;li&gt;Under &lt;strong&gt;API permissions&lt;/strong&gt;, assign required permissions:
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Delegated&lt;/strong&gt; permissions for user-context operations.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;Application&lt;/strong&gt; permissions for app-only access.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Click &lt;strong&gt;Grant admin consent&lt;/strong&gt; to finalize permission changes.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;For a detailed walkthrough, see &lt;a href=&quot;https://thesleepyadmins.com/2020/11/22/using-microsoft-graph-powershell-sdk/?utm_source=openai&quot;&gt;thesleepyadmins.com&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;token-handling&quot;&gt;Token Handling&lt;/h3&gt;
-
-&lt;p&gt;The SDK handles OAuth2 tokens automatically. It caches tokens and refreshes them as needed, reducing manual intervention.&lt;/p&gt;
-
-&lt;p&gt;Use the following command to inspect the current authentication context and token details:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-MgContext&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This reveals the current scopes, tenant, and token expiration.&lt;/p&gt;
-
-&lt;p&gt;More information on token behavior is available at &lt;a href=&quot;https://www.lee-ford.co.uk/graph-api-powershell-sdk/?utm_source=openai&quot;&gt;lee-ford.co.uk&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-yyIYixKb2NAP6bG66SmgbAoM.png?st=2025-05-26T22%3A49%3A37Z&amp;amp;se=2025-05-27T00%3A49%3A37Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T15%3A12%3A44Z&amp;amp;ske=2025-05-27T15%3A12%3A44Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=s6Pey5UHyE7Z2GIG3S6FS4Jjb4fz4TysviiKpM5rOGU%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;core-concepts-cmdlet-structure-modules-and-permissions&quot;&gt;Core Concepts: Cmdlet Structure, Modules, and Permissions&lt;/h2&gt;
-
-&lt;h3 id=&quot;cmdlet-naming-convention&quot;&gt;Cmdlet Naming Convention&lt;/h3&gt;
-
-&lt;p&gt;Microsoft Graph PowerShell SDK cmdlets follow a consistent naming convention designed around the format:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Verb-Mg&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Resource&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For example:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get-MgUser&lt;/code&gt; — Retrieves a user object from Microsoft Graph.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Send-MgUserMail&lt;/code&gt; — Sends email on behalf of a user.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To discover all available cmdlets across Microsoft Graph modules, use:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-Command&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This command lists all cmdlets from installed Microsoft Graph modules, making it easier to explore functionality by resource.&lt;/p&gt;
-
-&lt;h3 id=&quot;module-structure-v2&quot;&gt;Module Structure (v2+)&lt;/h3&gt;
-
-&lt;p&gt;Starting with version 2, the Microsoft Graph PowerShell SDK is modular. Instead of installing a monolithic package, you can now install only the modules you need. This leads to smaller install footprints and faster import times.&lt;/p&gt;
-
-&lt;p&gt;For example, to work with users:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph.Users&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Import-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph.Users&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This modular design improves performance and aligns with PowerShell best practices. &lt;a href=&quot;https://www.techtarget.com/searchWindowsServer/tip/Whats-new-in-Microsoft-Graph-PowerShell-v2?utm_source=openai&quot;&gt;TechTarget explains the advantages in more detail&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;permissions-model&quot;&gt;Permissions Model&lt;/h3&gt;
-
-&lt;p&gt;Microsoft Graph enforces a robust permissions model. Cmdlets require either &lt;strong&gt;delegated&lt;/strong&gt; or &lt;strong&gt;application&lt;/strong&gt; permissions, depending on the execution context.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Delegated Permissions&lt;/strong&gt;: These run under a signed-in user’s context. They are suitable for interactive scenarios—e.g., a script run by an admin in their own session.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Application Permissions&lt;/strong&gt;: These are used in app-only contexts, such as background services or daemon processes. They require certificate-based authentication or client secrets.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For a deeper dive into permission types and how to configure them, see &lt;a href=&quot;https://practical365.com/introduction-to-the-microsoft-graph-powershell-sdk/?utm_source=openai&quot;&gt;Practical365’s introduction&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Understanding the interplay between cmdlets, modules, and permissions is critical for building secure, maintainable scripts with the Microsoft Graph PowerShell SDK.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-FFjn2Y5a8FqHHBqP5SEx8y9I.png?st=2025-05-26T22%3A49%3A54Z&amp;amp;se=2025-05-27T00%3A49%3A54Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T15%3A38%3A30Z&amp;amp;ske=2025-05-27T15%3A38%3A30Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=OkIuzKUm2OgxwgWyb5SdM/CuEpnm1bpkFi4LNsX2jgk%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;hands-on-examples&quot;&gt;Hands-On Examples&lt;/h2&gt;
-
-&lt;p&gt;The Microsoft Graph PowerShell SDK provides a PowerShell interface to the Microsoft Graph API, enabling access to Microsoft 365 data. Below are practical examples demonstrating common use cases.&lt;/p&gt;
-
-&lt;h3 id=&quot;1-get-current-user-info&quot;&gt;1. Get Current User Info&lt;/h3&gt;
-
-&lt;p&gt;To retrieve information about the currently signed-in user:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Connect-MgGraph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scopes&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;User.Read&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Get-MgUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-UserId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Scopes&lt;/code&gt; parameter specifies the permission scope required. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;me&lt;/code&gt; is a special alias referring to the authenticated user.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-list-inbox-messages&quot;&gt;2. List Inbox Messages&lt;/h3&gt;
-
-&lt;p&gt;To fetch the five most recent messages in the signed-in user’s inbox:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-MgUserMessage&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-UserId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Top&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Top&lt;/code&gt; parameter controls pagination by limiting the number of results returned.&lt;/p&gt;
-
-&lt;h3 id=&quot;3-send-an-email&quot;&gt;3. Send an Email&lt;/h3&gt;
-
-&lt;p&gt;To send an email from the authenticated user:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Send-MgUserMail&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-UserId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Message&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Subject&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Demo&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Body&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ContentType&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Content&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;This is a test.&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ToRecipients&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@(@{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;EmailAddress&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Address&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;example@domain.com&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-SaveToSentItems&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This sends a plain-text email and saves a copy in the Sent Items folder. Adjust the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ContentType&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTML&lt;/code&gt; for rich formatting.&lt;/p&gt;
-
-&lt;h3 id=&quot;4-use-filters-and-pagination&quot;&gt;4. Use Filters and Pagination&lt;/h3&gt;
-
-&lt;p&gt;To filter users whose display names start with “Dylan” and limit results to ten entries:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Get-MgUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Filter&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;startsWith(displayName,&apos;Dylan&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Top&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This uses OData-style filtering supported by Microsoft Graph. Note that not all properties are filterable.&lt;/p&gt;
-
-&lt;h3 id=&quot;5-schedule-a-script-with-non-interactive-auth&quot;&gt;5. Schedule a Script with Non-Interactive Auth&lt;/h3&gt;
-
-&lt;p&gt;For automation scenarios (e.g., scripts running as scheduled tasks or background jobs), use certificate-based authentication. This avoids interactive sign-ins.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Register an Azure AD app and upload a certificate.&lt;/li&gt;
-  &lt;li&gt;Use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-CertificateThumbprint&lt;/code&gt; parameter with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Connect-MgGraph&lt;/code&gt;:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Connect-MgGraph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-ClientId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;app-id&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-TenantId&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;tenant-id&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-CertificateThumbprint&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;thumbprint&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This enables secure, unattended access—suitable for CI/CD pipelines or service accounts.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-CKzItIxgrhkBPDDK2PL12BDQ.png?st=2025-05-26T22%3A50%3A11Z&amp;amp;se=2025-05-27T00%3A50%3A11Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T13%3A37%3A03Z&amp;amp;ske=2025-05-27T13%3A37%3A03Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=tNZwnejR8F8RB%2Bhk0WSjJ8jSks//45L38ZuWAp%2BME7M%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;troubleshooting--best-practices&quot;&gt;Troubleshooting &amp;amp; Best Practices&lt;/h2&gt;
-
-&lt;h3 id=&quot;common-issues&quot;&gt;Common Issues&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Permission Denied&lt;/strong&gt;&lt;br /&gt;
-This typically occurs when the signed-in user or app lacks the necessary Microsoft Graph permissions. Verify that admin consent has been granted for the required scopes. You can inspect current permissions using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get-MgContext&lt;/code&gt; and consult the Azure Portal to confirm role assignments.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Token Expiry&lt;/strong&gt;&lt;br /&gt;
-Access tokens issued by Microsoft Identity Platform are short-lived (usually 1 hour). If you receive authentication-related errors after a time delay, re-authentication may be necessary. For long-running scripts, implement token refresh logic or use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Connect-MgGraph&lt;/code&gt; with certificate-based authentication.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Cmdlet Not Found&lt;/strong&gt;&lt;br /&gt;
-This usually indicates that the appropriate module or command set is not installed or imported. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get-Command -Module Microsoft.Graph*&lt;/code&gt; to list installed cmdlets. You can install the latest SDK modules with:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Install-Module&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Microsoft.Graph&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CurrentUser&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Check for specific workloads (e.g., Users, Groups) with:&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Find-MgGraphCommand&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Command&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Get-MgUser&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;tips&quot;&gt;Tips&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Apply the &lt;strong&gt;principle of least privilege&lt;/strong&gt; when assigning API permissions. Grant only the scopes needed by the script or user context.&lt;/li&gt;
-  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Select-MgProfile -Name beta&lt;/code&gt; to target Microsoft Graph beta endpoints. Be aware that these APIs are subject to change and not supported for production workloads.&lt;/li&gt;
-  &lt;li&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Disconnect-MgGraph&lt;/code&gt; at the end of a session to explicitly clear authentication context, especially important when switching users or automating multiple runs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;community--documentation&quot;&gt;Community &amp;amp; Documentation&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/graph/tutorials/powershell?utm_source=openai&quot;&gt;Microsoft Official Tutorial&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://thesleepyadmins.com/2020/11/22/using-microsoft-graph-powershell-sdk/?utm_source=openai&quot;&gt;TheSleepyAdmins&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://practical365.com/introduction-to-the-microsoft-graph-powershell-sdk/?utm_source=openai&quot;&gt;Practical365&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;By mastering the Microsoft Graph PowerShell SDK, IT professionals can build reliable, scalable automation for cloud-based environments—using familiar tools with enterprise-grade extensibility.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-5WyxWo4Ty6wiFC8cZw2Qy4V2.png?st=2025-05-26T22%3A50%3A27Z&amp;amp;se=2025-05-27T00%3A50%3A27Z&amp;amp;sp=r&amp;amp;sv=2024-08-04&amp;amp;sr=b&amp;amp;rscd=inline&amp;amp;rsct=image/png&amp;amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;amp;skt=2025-05-26T13%3A02%3A30Z&amp;amp;ske=2025-05-27T13%3A02%3A30Z&amp;amp;sks=b&amp;amp;skv=2024-08-04&amp;amp;sig=nRy/SKFxCKht7vgXoc0f5Kukd9HvWt63%2BHPWi2XqmpE%3D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-</description>
-                <pubDate>Sat, 27 Apr 2024 00:00:00 -0500</pubDate>
-                <link>http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk</link>
-                <guid isPermaLink="true">http://localhost:4000/posts/getting-started-with-microsoft-graph-powershell-sdk</guid>
-                
-                <category>Microsoft Graph</category>
-                
-                <category>PowerShell</category>
-                
-                <category>Automation</category>
-                
-                <category>Microsoft 365</category>
-                
-                <category>Azure AD</category>
                 
                 
             </item>
