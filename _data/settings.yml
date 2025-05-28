@@ -131,12 +131,14 @@ faq:
   faq_title: Frequently asked questions
   faq_intro: Need some answers?
   faq_items:
-    - title: What distinguishes you as a cloud solutions architect?
-      description: My ability to seamlessly bridge on-premises and cloud environments with a focus on aligning technical solutions with business objectives sets me apart. I leverage innovative technologies to design architectures that are secure, scalable, and future-ready.
-    - title: How do you approach designing cost effective solutions to businesses?
-      description: I prioritize understanding the unique needs and budget constraints of the business, then design solutions that maximize resource efficiency. I leverage cloud-native services, right-sizing, and automation to optimize costs without sacrificing performance.
-    - title: How can you help our business to develop resilient, and scalable technology solutions?
-      description: I design architectures with built-in redundancy, automated failover, and scalability to ensure high availability and resilience. By adopting a modular approach, I enable easy scaling and adaptability as the business grows and evolves.
+    - title: How do you analyze an existing on-premises or hybrid environment and craft a customized cloud deploment plan for your clients?
+      description: First thing I will do when planning a cloud deployment is to conduct a detailed discovery and dependency analysis to determine the organizations infrastructure, cloud readiness, and risk. I also leverage innovative technologies to design architectures, plan incremental deployment, and setup rollback plans.
+    - title: What is your approach to ensuring high availability and disaster recovery in cloud solutions?
+      description: I design cloud solutions with built-in redundancy and automated failover mechanisms. I implement multi-region deployments and regular backups to ensure data integrity and availability. Regular testing of disaster recovery plans is also a key part of my approach.
+    - title: How will you design our architecture to optimize performance and cost while maintaining high availability across multiple regions or clouds?
+      description: I combine PaaS-first designs, autoscaling, and caching strategies with reserved or spot instance savings. Critical workloads are distributed across regions using global load balancing and data replication aligned to RPO/RTO goals.
+    - title: Can you describe your approach to automating infrastructure provisioning, CI/CD pipelines, and ongoing operational monitoring for rapid yet reliable deployments?
+      describe: I leverage Infrastructure as Code (IaC) tools like Terraform and configuration management tools like Ansible to automate provisioning. CI/CD pipelines are built using tools like Jenkins or GitHub Actions, ensuring code quality and rapid deployments. Ongoing monitoring is implemented using tools like Prometheus and Grafana for real-time insights.
     - title: How do you stay updated on the latest trends in the technology industry?
       description: Continuous learning is key. I regularly engage with industry publications, attend webinars and conferences, and participate in professional communities. Continuous learning and hands-on experimentation with new technologies ensure I remain at the forefront of industry developments.
     - title: How do you implement security best practices in your cloud architecture solutions?
