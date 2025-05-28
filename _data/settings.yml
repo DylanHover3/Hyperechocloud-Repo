@@ -180,24 +180,19 @@ footer_menu__settings:
 # Social Links
 social:
   - {
-      icon: "fa-brands fa-facebook-f",
-      name: "Facebook",
-      link: "https://facebook.com",
-    }
-  - {
       icon: "fa-brands fa-x-twitter",
       name: "Twitter",
       link: "https://twitter.com",
     }
   - {
-      icon: "fa-brands fa-tiktok",
-      name: "Tiktok",
-      link: "https://www.tiktok.com",
+      icon: "fa-brands fa-facebook-f",
+      name: "Facebook",
+      link: "https://www.facebook.com/dylan.n.shasta.hover",
     }
   - {
-      icon: "fa-brands fa-instagram",
-      name: "Instagram",
-      link: "https://instagram.com",
+      icon: "fa-brands fa-linkedin",
+      name: "LinkedIn",
+      link: "https://www.linkedin.com/in/dylan-hover-683394239/",
     }
 
 # Example of adding a new link to the footer - {icon: "fa-brands fa-youtube", name: "Youtube", link: https://youtube.com"}
