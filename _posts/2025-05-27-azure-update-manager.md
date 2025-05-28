@@ -2,7 +2,7 @@
 title: Updating Azure Virtual Machines with Azure Update Manager
 description: Learn how to configure, deploy, and monitor automated patch management for Azure and hybrid VMs using Azure Update Manager, with best practices on compliance, hotpatching, and update automation.
 date: 2025-05-27
-image: "/images/placeholder value"
+image: "/images/VM-Updates.png"
 tags: [Azure Update Manager, Patch Management, Virtual Machines, Azure Arc, Hotpatching, Compliance, Automation]
 ---
 
