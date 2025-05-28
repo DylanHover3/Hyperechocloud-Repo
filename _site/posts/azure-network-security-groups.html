@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Deploying Cloud PKI</title>
-  <meta name='description' content='Simple overview and walkthrough for deploying Intune's Cloud PKI for device certification management.'>
+  <title>Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs)</title>
+  <meta name='description' content='Learn how to secure your Azure cloud environments using Network Security Groups (NSGs), including architecture fundamentals, deployment strategies, monitorin...'>
 
-  <link rel="canonical" href="http://localhost:4000/posts/deploying-cloud-pki">
+  <link rel="canonical" href="http://localhost:4000/posts/azure-network-security-groups">
   <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Deploying Cloud PKI – HyperEcho">
-  <meta name="twitter:description" content="Simple overview and walkthrough for deploying Intune&apos;s Cloud PKI for device certification management.">
-  <meta name="twitter:image:src" content="http://localhost:4000/images/CloudPKI-26.jpg">
+  <meta name="twitter:title" content="Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs) – HyperEcho">
+  <meta name="twitter:description" content="Learn how to secure your Azure cloud environments using Network Security Groups (NSGs), including architecture fundamentals, deployment strategies, monitoring, and best practices.">
+  <meta name="twitter:image:src" content="http://localhost:4000/images/Cloud-15.jpg">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="Deploying Cloud PKI – HyperEcho">
-  <meta property="og:description" content="Simple overview and walkthrough for deploying Intune&apos;s Cloud PKI for device certification management.">
-  <meta property="og:image" content="http://localhost:4000/images/CloudPKI-26.jpg">
+  <meta property="og:title" content="Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs) – HyperEcho">
+  <meta property="og:description" content="Learn how to secure your Azure cloud environments using Network Security Groups (NSGs), including architecture fundamentals, deployment strategies, monitoring, and best practices.">
+  <meta property="og:image" content="http://localhost:4000/images/Cloud-15.jpg">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,29 +159,37 @@
       
       <div class="post__tags">
       
-      <a href="/tags/?tag=security" class="post__tag">Security</a>
+      <a href="/tags/?tag=azure" class="post__tag">Azure</a>
       
-      <a href="/tags/?tag=certificates" class="post__tag">Certificates</a>
+      <a href="/tags/?tag=network+security" class="post__tag">Network Security</a>
       
-      <a href="/tags/?tag=mdm" class="post__tag">MDM</a>
+      <a href="/tags/?tag=nsg" class="post__tag">NSG</a>
+      
+      <a href="/tags/?tag=cloud+security" class="post__tag">Cloud Security</a>
+      
+      <a href="/tags/?tag=infrastructure" class="post__tag">Infrastructure</a>
+      
+      <a href="/tags/?tag=zero+trust" class="post__tag">Zero Trust</a>
+      
+      <a href="/tags/?tag=monitoring" class="post__tag">Monitoring</a>
       
       </div>
       
-      <span class="article__date">•<time datetime="2025-01-10T06:01:35-06:00">10 Jan, 2025</time></span>
+      <span class="article__date">•<time datetime="2025-05-26T00:00:00-05:00">26 May, 2025</time></span>
     </div>
 
     
-    <h1 class="post__title">Deploying Cloud PKI</h1>
+    <h1 class="post__title">Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs)</h1>
     
 
     
-    <div class="post__description">Simple overview and walkthrough for deploying Intune's Cloud PKI for device certification management.</div>
+    <div class="post__description">Learn how to secure your Azure cloud environments using Network Security Groups (NSGs), including architecture fundamentals, deployment strategies, monitoring, and best practices.</div>
     
 
     
     
     <div class="post-image">
-      <img class="lazy" data-src="/images/CloudPKI-26.jpg" alt="Deploying Cloud PKI">
+      <img class="lazy" data-src="/images/Cloud-15.jpg" alt="Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs)">
     </div>
     
     
@@ -190,142 +198,337 @@
   <!-- begin post -->
   <article class="post">
     <div class="post__content">
-      <h2 id="the-challenges-of-on-premises-certificate-management">The Challenges of On-Premises Certificate Management</h2>
+      <h1 id="implementing-secure-network-infrastructure-with-azure-network-security-groups-nsgs">Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs)</h1>
 
-<p>Managing on-premises Certificate Authorities (CAs) has become increasingly challenging in today’s IT environment. Traditional systems demand extensive hardware, software, and administrative resources to ensure high availability and security. As organizations shift toward hybrid and cloud-first strategies, extending certificate services to remote devices adds complexity, often leading to inefficiencies and vulnerabilities. Maintaining these legacy systems can strain IT teams and limit their ability to address other critical business needs.</p>
+<h2 id="introduction">Introduction</h2>
 
-<p>Intune’s Cloud Public Key Infrastructure (PKI) offers a modern solution by streamlining certificate management through Microsoft’s trusted cloud infrastructure. This approach reduces overhead, enhances scalability, and improves security while simplifying certificate deployment across devices. By eliminating the need for physical hardware and complex configurations, Intune’s PKI empowers organizations to focus on their core objectives, making certificate provisioning efficient and secure.</p>
+<p>The modern cloud environment presents a rapidly evolving threat landscape, where attackers continuously adapt their techniques to exploit misconfigurations, exposed services, and overly permissive access controls. As organizations migrate critical workloads to the cloud, the attack surface expands, making it imperative to implement layered and proactive security measures.</p>
 
-<h3 id="creating-a-root-ca-in-cloud-pki">Creating a Root CA in Cloud PKI</h3>
+<p>Despite the availability of sophisticated identity-based and behavioral security mechanisms, network-level protection remains a cornerstone of cloud security architecture. Network security controls provide deterministic enforcement points, isolating traffic and reducing the blast radius of potential compromises. In Azure, this foundational protection is implemented through <strong>Network Security Groups (NSGs)</strong>.</p>
 
-<p>The first step in deploying Intune’s Cloud PKI is creating the Root and Issuing Certificate Authorities. When it comes to setting up the CA hierarchy, you can either BYOCA (Bring Your Own CA) or set up the Root CA directly within your Intune instance. For simplicity, we will be setting up the latter solution.</p>
+<p>Azure NSGs act as stateful packet filters, controlling inbound and outbound traffic to Azure resources within Virtual Networks (VNets). Administrators can define granular rules based on source/destination IP addresses, ports, and protocols, thereby enforcing least-privilege access at the network layer. Whether applied at the subnet or individual network interface level, NSGs offer a lightweight yet powerful mechanism to restrict access and monitor traffic flows.</p>
 
-<p>To begin, navigate to the Intune admin center and select Tenant Administration &gt; Cloud PKI. From here, you can start configuring the Root Certificate Authority. Click on “Create” and select the Root CA option. Now specify the required settings such as certificate name, validity period, the extended key usage, and the subject attributes.</p>
+<p>The importance of this control is underscored by industry data. In 2023, 45% of companies experiencing network security incidents reported cloud servers as the point of origin (<a href="https://www.atmosera.com/blog/what-are-azure-network-security-groups/?utm%5Fsource=openai">Atmosera</a>). This statistic highlights the necessity of implementing robust traffic filtering controls early in the cloud deployment lifecycle.</p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-01.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-02.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-24.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-23.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-22.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-14.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<p>By integrating NSGs into your Azure network architecture, you establish a foundational security posture that supports more advanced protective measures while reducing your exposure to common cloud-native threats.</p>
 
-<p>Make sure to include any EKU’s (Extended Key Usages) in the root CA that you are wanting to be made available to the issuing CA. Also keep in mind that Cloud PKI doesn’t support the “Any Purpose” EKU for their PKI’s. Once the Root CA is setup we will use it as the trust anchor for your PKI infrastructure. Once the CA is created select the CA and validate the Properties are what you are expecting. Make sure to download the Root CA from here as we will need it later.</p>
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-fuSGAmm4GfCdDqbSeb5ISSih.png?st=2025-05-27T19%3A56%3A36Z&amp;se=2025-05-27T21%3A56%3A36Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-27T15%3A49%3A33Z&amp;ske=2025-05-28T15%3A49%3A33Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=2jprIK2ywy1pvOc1aj0/BSb1TXXwa5ax10/8gfp4PYQ%3D" alt="" /></p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-14.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<h2 id="azure-nsgs-core-concepts-and-architecture">Azure NSGs: Core Concepts and Architecture</h2>
 
-<h3 id="configuring-an-issuing-ca-in-cloud-pki">Configuring an Issuing CA in Cloud PKI</h3>
+<h3 id="what-is-an-nsg">What is an NSG?</h3>
 
-<p>After establishing the Root CA, the next step is to configure the Issuing CA, which handles the actual certificate issuance for devices and users. In the Intune admin center, navigate back to Tenant Administration &gt; Cloud PKI and select the option to create an Issuing CA. Provide a meaningful name for the Issuing CA and link it to the previously configured Root CA. Define the certificate template settings, including key usages, validity periods, and subject attributes specific to your organization’s needs. Ensure the Issuing CA is configured to include any EKUs required for the intended certificate purposes.</p>
+<p>A <strong>Network Security Group (NSG)</strong> is a virtual firewall in Microsoft Azure that governs inbound and outbound traffic to networked Azure resources. It operates at the network layer and is designed to enforce <strong>least privilege access</strong> by limiting traffic based on defined rules.</p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-21.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-20.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-19.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-18.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-17.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<p>NSGs can be associated with either a subnet or individual network interfaces (NICs). When associated with a subnet, the rules apply to all resources within that subnet. When associated with a NIC, the rules apply only to the specific virtual machine (VM) connected to that NIC.</p>
 
-<p>Once complete, the Issuing CA will be ready to distribute certificates based on the defined templates, streamlining secure certificate deployment across your device fleet. Again download the CA here for the next step.</p>
+<h3 id="nsg-components">NSG Components</h3>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-16.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<p>Each NSG consists of one or more <strong>security rules</strong>. These rules are defined using a <strong>5-tuple</strong> model:</p>
 
-<h3 id="creating-windows-configuration-profiles-for-trusted-certificates">Creating Windows Configuration Profiles for Trusted Certificates</h3>
+<ul>
+  <li><strong>Source IP address</strong></li>
+  <li><strong>Source port range</strong></li>
+  <li><strong>Destination IP address</strong></li>
+  <li><strong>Destination port range</strong></li>
+  <li><strong>Protocol</strong> (TCP, UDP, or * for any)</li>
+</ul>
 
-<p>Once the Root and Issuing CAs are configured, the next step is to deploy trusted certificates to Windows devices using Intune configuration profiles. Begin by navigating to the Intune admin center and selecting Devices &gt; Configuration profiles &gt; Create profile. Choose Windows 10 and later as the platform and select Trusted certificate as the profile type.</p>
+<p>Each rule also includes a <strong>priority</strong> value. Lower numbers indicate higher priority. Azure processes rules in ascending order of priority until it finds a match. Once a match is found, no further rules are evaluated.</p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-25.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-15.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<p>There are two types of rules:</p>
 
-<p>Create a profile for the Root CA first. Upload the Root CA’s certificate file (in .cer format) and assign the profile to the appropriate device groups. This ensures that all devices in the assigned groups trust the Root CA as a certificate authority. Once the proper assignment is completed hit the create button on the Review + Create tab.</p>
+<ul>
+  <li><strong>Default rules</strong>: Predefined by Azure to allow basic infrastructure communication (e.g., allowing VNet traffic and denying internet-sourced traffic).</li>
+  <li><strong>Custom rules</strong>: User-defined to meet specific security and access requirements. These override default rules if they have higher priority.</li>
+</ul>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-12.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-11.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-10.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<h3 id="nsg-rule-evaluation-logic">NSG Rule Evaluation Logic</h3>
 
-<p>Repeat the process to create a second configuration profile for the Issuing CA. Similarly, upload the Issuing CA’s certificate file and assign it to the same device groups or additional groups as necessary. By deploying these trusted certificate profiles, you establish a trust chain on Windows devices, allowing them to recognize and trust certificates issued by the Cloud PKI infrastructure. These profiles are critical for ensuring secure communication and authentication within your environment.</p>
+<p>NSGs follow a deterministic evaluation path based on the direction of traffic.</p>
 
-<h3 id="creating-a-configuration-profile-for-issuing-scep-certificates">Creating a Configuration Profile for Issuing SCEP Certificates</h3>
+<h4 id="inbound-traffic">Inbound Traffic</h4>
 
-<p>To deploy SCEP certificates using Intune, you need to create a configuration profile that defines how devices will request and receive certificates. Note that you will need to create a SCEP Cert profile for each of the Certificate Stores, that is the Device Cert store as well as the User Cert store depending on what you are needing. Start by navigating to Devices &gt; Configuration profiles &gt; Create profile in the Intune admin center. Select Windows 10 and later as the platform and choose SCEP certificate as the profile type. Provide a name and description for the profile to ensure clarity in your configuration settings.</p>
+<ol>
+  <li>NSG rules are first evaluated at the <strong>subnet level</strong>, if an NSG is associated with the subnet.</li>
+  <li>Then, NSG rules are evaluated at the <strong>NIC level</strong>, if an NSG is associated with the NIC.</li>
+</ol>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-08.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-07.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<h4 id="outbound-traffic">Outbound Traffic</h4>
 
-<p>Next, configure the certificate settings. Specify the Certificate Type (User or Device) and the Subject name format, which changes depending on whether this is a User or Device certificate. There are specific placeholders that will fill in user or device specific identity information that can be used here. This will also be the default values that are used here. Likewise these same placeholders can be used for the SAN fields. Further elaboration on what placeholders can be used in the Subject and SAN fields are documented in the Intune SCEP certificate profile documentation. Define the Certificate validity period, Key storage provider, Key usage, Key size, and Hash algorithm to be used for these certificates ensuring they align with your security requirements. Then upload the Root CA that was downloaded when the Root CA was created. After the Root CA is uploaded select what EKUs that the certificate will be used for. Next, determine when the renewal threshhold will be for the certificates. The recommended renewal threshold is after 80% of the validity period of the certificate, which means we would want to leave 20%. After this period the device can request a new certificate to be issued from Intune. Lastly, provide the SCEP Server URL which can be found on the Issuing CA properties page in the Cloud PKI CA’s page.</p>
+<ol>
+  <li>NSG rules are evaluated first at the <strong>NIC level</strong>.</li>
+  <li>Then, NSG rules are evaluated at the <strong>subnet level</strong>.</li>
+</ol>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-06.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-05.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-13.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<p>If no rule matches the traffic after evaluation, Azure applies an <strong>implicit deny</strong> rule, which drops the traffic.</p>
 
-<p>Assign the SCEP profile to the appropriate device groups. This ensures that only authorized devices can request and receive certificates. Once deployed, Intune will automatically manage the certificate provisioning process, streamlining secure access and authentication for your devices.</p>
+<p>Reference: <a href="https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works?utm%5Fsource=openai">Microsoft Learn – How Network Security Groups Filter Network Traffic</a></p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-04.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-03.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-274HMpCAUUi77MigRIFdf0gk.png?st=2025-05-27T19%3A56%3A56Z&amp;se=2025-05-27T21%3A56%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-27T17%3A10%3A42Z&amp;ske=2025-05-28T17%3A10%3A42Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=0mclIY03NO4F0U1lxOj52gkr50OeJjyqaKwk0Uu2/DE%3D" alt="" /></p>
 
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="nsg-association-and-deployment-strategies">NSG Association and Deployment Strategies</h2>
 
-<p>In this article, we’ve walked through the step-by-step process of deploying Intune’s Cloud PKI solution, starting with the creation of a Root CA and Issuing CA, followed by the deployment of trusted certificates, and concluding with the configuration of SCEP profiles for efficient certificate issuance. These steps ensure a seamless and secure certificate lifecycle management process that integrates smoothly with modern IT environments. By following these instructions, organizations can establish a robust and scalable PKI infrastructure that supports both managed and unmanaged devices.</p>
+<h3 id="where-you-can-apply-nsgs">Where You Can Apply NSGs</h3>
 
-<p>Certificates play a critical role in today’s IT infrastructure, underpinning secure communication, authentication, and data integrity. Modernizing certificate management through Intune’s Cloud PKI simplifies the deployment process, reduces administrative overhead, and enhances security. This approach empowers IT professionals to focus on strategic initiatives while minimizing vulnerabilities and ensuring streamlined, efficient device management in a rapidly evolving technological landscape. Changes</p>
+<p>Azure Network Security Groups (NSGs) can be associated with two primary scopes: <strong>subnets</strong> and <strong>network interfaces (NICs)</strong>. Understanding the difference in scope and impact is critical for designing secure and maintainable network architectures.</p>
+
+<ul>
+  <li><strong>Subnets</strong>: Applying an NSG at the subnet level controls traffic to all resources within the subnet. This is ideal for coarse-grained access control, such as restricting external access or enforcing internal segmentation policies across a tier (e.g., all application servers).</li>
+  <li><strong>Network Interfaces (NICs)</strong>: NSGs associated with individual NICs enable fine-grained control per virtual machine (VM). This is especially useful when specific VMs require exceptions to general subnet rules, or for implementing zero-trust-like policies within a shared subnet.</li>
+</ul>
+
+<p>When both a subnet-level and NIC-level NSG are associated, Azure evaluates the effective rules as the intersection of both sets—only traffic allowed by both NSGs is permitted.</p>
+
+<h3 id="combining-nsgs-with-route-tables-and-application-security-groups">Combining NSGs with Route Tables and Application Security Groups</h3>
+
+<p>NSGs are most effective when used in conjunction with other Azure network constructs:</p>
+
+<ul>
+  <li><strong>Route Tables</strong>: While NSGs control <em>whether</em> traffic is allowed, route tables define <em>where</em> traffic goes. For example, you might route all outbound traffic through a firewall VM, and use NSGs to ensure only traffic from trusted IP ranges reaches that VM.</li>
+  <li><strong>Application Security Groups (ASGs)</strong>: ASGs allow you to group VMs logically, independent of IP addressing or subnet boundaries. NSGs can then use ASGs as source or destination in rules, simplifying policy definition. For instance, rather than allowing traffic from a specific IP, you allow traffic from the “WebServers” ASG.</li>
+</ul>
+
+<p>This combination supports scalable, readable network policies, especially in environments with dynamic or autoscaling workloads.</p>
+
+<h3 id="traffic-filtering-scenarios">Traffic Filtering Scenarios</h3>
+
+<h4 id="internet-facing-services">Internet-facing Services</h4>
+
+<p>NSGs should be configured with a default-deny posture:</p>
+
+<ul>
+  <li>Block all inbound traffic by default.</li>
+  <li>Explicitly allow only necessary ports, such as TCP port 443 for HTTPS.</li>
+  <li>Restrict access to administrative ports like SSH (22) or RDP (3389) using IP-based allow rules. For example, permit only known management IPs to access these services (<a href="https://www.corestack.io/azure-security-tools/nsg-azure/?utm%5Fsource=openai">CoreStack</a>).</li>
+</ul>
+
+<h4 id="internal-traffic-control">Internal Traffic Control</h4>
+
+<p>NSGs can also be used to segment internal traffic:</p>
+
+<ul>
+  <li>Define rules that control traffic flow between application tiers, such as allowing traffic from web tier to app tier only on specific ports.</li>
+  <li>Implement <strong>microsegmentation</strong> by using NSGs in combination with ASGs, enabling precise control over east-west traffic within the virtual network.</li>
+</ul>
+
+<h3 id="network-segmentation-with-nsgs">Network Segmentation with NSGs</h3>
+
+<p>NSGs are a key component in enforcing <strong>network segmentation</strong>:</p>
+
+<ul>
+  <li>Isolate environments such as development, staging, and production by assigning different NSGs to their respective subnets.</li>
+  <li>Apply <strong>defense-in-depth</strong> by layering NSGs at both subnet and NIC levels.</li>
+  <li>Follow the <strong>principle of least privilege</strong> by allowing only explicitly required traffic and denying all else (<a href="https://medium.com/%40jdahunsi5/demystifying-azure-network-security-groups-nsgs-6e417c5a458a?utm%5Fsource=openai">Medium</a>).</li>
+</ul>
+
+<p>This layered approach reduces the attack surface and improves security posture without introducing undue operational complexity.</p>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-hJjQUF2OueBA6NIkI6RxpdtR.png?st=2025-05-27T19%3A57%3A20Z&amp;se=2025-05-27T21%3A57%3A20Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-27T09%3A39%3A02Z&amp;ske=2025-05-28T09%3A39%3A02Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=PwxsxH1Ce8wGKV9SqnwxcR3YjTk697STDjwvjCmtOH8%3D" alt="" /></p>
+
+<h2 id="operationalizing-nsgs-monitoring-analytics-and-governance">Operationalizing NSGs: Monitoring, Analytics, and Governance</h2>
+
+<h3 id="using-azure-nsg-analytics">Using Azure NSG Analytics</h3>
+
+<p>Azure Network Security Groups (NSGs) generate diagnostic data that can be ingested and analyzed using native Azure tools. Azure NSG flow logs, available through Network Watcher, provide detailed insights into allowed and denied traffic flows. This data is essential for identifying traffic patterns, diagnosing misconfigurations, and improving rule effectiveness.</p>
+
+<p>By integrating NSG diagnostics with <strong>Azure Monitor</strong> and <strong>Microsoft Defender for Cloud</strong> (formerly Azure Security Center), administrators can:</p>
+
+<ul>
+  <li>Track trends in allowed vs. denied traffic to detect anomalies or policy drift.</li>
+  <li>Identify misconfigured or redundant rules that never match traffic.</li>
+  <li>Leverage prebuilt dashboards and visualizations for actionable insights (<a href="https://mobilestalk.net/azure-network-security-group-analytics/?utm%5Fsource=openai">MobilesTalk</a>).</li>
+</ul>
+
+<p>These insights support both reactive troubleshooting and proactive security posture improvement.</p>
+
+<h3 id="best-practices-for-nsg-management">Best Practices for NSG Management</h3>
+
+<p>Effective NSG governance requires rule hygiene and architectural discipline. Recommended practices include:</p>
+
+<ul>
+  <li><strong>Deny by default; allow by exception</strong>: This principle ensures that only explicitly allowed traffic is permitted.</li>
+  <li><strong>Minimize rule count</strong>: Use Application Security Groups (ASGs) and service tags to reduce rule complexity and group similar endpoints logically.</li>
+  <li><strong>Use augmented security rules</strong>: These allow for multiple IPs and ports in a single rule, simplifying configurations and improving readability (<a href="https://www.corestack.io/azure-security-tools/nsg-azure/?utm%5Fsource=openai">CoreStack</a>).</li>
+  <li><strong>Document and audit</strong>: Maintain up-to-date documentation of NSG rule intent and regularly audit rule sets for relevance, redundancy, and compliance.</li>
+</ul>
+
+<h3 id="common-pitfalls-and-misconfigurations">Common Pitfalls and Misconfigurations</h3>
+
+<p>Several common issues can compromise NSG effectiveness:</p>
+
+<ul>
+  <li><strong>Overly permissive rules</strong>: For example, allowing all inbound traffic (<code class="language-plaintext highlighter-rouge">*</code> source, <code class="language-plaintext highlighter-rouge">*</code> destination port) exposes workloads unnecessarily.</li>
+  <li><strong>Incorrect rule prioritization</strong>: NSG rules are processed in order of priority (lower numbers first). A misordered allow rule can override a more restrictive deny rule.</li>
+  <li><strong>Rule conflicts between subnet and NIC levels</strong>: NSGs can be applied at both levels, and the effective policy is the combination. Conflicting rules can result in unintended access or blocked traffic.</li>
+</ul>
+
+<p>Regular validation and the use of policy-as-code strategies can mitigate these risks and support more robust governance workflows.</p>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-3fP4uvF1hvYBPdCb7eJizyH9.png?st=2025-05-27T19%3A57%3A38Z&amp;se=2025-05-27T21%3A57%3A38Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-27T17%3A55%3A39Z&amp;ske=2025-05-28T17%3A55%3A39Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=tCu9hSidhkFiTjG0xZQZFwQLsZU1r8LjGRHtfGjOMmY%3D" alt="" /></p>
+
+<h2 id="implementation-walkthroughs--next-steps">Implementation Walkthroughs &amp; Next Steps</h2>
+
+<h3 id="step-by-step-creating--applying-an-nsg">Step-by-Step: Creating &amp; Applying an NSG</h3>
+
+<p>Implementing a Network Security Group (NSG) in Azure involves a clear sequence of tasks. The following steps assume a working familiarity with the Azure portal, Azure CLI, or infrastructure-as-code tools such as ARM templates.</p>
+
+<ol>
+  <li><strong>Define Security Rules (Least Privilege First)</strong><br />
+Begin by identifying your application’s traffic flows and apply the <strong>principle of least privilege</strong>. That means only allowing traffic that’s explicitly required, and denying everything else by default. Each rule consists of:</li>
+</ol>
+
+<ul>
+  <li>Priority (lower values = higher priority)</li>
+  <li>Source &amp; destination (IP ranges, Application Security Groups (ASGs), etc)</li>
+  <li>Protocol (TCP, UDP, or * for all)</li>
+  <li>Port range</li>
+  <li>Direction (inbound or outbound)</li>
+  <li>Action (allow or deny)</li>
+</ul>
+
+<ol>
+  <li><strong>Create NSG</strong><br />
+You can create an NSG using several methods:<br />
+<strong>Azure Portal:</strong></li>
+</ol>
+
+<ul>
+  <li>Navigate to “Network Security Groups”</li>
+  <li>Click “+ Create”</li>
+  <li>Configure the NSG name, subscription, resource group, and region<br />
+<strong>Azure CLI:</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   az network nsg create <span class="se">\</span>
+     <span class="nt">--resource-group</span> MyResourceGroup <span class="se">\</span>
+     <span class="nt">--name</span> MyNSG <span class="se">\</span>
+     <span class="nt">--location</span> eastus
+
+</code></pre></div></div>
+
+<p><strong>ARM Template:</strong> Include a <code class="language-plaintext highlighter-rouge">Microsoft.Network/networkSecurityGroups</code> resource block with rule definitions.</p>
+
+<ol>
+  <li><strong>Associate NSG to Subnet and/or NIC</strong><br />
+NSGs can be associated with <strong>subnets</strong> (for all resources in the subnet) or <strong>Network Interface Cards (NICs)</strong> (for individual VMs). The effective rules are a union of subnet-level and NIC-level NSGs.<br />
+Azure CLI example:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   az network vnet subnet update <span class="se">\</span>
+     <span class="nt">--resource-group</span> MyResourceGroup <span class="se">\</span>
+     <span class="nt">--vnet-name</span> MyVNet <span class="se">\</span>
+     <span class="nt">--name</span> MySubnet <span class="se">\</span>
+     <span class="nt">--network-security-group</span> MyNSG
+
+</code></pre></div></div>
+
+<ol>
+  <li><strong>Validate Rule Behavior with NSG Flow Logs</strong><br />
+Enable <strong>NSG flow logs</strong> to capture traffic metadata. This helps confirm whether rules are having their intended effect.<br />
+Azure CLI example:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   az network watcher flow-log configure <span class="se">\</span>
+     <span class="nt">--resource-group</span> MyResourceGroup <span class="se">\</span>
+     <span class="nt">--nsg</span> MyNSG <span class="se">\</span>
+     <span class="nt">--enabled</span> <span class="nb">true</span> <span class="se">\</span>
+     <span class="nt">--retention</span> 7 <span class="se">\</span>
+     <span class="nt">--storage-account</span> MyStorageAccount
+
+</code></pre></div></div>
+
+<p>Use <strong>Azure Network Watcher</strong> or third-party analytics tools to visualize and analyze flow logs.</p>
+
+<h3 id="advanced-use-cases">Advanced Use Cases</h3>
+
+<h4 id="nsgs-with-azure-firewall">NSGs with Azure Firewall</h4>
+
+<p>NSGs and Azure Firewall serve complementary purposes:</p>
+
+<ul>
+  <li><strong>NSGs</strong>: Operate at the OSI network layer (Layer 3 &amp; 4). Best for access control per subnet or NIC.</li>
+  <li><strong>Azure Firewall</strong>: Works at Layer 7 (application layer), enabling filtering by domain names, TLS inspection, and logging.</li>
+</ul>
+
+<p>In practice, NSGs restrict traffic within the virtual network, while Azure Firewall governs traffic entering and exiting the network.</p>
+
+<h4 id="nsgs-in-hub-and-spoke-architectures">NSGs in Hub-and-Spoke Architectures</h4>
+
+<p>In a <strong>hub-and-spoke topology</strong>, NSGs are typically applied to:</p>
+
+<ul>
+  <li>The spoke subnets, to limit lateral movement between workloads</li>
+  <li>The hub’s VPN or ExpressRoute gateway subnet, to control ingress/egress</li>
+</ul>
+
+<p>Use NSG rules to enforce traffic flow policies between spokes via the hub, and restrict direct spoke-to-spoke communication unless explicitly required.</p>
+
+<h4 id="nsg-integration-with-azure-policy">NSG Integration with Azure Policy</h4>
+
+<p>Azure Policy can enforce the existence of NSGs and specific rule configurations. Common scenarios include:</p>
+
+<ul>
+  <li>Ensuring all subnets have an NSG attached</li>
+  <li>Denying inbound RDP (TCP/3389) from the internet</li>
+</ul>
+
+<p>Example Azure Policy definition:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"if"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"allOf"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"exists"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"then"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deny"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="learning-resources--documentation">Learning Resources &amp; Documentation</h3>
+
+<ul>
+  <li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works?utm%5Fsource=openai">Microsoft Learn</a></li>
+  <li><a href="https://www.atmosera.com/blog/what-are-azure-network-security-groups/?utm%5Fsource=openai">Atmosera NSG Overview</a></li>
+  <li><a href="https://mobilestalk.net/azure-network-security-group-analytics/?utm%5Fsource=openai">MobilesTalk: NSG Analytics</a></li>
+  <li><a href="https://www.corestack.io/azure-security-tools/nsg-azure/?utm%5Fsource=openai">CoreStack Security Best Practices</a></li>
+</ul>
+
+<blockquote>
+  <p>“Security is not a product, but a process.” — Bruce Schneier</p>
+</blockquote>
+
+<p><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-2h1hGiSpEV2xL1QmmetBTfNv/user-ugXgjn5iKT1karGVlJhSKvX2/img-FghSr0QOsIsFLlZRvi9Hl473.png?st=2025-05-27T19%3A57%3A57Z&amp;se=2025-05-27T21%3A57%3A57Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-05-27T17%3A18%3A52Z&amp;ske=2025-05-28T17%3A18%3A52Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=OH%2BNjw7fiXXDViOhfoW99nPCBy3PSS%2Bb1AyZgVPNWbE%3D" alt="" /></p>
 
     </div>
     <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
       <a class="share__link share__facebook"
-        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/deploying-cloud-pki"
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/azure-network-security-groups"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook-f"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__twitter"
-        href="https://twitter.com/intent/tweet?text=Deploying%20Cloud%20PKI&url=http://localhost:4000/posts/deploying-cloud-pki"
+        href="https://twitter.com/intent/tweet?text=Implementing%20Secure%20Network%20Infrastructure%20with%20Azure%20Network%20Security%20Groups%20(NSGs)&url=http://localhost:4000/posts/azure-network-security-groups"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-x-twitter"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/posts/deploying-cloud-pki&amp;media=http://localhost:4000/images/CloudPKI-26.jpg&amp;description=Deploying%20Cloud%20PKI"
+        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/posts/azure-network-security-groups&amp;media=http://localhost:4000/images/Cloud-15.jpg&amp;description=Implementing%20Secure%20Network%20Infrastructure%20with%20Azure%20Network%20Security%20Groups%20(NSGs)"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" rel="nofollow"><i class="fa-brands fa-pinterest"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/deploying-cloud-pki&title=Deploying%20Cloud%20PKI&summary=Simple%20overview%20and%20walkthrough%20for%20deploying%20Intune's%20Cloud%20PKI%20for%20device%20certification%20management.&source="
+        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/azure-network-security-groups&title=Implementing%20Secure%20Network%20Infrastructure%20with%20Azure%20Network%20Security%20Groups%20(NSGs)&summary=Learn%20how%20to%20secure%20your%20Azure%20cloud%20environments%20using%20Network%20Security%20Groups%20(NSGs),%20including%20architecture%20fundamentals,%20deployment%20strategies,%20monitoring,%20and%20best%20practices.&source="
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
@@ -339,16 +542,27 @@
 <div class="container">
   <div class="post__navigation">
     
+    <div class="post__prev">
+      <a href="/posts/steamlining-credential-management-for-azure-ad-apps" class="prev__image">
+        
+        <img class="lazy" data-src="/images/Cloud-Tech-1.jpg" alt="Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs)">
+      </a>
+      <div class="prev__box">
+        <span class="post__nav post__nav__prev">Older post</span>
+        <h2 class="post__nav__title"><a href="/posts/steamlining-credential-management-for-azure-ad-apps">Streamlining Credential Management in Azure AD App Registrations</a></h2>
+      </div>
+    </div>
+    
 
     
     <div class="post__next">
       <div class="next__box">
         <span class="post__nav post__nav__next">Newer post</span>
-        <h2 class="post__nav__title"><a href="/posts/introducing-azure-network-security-perimeter">Introducing Azure Network Security Perimeter</a></h2>
+        <h2 class="post__nav__title"><a href="/posts/azure-update-manager">Updating Azure Virtual Machines with Azure Update Manager</a></h2>
       </div>
-      <a href="/posts/introducing-azure-network-security-perimeter" class="next__image">
+      <a href="/posts/azure-update-manager" class="next__image">
         
-        <img class="lazy" data-src="/images/Cloud-Security-2.jpg" alt="Deploying Cloud PKI" loading="lazy">
+        <img class="lazy" data-src="/images/VM-Updates.png" alt="Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs)" loading="lazy">
       </a>
     </div>
     
@@ -408,7 +622,7 @@
 
 <!-- begin related posts -->
 <div class="container">
-  <section class="section related-posts is-related">
+  <section class="section related-posts ">
     <div class="section__info section__info__center">
       <div class="section__head">
         <span class="section__intro">Related Posts</span>
@@ -450,62 +664,6 @@
 
       
 
-      
-
-      <div class="article article__grid animate col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    <div class="article__head">
-      
-      <a href="/posts/introducing-azure-network-security-perimeter" class="article__image">
-        
-        <img class="lazy" data-src="/images/Cloud-Security-2.jpg" alt="Introducing Azure Network Security Perimeter">
-      </a>
-      
-    </div>
-
-    <div class="article__content">
-
-      <div class="article__meta">
-        
-        <div class="article__tags">
-        
-          <a href="/tags/?tag=security" class="article__tag">Security</a>
-        
-          <a href="/tags/?tag=new+features" class="article__tag">New Features</a>
-        
-          <a href="/tags/?tag=virtual+networks" class="article__tag">Virtual Networks</a>
-        
-        </div>
-        
-        <span class="article__date">•<time datetime="2025-02-10T06:01:35-06:00">10 Feb, 2025</time></span>
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/introducing-azure-network-security-perimeter">Introducing Azure Network Security Perimeter</a>
-      </h2>
-
-
-      <p class="article__excerpt">This article describes the new feature in Azure known as network security perimeters. It dives into comparing this new solution with other existing security tools and demonstrates how to deploy a network security perimeter in your cloud environment.</p>
-
-      <div class="article__info">
-        <a class="article__author" href="/about/">
-          
-            <img class="article__author__avatar lazy" data-src="/images/Profile PicNew2.svg" alt="Dylan Hover" width="32" height="32">
-          
-          By
-          
-            <span class="article__author__name">Dylan Hover</span>
-          
-        </a>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-      
-      
       
     
       

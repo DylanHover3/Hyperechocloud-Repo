@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Deploying Cloud PKI</title>
-  <meta name='description' content='Simple overview and walkthrough for deploying Intune's Cloud PKI for device certification management.'>
+  <title>Updating Azure Virtual Machines with Azure Update Manager</title>
+  <meta name='description' content='Learn how to configure, deploy, and monitor automated patch management for Azure and hybrid VMs using Azure Update Manager, with best practices on compliance...'>
 
-  <link rel="canonical" href="http://localhost:4000/posts/deploying-cloud-pki">
+  <link rel="canonical" href="http://localhost:4000/posts/azure-update-manager">
   <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Deploying Cloud PKI – HyperEcho">
-  <meta name="twitter:description" content="Simple overview and walkthrough for deploying Intune&apos;s Cloud PKI for device certification management.">
-  <meta name="twitter:image:src" content="http://localhost:4000/images/CloudPKI-26.jpg">
+  <meta name="twitter:title" content="Updating Azure Virtual Machines with Azure Update Manager – HyperEcho">
+  <meta name="twitter:description" content="Learn how to configure, deploy, and monitor automated patch management for Azure and hybrid VMs using Azure Update Manager, with best practices on compliance, hotpatching, and update automation.">
+  <meta name="twitter:image:src" content="http://localhost:4000/images/VM-Updates.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="Deploying Cloud PKI – HyperEcho">
-  <meta property="og:description" content="Simple overview and walkthrough for deploying Intune&apos;s Cloud PKI for device certification management.">
-  <meta property="og:image" content="http://localhost:4000/images/CloudPKI-26.jpg">
+  <meta property="og:title" content="Updating Azure Virtual Machines with Azure Update Manager – HyperEcho">
+  <meta property="og:description" content="Learn how to configure, deploy, and monitor automated patch management for Azure and hybrid VMs using Azure Update Manager, with best practices on compliance, hotpatching, and update automation.">
+  <meta property="og:image" content="http://localhost:4000/images/VM-Updates.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,29 +159,37 @@
       
       <div class="post__tags">
       
-      <a href="/tags/?tag=security" class="post__tag">Security</a>
+      <a href="/tags/?tag=azure+update+manager" class="post__tag">Azure Update Manager</a>
       
-      <a href="/tags/?tag=certificates" class="post__tag">Certificates</a>
+      <a href="/tags/?tag=patch+management" class="post__tag">Patch Management</a>
       
-      <a href="/tags/?tag=mdm" class="post__tag">MDM</a>
+      <a href="/tags/?tag=virtual+machines" class="post__tag">Virtual Machines</a>
+      
+      <a href="/tags/?tag=azure+arc" class="post__tag">Azure Arc</a>
+      
+      <a href="/tags/?tag=hotpatching" class="post__tag">Hotpatching</a>
+      
+      <a href="/tags/?tag=compliance" class="post__tag">Compliance</a>
+      
+      <a href="/tags/?tag=automation" class="post__tag">Automation</a>
       
       </div>
       
-      <span class="article__date">•<time datetime="2025-01-10T06:01:35-06:00">10 Jan, 2025</time></span>
+      <span class="article__date">•<time datetime="2025-05-27T00:00:00-05:00">27 May, 2025</time></span>
     </div>
 
     
-    <h1 class="post__title">Deploying Cloud PKI</h1>
+    <h1 class="post__title">Updating Azure Virtual Machines with Azure Update Manager</h1>
     
 
     
-    <div class="post__description">Simple overview and walkthrough for deploying Intune's Cloud PKI for device certification management.</div>
+    <div class="post__description">Learn how to configure, deploy, and monitor automated patch management for Azure and hybrid VMs using Azure Update Manager, with best practices on compliance, hotpatching, and update automation.</div>
     
 
     
     
     <div class="post-image">
-      <img class="lazy" data-src="/images/CloudPKI-26.jpg" alt="Deploying Cloud PKI">
+      <img class="lazy" data-src="/images/VM-Updates.png" alt="Updating Azure Virtual Machines with Azure Update Manager">
     </div>
     
     
@@ -190,142 +198,321 @@
   <!-- begin post -->
   <article class="post">
     <div class="post__content">
-      <h2 id="the-challenges-of-on-premises-certificate-management">The Challenges of On-Premises Certificate Management</h2>
+      <h1 id="updating-azure-virtual-machines-with-azure-update-manager">Updating Azure Virtual Machines with Azure Update Manager</h1>
 
-<p>Managing on-premises Certificate Authorities (CAs) has become increasingly challenging in today’s IT environment. Traditional systems demand extensive hardware, software, and administrative resources to ensure high availability and security. As organizations shift toward hybrid and cloud-first strategies, extending certificate services to remote devices adds complexity, often leading to inefficiencies and vulnerabilities. Maintaining these legacy systems can strain IT teams and limit their ability to address other critical business needs.</p>
+<p>Timely patching of virtual machines (VMs) is a cornerstone of cloud infrastructure security. With cyberattacks increasingly exploiting known software vulnerabilities, automated update management becomes not just a convenience but a necessity. Azure Update Manager provides a centralized, cross-platform solution to orchestrate updates across Azure and hybrid environments. This guide provides a comprehensive overview of configuring, deploying, and monitoring updates with Azure Update Manager—while emphasizing best practices in vulnerability patching and system availability.</p>
 
-<p>Intune’s Cloud Public Key Infrastructure (PKI) offers a modern solution by streamlining certificate management through Microsoft’s trusted cloud infrastructure. This approach reduces overhead, enhances scalability, and improves security while simplifying certificate deployment across devices. By eliminating the need for physical hardware and complex configurations, Intune’s PKI empowers organizations to focus on their core objectives, making certificate provisioning efficient and secure.</p>
+<h2 id="understanding-the-risk-landscape-and-why-patch-management-matters">Understanding the Risk Landscape and Why Patch Management Matters</h2>
 
-<h3 id="creating-a-root-ca-in-cloud-pki">Creating a Root CA in Cloud PKI</h3>
+<p>Patch management is a foundational element of any organization’s cybersecurity strategy. Unpatched software creates openings for attackers, and adversaries are increasingly exploiting known vulnerabilities faster and more aggressively.</p>
 
-<p>The first step in deploying Intune’s Cloud PKI is creating the Root and Issuing Certificate Authorities. When it comes to setting up the CA hierarchy, you can either BYOCA (Bring Your Own CA) or set up the Root CA directly within your Intune instance. For simplicity, we will be setting up the latter solution.</p>
+<blockquote>
+  <p>“60% of cybersecurity breaches are caused by unpatched vulnerabilities” — <a href="https://gitnux.org/patch-management-statistics/?utm%5Fsource=openai">Gitnux</a></p>
+</blockquote>
 
-<p>To begin, navigate to the Intune admin center and select Tenant Administration &gt; Cloud PKI. From here, you can start configuring the Root Certificate Authority. Click on “Create” and select the Root CA option. Now specify the required settings such as certificate name, validity period, the extended key usage, and the subject attributes.</p>
+<h3 id="the-impact-of-delayed-patching">The Impact of Delayed Patching</h3>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-01.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-02.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-24.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-23.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-22.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-14.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<p>Timeliness is critical. A significant portion of vulnerabilities are not zero-days—they are known issues for which patches already exist. The delay between patch availability and deployment provides attackers with a window of opportunity.</p>
 
-<p>Make sure to include any EKU’s (Extended Key Usages) in the root CA that you are wanting to be made available to the issuing CA. Also keep in mind that Cloud PKI doesn’t support the “Any Purpose” EKU for their PKI’s. Once the Root CA is setup we will use it as the trust anchor for your PKI infrastructure. Once the CA is created select the CA and validate the Properties are what you are expecting. Make sure to download the Root CA from here as we will need it later.</p>
+<ul>
+  <li><strong>42% of vulnerabilities are exploited after a patch is released</strong>, indicating that attackers actively monitor patch releases and reverse-engineer fixes to craft exploits (<a href="https://www.micron21.com/blog/42-of-vulnerabilities-exploited-after-patch-already-released---live-patching-helps-keep-you-secure?utm%5Fsource=openai">Micron21</a>).</li>
+  <li><strong>32% of cyberattacks target outdated software</strong>, suggesting that legacy systems and slow update cycles are high-risk vectors (<a href="https://arxiv.org/abs/2505.13922?utm%5Fsource=openai">arxiv.org</a>).</li>
+</ul>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-14.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<h3 id="the-case-for-automation">The Case for Automation</h3>
 
-<h3 id="configuring-an-issuing-ca-in-cloud-pki">Configuring an Issuing CA in Cloud PKI</h3>
+<p>Manual patching is prone to delays, inconsistencies, and errors. Automation mitigates these risks by ensuring patches are applied uniformly and quickly across environments.</p>
 
-<p>After establishing the Root CA, the next step is to configure the Issuing CA, which handles the actual certificate issuance for devices and users. In the Intune admin center, navigate back to Tenant Administration &gt; Cloud PKI and select the option to create an Issuing CA. Provide a meaningful name for the Issuing CA and link it to the previously configured Root CA. Define the certificate template settings, including key usages, validity periods, and subject attributes specific to your organization’s needs. Ensure the Issuing CA is configured to include any EKUs required for the intended certificate purposes.</p>
+<ul>
+  <li><strong>Automated patching leads to up to 70% faster patch deployment</strong>, significantly narrowing the attacker’s window (<a href="https://gitnux.org/patch-management-statistics/?utm%5Fsource=openai">Gitnux</a>).</li>
+  <li>Automation also <strong>reduces human error</strong> and <strong>standardizes update workflows</strong>, leading to greater operational stability and compliance.</li>
+</ul>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-21.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-20.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-19.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-18.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-17.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<h3 id="azures-role-in-the-modern-enterprise">Azure’s Role in the Modern Enterprise</h3>
 
-<p>Once complete, the Issuing CA will be ready to distribute certificates based on the defined templates, streamlining secure certificate deployment across your device fleet. Again download the CA here for the next step.</p>
+<p>Azure Update Manager provides a centralized framework for managing server updates at scale:</p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-16.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<ul>
+  <li><strong>Centralized control of VM updates</strong> across Windows and Linux platforms simplifies operational overhead.</li>
+  <li><strong>Integration with Azure Arc</strong> extends patch management capabilities to on-premises and multi-cloud environments, enabling consistent policy enforcement regardless of where workloads reside.</li>
+</ul>
 
-<h3 id="creating-windows-configuration-profiles-for-trusted-certificates">Creating Windows Configuration Profiles for Trusted Certificates</h3>
+<p>Together, these capabilities make Azure a strategic platform for enterprises seeking to reduce their attack surface and improve patch compliance through automation and visibility.</p>
 
-<p>Once the Root and Issuing CAs are configured, the next step is to deploy trusted certificates to Windows devices using Intune configuration profiles. Begin by navigating to the Intune admin center and selecting Devices &gt; Configuration profiles &gt; Create profile. Choose Windows 10 and later as the platform and select Trusted certificate as the profile type.</p>
+<h2 id="enabling-and-configuring-azure-update-manager">Enabling and Configuring Azure Update Manager</h2>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-25.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-15.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<h3 id="prerequisites">Prerequisites</h3>
 
-<p>Create a profile for the Root CA first. Upload the Root CA’s certificate file (in .cer format) and assign the profile to the appropriate device groups. This ensures that all devices in the assigned groups trust the Root CA as a certificate authority. Once the proper assignment is completed hit the create button on the Review + Create tab.</p>
+<p>Before configuring Azure Update Manager, ensure the following prerequisites are met:</p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-12.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-11.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-10.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<ul>
+  <li><strong>Azure VM or Arc-enabled server</strong>: The target machine must be an Azure virtual machine or an on-premises/other cloud server connected via Azure Arc.</li>
+  <li><strong>Azure Monitor Agent</strong>: The Azure Monitor Agent (AMA) must be installed on each machine to collect update data and enable patching actions.</li>
+  <li><strong>Role-Based Access Control (RBAC)</strong>: The user performing configuration must have at least the <strong>Contributor</strong> role on the target scope (subscription, resource group, or VM level). For finer control, custom roles with specific Update Management actions can be defined.</li>
+</ul>
 
-<p>Repeat the process to create a second configuration profile for the Issuing CA. Similarly, upload the Issuing CA’s certificate file and assign it to the same device groups or additional groups as necessary. By deploying these trusted certificate profiles, you establish a trust chain on Windows devices, allowing them to recognize and trust certificates issued by the Cloud PKI infrastructure. These profiles are critical for ensuring secure communication and authentication within your environment.</p>
+<h3 id="initial-setup">Initial Setup</h3>
 
-<h3 id="creating-a-configuration-profile-for-issuing-scep-certificates">Creating a Configuration Profile for Issuing SCEP Certificates</h3>
+<p>To begin using Azure Update Manager:</p>
 
-<p>To deploy SCEP certificates using Intune, you need to create a configuration profile that defines how devices will request and receive certificates. Note that you will need to create a SCEP Cert profile for each of the Certificate Stores, that is the Device Cert store as well as the User Cert store depending on what you are needing. Start by navigating to Devices &gt; Configuration profiles &gt; Create profile in the Intune admin center. Select Windows 10 and later as the platform and choose SCEP certificate as the profile type. Provide a name and description for the profile to ensure clarity in your configuration settings.</p>
+<ol>
+  <li>Open the <strong>Azure Portal</strong>.</li>
+  <li>Search for and navigate to <strong>Azure Update Manager</strong>.</li>
+  <li>Select <strong>Machines</strong> and identify the VM(s) or Arc-enabled server(s) you want to onboard.</li>
+  <li>Click <strong>Enable Azure Update Manager</strong>. This action configures the selected machines for update management.</li>
+  <li>Review and confirm the installation of the Azure Monitor Agent if it is not already present. Machines must have AMA deployed for Update Manager to function.</li>
+</ol>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-08.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-07.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<p>You can enable update management:</p>
 
-<p>Next, configure the certificate settings. Specify the Certificate Type (User or Device) and the Subject name format, which changes depending on whether this is a User or Device certificate. There are specific placeholders that will fill in user or device specific identity information that can be used here. This will also be the default values that are used here. Likewise these same placeholders can be used for the SAN fields. Further elaboration on what placeholders can be used in the Subject and SAN fields are documented in the Intune SCEP certificate profile documentation. Define the Certificate validity period, Key storage provider, Key usage, Key size, and Hash algorithm to be used for these certificates ensuring they align with your security requirements. Then upload the Root CA that was downloaded when the Root CA was created. After the Root CA is uploaded select what EKUs that the certificate will be used for. Next, determine when the renewal threshhold will be for the certificates. The recommended renewal threshold is after 80% of the validity period of the certificate, which means we would want to leave 20%. After this period the device can request a new certificate to be issued from Intune. Lastly, provide the SCEP Server URL which can be found on the Issuing CA properties page in the Cloud PKI CA’s page.</p>
+<ul>
+  <li><strong>Individually</strong>: Select and onboard a single VM or server.</li>
+  <li><strong>At scale</strong>: Use Azure Policy or bulk selection to onboard multiple machines across subscriptions or resource groups.</li>
+</ul>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-06.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-05.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-13.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<h3 id="grouping-resources-with-update-configurations">Grouping Resources with Update Configurations</h3>
 
-<p>Assign the SCEP profile to the appropriate device groups. This ensures that only authorized devices can request and receive certificates. Once deployed, Intune will automatically manage the certificate provisioning process, streamlining secure access and authentication for your devices.</p>
+<p>Azure Update Manager allows administrators to define <strong>update configurations</strong>, which group machines for consistent update behavior.</p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/CloudPKI-04.jpg" loading="lazy" alt="Post" />
-    <img src="/images/CloudPKI-03.jpg" loading="lazy" alt="Post" />
-  </div>
-</div>
+<ul>
+  <li><strong>Scopes</strong>: Define the scope of an update configuration using:</li>
+  <li><strong>Subscription</strong></li>
+  <li><strong>Resource Group</strong></li>
+  <li><strong>Tags</strong> (e.g., <code class="language-plaintext highlighter-rouge">Environment=Prod</code>, <code class="language-plaintext highlighter-rouge">OS=Linux</code>)</li>
+  <li><strong>Dynamic Scoping</strong>: Update configurations can use <strong>dynamic scoping</strong>, which automatically includes new machines that match the configuration criteria (e.g., machines with a specific tag or in a particular resource group). This ensures that newly provisioned or re-tagged machines are automatically managed without manual intervention.</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"scope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"/subscriptions/abc123"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"Environment"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Production"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"updateSettings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"rebootSetting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IfRequired"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updateClassification"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Security"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Critical"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This configuration targets all production machines in a specific subscription and applies only security and critical updates, rebooting only if needed.</p>
+
+<h2 id="assessing-vm-update-compliance-and-scheduling-deployments">Assessing VM Update Compliance and Scheduling Deployments</h2>
+
+<h3 id="reviewing-update-assessments">Reviewing Update Assessments</h3>
+
+<p>To evaluate the update status of your virtual machines (VMs), use the <strong>Compliance</strong> tab in Azure Update Manager. This view provides a breakdown of missing updates by:</p>
+
+<ul>
+  <li><strong>Severity</strong>: Highlights updates categorized as critical, important, or optional.</li>
+  <li><strong>Type</strong>: Differentiates between security, quality, and feature updates.</li>
+  <li><strong>Age</strong>: Shows how long each update has been pending.</li>
+</ul>
+
+<p>You can filter the compliance data based on:</p>
+
+<ul>
+  <li><strong>Operating System (OS)</strong>: Focus on specific OS families such as Windows or Linux.</li>
+  <li><strong>Patch Classification</strong>: Narrow your view by update categories like security, critical, or other.</li>
+</ul>
+
+<p>This allows for granular targeting of remediation efforts, especially useful for prioritizing high-risk vulnerabilities.</p>
+
+<h3 id="creating-update-deployments">Creating Update Deployments</h3>
+
+<p>Azure Update Manager supports both <strong>recurring</strong> and <strong>one-time</strong> update deployments. When creating a deployment, you can specify:</p>
+
+<ul>
+  <li><strong>Patch Categories</strong>: Select which types of updates to apply, such as security-only or include all quality updates.</li>
+  <li><strong>Reboot Behavior</strong>:</li>
+  <li><em>Always reboot</em> after updates.</li>
+  <li><em>Never reboot</em> (not recommended for critical patches).</li>
+  <li><em>Reboot if required</em> (default behavior).</li>
+  <li><strong>Pre/Post Scripts</strong>: Define scripts to run before or after update application. This is useful for preparing workloads or validating system health post-patch.</li>
+</ul>
+
+<p>Target machines can be selected using:</p>
+
+<ul>
+  <li><strong>Saved Scopes</strong>: Predefined groups of machines based on tags or resource groups.</li>
+  <li><strong>Custom Queries</strong>: Use Azure Resource Graph queries for dynamic targeting.</li>
+</ul>
+
+<h3 id="hotpatching-and-reboot-considerations">Hotpatching and Reboot Considerations</h3>
+
+<p>A recent enhancement to Azure Update Manager is support for <strong>Hotpatching</strong> on <strong>Arc-enabled servers</strong> (<a href="https://learn.microsoft.com/en-us/azure/update-manager/whats-new?utm%5Fsource=openai">Microsoft Docs</a>).</p>
+
+<p>Hotpatching enables the application of critical security updates <strong>without requiring a reboot</strong>. This is particularly beneficial in environments with strict <strong>Service-Level Agreements (SLAs)</strong> or high availability requirements.</p>
+
+<p>Key considerations:</p>
+
+<ul>
+  <li>Hotpatching is currently available on specific Windows Server versions.</li>
+  <li>It significantly reduces downtime, but not all updates qualify for hotpatching.</li>
+  <li>When planning deployments, verify hotpatch eligibility to minimize disruption.</li>
+</ul>
+
+<p>Use hotpatching in conjunction with compliance assessments and targeted deployments to implement a resilient and minimally disruptive patching strategy.</p>
+
+<h2 id="monitoring-and-troubleshooting-update-deployments">Monitoring and Troubleshooting Update Deployments</h2>
+
+<h3 id="viewing-deployment-status">Viewing Deployment Status</h3>
+
+<p>Azure Update Manager provides real-time visibility into update deployments across your virtual machines (VMs). From the Azure portal:</p>
+
+<ol>
+  <li>Navigate to <strong>Update Manager</strong> &gt; <strong>Machines</strong>.</li>
+  <li>Select a target machine or deployment schedule.</li>
+  <li>View the <strong>Deployment status</strong> tab to track update progress, including:</li>
+</ol>
+
+<ul>
+  <li>Total number of updates installed</li>
+  <li>Updates failed or skipped</li>
+  <li>Duration and current step of each deployment</li>
+</ul>
+
+<p>For more detailed insight, you can examine the <strong>Update logs</strong> for each VM. Look specifically for:</p>
+
+<ul>
+  <li><strong>Skipped updates</strong>: Often due to prerequisites not being met or updates being superseded.</li>
+  <li><strong>Timeouts</strong>: Caused by network latency or the machine being offline.</li>
+  <li><strong>Agent issues</strong>: Such as the Azure VM agent being outdated or unresponsive. These appear as error codes in the deployment report and can be correlated with logs in the VM’s local Event Viewer.</li>
+</ul>
+
+<h3 id="handling-failures">Handling Failures</h3>
+
+<p>Deployment failures are logged automatically and can be exported for analysis. To configure this:</p>
+
+<ol>
+  <li>Go to the Update Manager settings in the Azure portal.</li>
+  <li>Under <strong>Diagnostic settings</strong>, enable log forwarding to one or more of the following:</li>
+</ol>
+
+<ul>
+  <li><strong>Log Analytics</strong> workspace</li>
+  <li><strong>Event Hub</strong></li>
+  <li><strong>Azure Storage Account</strong></li>
+</ul>
+
+<p>This enables long-term storage and query-based troubleshooting using Kusto Query Language (KQL). Example KQL query to find failed patches:</p>
+
+<pre><code class="language-kusto">UpdateSummary
+| where Status == "Failed"
+| summarize count() by Computer, UpdateClassification
+
+</code></pre>
+
+<p>Once identified, failed patches can be:</p>
+
+<ul>
+  <li><strong>Manually remediated</strong> by logging into the affected VM and installing the update directly.</li>
+  <li><strong>Re-deployed</strong> using the original update schedule or a new targeted deployment.</li>
+</ul>
+
+<h3 id="integration-with-alerts-and-automation">Integration with Alerts and Automation</h3>
+
+<p>To ensure proactive monitoring, integrate Azure Update Manager with Azure Monitor alerts:</p>
+
+<ul>
+  <li>Define <strong>compliance thresholds</strong>, such as a rule that triggers when less than 90% of updates are successfully installed across a VM group.</li>
+  <li>Use <strong>Log Analytics</strong> to define a custom query and alert rule.</li>
+</ul>
+
+<p>Example alert logic:</p>
+
+<pre><code class="language-kusto">UpdateCompliance
+| summarize complianceRate = avg(IsCompliant * 100) by TimeGenerated
+| where complianceRate &lt; 90
+
+</code></pre>
+
+<p>When an alert is triggered, you can:</p>
+
+<ul>
+  <li>Send notifications via email or SMS.</li>
+  <li>Trigger <strong>Logic Apps</strong> for complex workflows (e.g., opening a ticket in ServiceNow).</li>
+  <li>Launch <strong>Azure Automation Runbooks</strong> to re-initiate the failed deployment or perform diagnostics.</li>
+</ul>
+
+<p>This integration ensures that update compliance is continuously monitored and remediated automatically where possible.</p>
+
+<h2 id="best-practices-for-update-management-at-scale">Best Practices for Update Management at Scale</h2>
+
+<p>Effective update management across a large fleet of Azure Virtual Machines (VMs) requires consistent enforcement, monitoring, and adaptation. This section outlines best practices in three key areas: governance and compliance, continuous improvement, and hybrid or multi-cloud environments.</p>
+
+<h3 id="governance-and-compliance">Governance and Compliance</h3>
+
+<p>To maintain a secure and compliant environment, define and enforce organizational patching standards using Azure-native tools:</p>
+
+<ul>
+  <li><strong>Enforce patching policies through Azure Policy</strong>: Azure Policy offers built-in definitions like <code class="language-plaintext highlighter-rouge">DeployIfNotExists</code> to ensure that VMs are configured for automatic updates or enrolled in Azure Update Manager. Custom policies can be authored to enforce OS-specific patching schedules, minimum compliance thresholds, or required reboot behaviors.</li>
+  <li><strong>Audit update compliance via Azure Resource Graph queries</strong>: Azure Resource Graph enables scalable, cross-subscription queries to evaluate patch status. Example query:</li>
+</ul>
+
+<pre><code class="language-kusto">  UpdateResources
+  | where UpdateState == 'Needed'
+  | summarize count() by OSName, SubscriptionId
+
+</code></pre>
+
+<p>Use these queries to identify non-compliant VMs, stale update configurations, or missed patch windows. Integrate them into Power BI dashboards or Azure Monitor workbooks for regular reporting.</p>
+
+<h3 id="continuous-improvement">Continuous Improvement</h3>
+
+<p>Update management should not be a set-it-and-forget-it process. Implement a feedback loop to improve reliability and coverage:</p>
+
+<ul>
+  <li><strong>Conduct monthly review of update compliance metrics</strong>: Export data from Update Manager into Log Analytics or Azure Monitor. Track key indicators such as patch success rate, average deployment duration, and failure causes.</li>
+  <li><strong>Tune deployment scopes and schedules based on failure patterns</strong>: If recurring failures are localized to a region, OS version, or workload type, adjust deployment groups accordingly. For example, reschedule updates for database VMs to less disruptive hours, or stagger updates using maintenance windows to reduce concurrency-induced failures.</li>
+</ul>
+
+<h3 id="hybrid-and-multi-cloud-considerations">Hybrid and Multi-Cloud Considerations</h3>
+
+<p>In mixed environments, achieving consistent patching behavior requires extending Azure-native capabilities:</p>
+
+<ul>
+  <li><strong>Extend Update Manager to on-prem &amp; other cloud VMs with Azure Arc</strong>: Azure Arc enables Update Manager support for non-Azure machines by projecting them as resource objects in Azure. This allows unified policy enforcement, update orchestration, and compliance monitoring, regardless of location.</li>
+  <li><strong>Ensure consistent patching posture across environments</strong>: Standardize tagging conventions, update classifications, and maintenance window definitions across cloud and on-premises. Use Azure Resource Graph to compare compliance rates by environment type. Configuration drift between environments often leads to security gaps or audit failures.</li>
+</ul>
+
+<p>By adhering to these practices, organizations can scale their update management processes with greater reliability, visibility, and security alignment.</p>
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>In this article, we’ve walked through the step-by-step process of deploying Intune’s Cloud PKI solution, starting with the creation of a Root CA and Issuing CA, followed by the deployment of trusted certificates, and concluding with the configuration of SCEP profiles for efficient certificate issuance. These steps ensure a seamless and secure certificate lifecycle management process that integrates smoothly with modern IT environments. By following these instructions, organizations can establish a robust and scalable PKI infrastructure that supports both managed and unmanaged devices.</p>
+<p>Automated update management with Azure Update Manager is a critical component of enterprise IT operations. It directly addresses key challenges in vulnerability management, compliance enforcement, and uptime assurance. Features such as <strong>hotpatching</strong>—which applies patches without requiring a reboot—and <strong>dynamic scoping</strong>—which allows targeting update deployments based on resource attributes—make it feasible to patch at scale without disrupting services.</p>
 
-<p>Certificates play a critical role in today’s IT infrastructure, underpinning secure communication, authentication, and data integrity. Modernizing certificate management through Intune’s Cloud PKI simplifies the deployment process, reduces administrative overhead, and enhances security. This approach empowers IT professionals to focus on strategic initiatives while minimizing vulnerabilities and ensuring streamlined, efficient device management in a rapidly evolving technological landscape. Changes</p>
+<p>Unpatched systems continue to be among the most exploited vectors in data breaches. By adopting Azure Update Manager, organizations can systematically reduce exposure windows, enforce update baselines, and align with security best practices. In practical terms, this shifts patching from a reactive, manual process to a proactive, policy-driven workflow.</p>
+
+<p>The technical overhead of maintaining update compliance across hundreds or thousands of virtual machines (VMs) is non-trivial. Azure Update Manager abstracts much of this complexity, enabling teams to define, monitor, and enforce patching strategies centrally. The result is a more secure infrastructure, reduced operational risk, and measurable gains in system reliability.</p>
+
+<p>In short, automated patch management is no longer a best practice—it is a baseline requirement. Azure Update Manager provides the tooling to meet that requirement at enterprise scale.</p>
 
     </div>
     <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
       <a class="share__link share__facebook"
-        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/deploying-cloud-pki"
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/azure-update-manager"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook-f"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__twitter"
-        href="https://twitter.com/intent/tweet?text=Deploying%20Cloud%20PKI&url=http://localhost:4000/posts/deploying-cloud-pki"
+        href="https://twitter.com/intent/tweet?text=Updating%20Azure%20Virtual%20Machines%20with%20Azure%20Update%20Manager&url=http://localhost:4000/posts/azure-update-manager"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-x-twitter"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/posts/deploying-cloud-pki&amp;media=http://localhost:4000/images/CloudPKI-26.jpg&amp;description=Deploying%20Cloud%20PKI"
+        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/posts/azure-update-manager&amp;media=http://localhost:4000/images/VM-Updates.png&amp;description=Updating%20Azure%20Virtual%20Machines%20with%20Azure%20Update%20Manager"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" rel="nofollow"><i class="fa-brands fa-pinterest"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/deploying-cloud-pki&title=Deploying%20Cloud%20PKI&summary=Simple%20overview%20and%20walkthrough%20for%20deploying%20Intune's%20Cloud%20PKI%20for%20device%20certification%20management.&source="
+        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/azure-update-manager&title=Updating%20Azure%20Virtual%20Machines%20with%20Azure%20Update%20Manager&summary=Learn%20how%20to%20configure,%20deploy,%20and%20monitor%20automated%20patch%20management%20for%20Azure%20and%20hybrid%20VMs%20using%20Azure%20Update%20Manager,%20with%20best%20practices%20on%20compliance,%20hotpatching,%20and%20update%20automation.&source="
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
@@ -339,16 +526,27 @@
 <div class="container">
   <div class="post__navigation">
     
+    <div class="post__prev">
+      <a href="/posts/azure-network-security-groups" class="prev__image">
+        
+        <img class="lazy" data-src="/images/Cloud-15.jpg" alt="Updating Azure Virtual Machines with Azure Update Manager">
+      </a>
+      <div class="prev__box">
+        <span class="post__nav post__nav__prev">Older post</span>
+        <h2 class="post__nav__title"><a href="/posts/azure-network-security-groups">Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs)</a></h2>
+      </div>
+    </div>
+    
 
     
     <div class="post__next">
       <div class="next__box">
         <span class="post__nav post__nav__next">Newer post</span>
-        <h2 class="post__nav__title"><a href="/posts/introducing-azure-network-security-perimeter">Introducing Azure Network Security Perimeter</a></h2>
+        <h2 class="post__nav__title"><a href="/posts/getting-started-with-microsoft-graph-powershell-sdk">Getting Started with Microsoft Graph PowerShell SDK A Practical Guide</a></h2>
       </div>
-      <a href="/posts/introducing-azure-network-security-perimeter" class="next__image">
+      <a href="/posts/getting-started-with-microsoft-graph-powershell-sdk" class="next__image">
         
-        <img class="lazy" data-src="/images/Cloud-Security-2.jpg" alt="Deploying Cloud PKI" loading="lazy">
+        <img class="lazy" data-src="/images/ITProffessional-1.png" alt="Updating Azure Virtual Machines with Azure Update Manager" loading="lazy">
       </a>
     </div>
     
@@ -423,43 +621,15 @@
       
 
       
-    
-      
-      
-
-      
-
-      
-    
-      
-      
-
-      
-
-      
-    
-      
-      
-
-      
-
-      
-    
-      
-      
-
-      
-
-      
 
       <div class="article article__grid animate col col-4 col-d-6 col-t-12">
   <div class="article__inner">
 
     <div class="article__head">
       
-      <a href="/posts/introducing-azure-network-security-perimeter" class="article__image">
+      <a href="/posts/getting-started-with-microsoft-graph-powershell-sdk" class="article__image">
         
-        <img class="lazy" data-src="/images/Cloud-Security-2.jpg" alt="Introducing Azure Network Security Perimeter">
+        <img class="lazy" data-src="/images/ITProffessional-1.png" alt="Getting Started with Microsoft Graph PowerShell SDK A Practical Guide">
       </a>
       
     </div>
@@ -470,23 +640,27 @@
         
         <div class="article__tags">
         
-          <a href="/tags/?tag=security" class="article__tag">Security</a>
+          <a href="/tags/?tag=microsoft+graph" class="article__tag">Microsoft Graph</a>
         
-          <a href="/tags/?tag=new+features" class="article__tag">New Features</a>
+          <a href="/tags/?tag=powershell" class="article__tag">PowerShell</a>
         
-          <a href="/tags/?tag=virtual+networks" class="article__tag">Virtual Networks</a>
+          <a href="/tags/?tag=automation" class="article__tag">Automation</a>
+        
+          <a href="/tags/?tag=microsoft+365" class="article__tag">Microsoft 365</a>
+        
+          <a href="/tags/?tag=azure+ad" class="article__tag">Azure AD</a>
         
         </div>
         
-        <span class="article__date">•<time datetime="2025-02-10T06:01:35-06:00">10 Feb, 2025</time></span>
+        <span class="article__date">•<time datetime="2025-05-27T00:00:00-05:00">27 May, 2025</time></span>
       </div>
 
       <h2 class="article__title">
-        <a href="/posts/introducing-azure-network-security-perimeter">Introducing Azure Network Security Perimeter</a>
+        <a href="/posts/getting-started-with-microsoft-graph-powershell-sdk">Getting Started with Microsoft Graph PowerShell SDK A Practical Guide</a>
       </h2>
 
 
-      <p class="article__excerpt">This article describes the new feature in Azure known as network security perimeters. It dives into comparing this new solution with other existing security tools and demonstrates how to deploy a network security perimeter in your cloud environment.</p>
+      <p class="article__excerpt">Learn how to install, configure, and use the Microsoft Graph PowerShell SDK for automating Microsoft 365 administration through scripts and secure authentication.</p>
 
       <div class="article__info">
         <a class="article__author" href="/about/">
@@ -506,6 +680,34 @@
 
       
       
+      
+    
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+
+      
+    
+      
+      
+
+      
+
       
     
       
