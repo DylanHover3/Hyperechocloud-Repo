@@ -4,6 +4,8 @@ description: Learn how to deploy a secure, scalable hub-and-spoke network topolo
 date: 2025-05-29
 image: "/images/Cloud-1-2.jpg"
 tags: [azure, network-architecture, bicep, bastion, dns, hub-and-spoke, cloud-infrastructure]
+label: Network Connectivity
+featured: true
 ---
 
 # Deploying a Bastion-Backed Hub-and-Spoke Network in Azure Using Bicep
