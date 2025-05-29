@@ -1,8 +1,8 @@
+---
 #-------------------------------
 # General Site Settings
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-
 
 #-------------------------------
 # Build Settings
@@ -14,7 +14,6 @@ plugins:
 
 paginate: 6
 paginate_path: "/posts/page/:num"
-
 
 #-------------------------------
 # Collections
@@ -50,7 +49,6 @@ defaults:
       type: "projects"
     values:
       layout: "project"
-
 
 sass:
   sass_dir: _sass

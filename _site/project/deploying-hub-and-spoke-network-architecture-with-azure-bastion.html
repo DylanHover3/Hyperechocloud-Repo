@@ -6,24 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Keeping the Cloud Secure</title>
-  <meta name='description' content='Homebase for cloud solution projects and innovative technology blogs!'>
+  <title>Deploying a Bastion-Backed Hub-and-Spoke Network in Azure Using Bicep</title>
+  <meta name='description' content='Learn how to deploy a secure, scalable hub-and-spoke network topology in Azure using Bicep with integrated Bastion access, Private DNS, and spoke VM provisio...'>
 
-  <link rel="canonical" href="http://localhost:4000/project/keeping-the-cloud-secure">
+  <link rel="canonical" href="http://localhost:4000/project/deploying-hub-and-spoke-network-architecture-with-azure-bastion">
   <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Keeping the Cloud Secure – HyperEcho">
-  <meta name="twitter:description" content="The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.
-">
-  <meta name="twitter:image:src" content="http://localhost:4000/images/Cloud-Security-1.jpg">
+  <meta name="twitter:title" content="Deploying a Bastion-Backed Hub-and-Spoke Network in Azure Using Bicep – HyperEcho">
+  <meta name="twitter:description" content="Learn how to deploy a secure, scalable hub-and-spoke network topology in Azure using Bicep with integrated Bastion access, Private DNS, and spoke VM provisioning.">
+  <meta name="twitter:image:src" content="http://localhost:4000/images/Hub-n-Spoke-Topology.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="Keeping the Cloud Secure – HyperEcho">
-  <meta property="og:description" content="The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.
-">
-  <meta property="og:image" content="http://localhost:4000/images/Cloud-Security-1.jpg">
+  <meta property="og:title" content="Deploying a Bastion-Backed Hub-and-Spoke Network in Azure Using Bicep – HyperEcho">
+  <meta property="og:description" content="Learn how to deploy a secure, scalable hub-and-spoke network topology in Azure using Bicep with integrated Bastion access, Private DNS, and spoke VM provisioning.">
+  <meta property="og:image" content="http://localhost:4000/images/Hub-n-Spoke-Topology.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -160,7 +158,7 @@
     
     
     <div class="project-image">
-      <img class="lazy" data-src="/images/Cloud-Security-1.jpg" alt="Keeping the Cloud Secure">
+      <img class="lazy" data-src="/images/Hub-n-Spoke-Topology.png" alt="Deploying a Bastion-Backed Hub-and-Spoke Network in Azure Using Bicep">
     </div>
     
     
@@ -170,68 +168,171 @@
 
     <div class="project-info">
       
-      <div class="project-label">Security</div>
+      <div class="project-label">Network Connectivity</div>
       
       
-      <h1 class="project-title">Keeping the Cloud Secure</h1>
+      <h1 class="project-title">Deploying a Bastion-Backed Hub-and-Spoke Network in Azure Using Bicep</h1>
       
     </div>
 
-    <p>The process of creating a user interface starts with in-depth analysis of user needs and competitor research. Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts.</p>
+    <h1 id="deploying-a-bastion-backed-hub-and-spoke-network-in-azure-using-bicep">Deploying a Bastion-Backed Hub-and-Spoke Network in Azure Using Bicep</h1>
 
-<p>From wireframes to prototypes, logo design to UI/UX, we strive to unravel the mysteries of exceptional design that leaves a lasting impact on users. Let’s craft experiences that inspire and delight, one design at a time.</p>
+<p>In this article, I cover the architecture and function of a <strong>hub-and-spoke Azure Virtual Network (VNet) topology</strong> defined in a Bicep configuration built for proof-of-concept (POC) scenarios. The configuration deploys a centralized networking pattern with connectivity, security, and remote access control for internal virtual machines across multiple virtual networks.</p>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/Cloud-Security.jpg" loading="lazy" alt="Project" />
-    <img src="/images/Cloud-Tech-1.jpg" loading="lazy" alt="Project" />
-  </div>
-  <em>Gallery / <a href="https://unsplash.com/" target="_blank">Unsplash</a></em>
-</div>
+<p>This deployment is particularly suited for controlled sandbox testing of inter-network connectivity, identity-aware access via Azure Bastion, and scalable DNS integration using a private zone model.</p>
 
-<p>At the heart of successful UX/UI design is empathy. We explore how putting ourselves in users’ shoes allows us to create designs that truly resonate with their desires and aspirations.</p>
+<hr />
 
-<p><img src="/images/project-example-1.jpg" alt="iPad" />
-<em>Photo by <a href="https://unsplash.com/@balazsketyi">Balázs Kétyi</a> on <a href="https://unsplash.com/">Unsplash</a></em></p>
+<h2 id="purpose-of-the-deployment">Purpose of the Deployment</h2>
 
-<p>Understanding user behavioral patterns and preferences plays a crucial role in developing design concepts. In this blog, we will explore methods and tools that will help you gather valuable data and transform it into unique design solutions.</p>
+<p>The core objective of this Bicep configuration is to provision a baseline <strong>Bastion-enabled hub-and-spoke network topology</strong> tailored for experimentation or demonstration. It includes key components necessary for secure, segmented, and manageable VNet designs, and isolates cloud resources for clear network architectural boundaries—critical for scalable enterprise network strategies.</p>
 
-<p>In a multi-device world, consistency is key. We discuss the challenges and opportunities that arise when designing experiences that seamlessly transition between devices.</p>
+<p>This deployment achieves:</p>
 
-<blockquote>
-  <p>Design is an opportunity to continue telling the story, not just to sum everything up. - Tate Linden</p>
-</blockquote>
+<ul>
+  <li>Secure, browser-based RDP/SSH access via Azure Bastion without public IPs</li>
+  <li>Configurable number of <em>spoke VNets</em>, each hosting a Windows VM</li>
+  <li>Private DNS integration with automatic/resource-aware registration</li>
+  <li>Fine-grained network security rules pinned to each spoke</li>
+  <li>Simplified scaling for additional spoke networks via parameter tuning</li>
+</ul>
 
-<p>We invite you to join us on this creative expedition as we explore the diverse facets of design and user experiences. Design and user experience are critical factors in creating successful interactions with the target audience. Unique and intuitive interfaces, designed with user needs in mind, can leave a positive impression and satisfy their expectations.</p>
+<hr />
 
-<h2 id="designing-for-multi-platform-experiences">Designing for Multi-Platform Experiences</h2>
+<h2 id="major-components">Major Components</h2>
 
-<p>As designers, our task is not only to convey brand values and emotions through visual elements but also to create a unique personality that stands out among competitors. We will discuss creating a strong brand identity and managing its perception through design.</p>
+<h3 id="1-hub-vnet-with-bastion-host">1. <strong>Hub VNet with Bastion Host</strong></h3>
+
+<p>The <strong>hub virtual network (“Hub1”)</strong> represents the central point of network control. It includes:</p>
+
+<ul>
+  <li>A <strong>Bastion host</strong> in a subnet named <code class="language-plaintext highlighter-rouge">AzureBastionSubnet</code>, allowing secure inbound access to VMs in the hub or spokes via the Azure Portal without needing public IPs.</li>
+  <li>A second subnet (<code class="language-plaintext highlighter-rouge">Subnet-2</code>) hosting a VM for validation purposes; protected with an NSG that allows RDP from the Bastion subnet.</li>
+</ul>
+
+<p>Azure Bastion’s tight subnet and IP constraints are well-handled here, avoiding a common deployment failure due to address misalignment between the VNet and the Bastion subnet.</p>
+
+<h3 id="2-spoke-vnets-and-vms">2. <strong>Spoke VNets and VMs</strong></h3>
+
+<p>A variable number (default: 3) of <strong>spoke VNets</strong> are deployed, each with:</p>
+
+<ul>
+  <li>A unique address space (<code class="language-plaintext highlighter-rouge">10.1.0.0/16</code>, <code class="language-plaintext highlighter-rouge">10.2.0.0/16</code>, etc)</li>
+  <li>A subnet (<code class="language-plaintext highlighter-rouge">Subnet-1</code>) bound to its own Network Security Group (NSG)</li>
+  <li>A Windows VM configured with Trusted Launch (if enabled) and diagnostic settings</li>
+</ul>
+
+<p>Each spoke’s network is named predictably (<code class="language-plaintext highlighter-rouge">SpokeNetwork1</code>, <code class="language-plaintext highlighter-rouge">SpokeNetwork2</code>, etc), allowing scalable testing scenarios and consistent scripting behavior when integrating with CI/CD pipelines or Infrastructure as Code (IaC) workflows.</p>
+
+<h3 id="3-network-peering-hub-and-spoke-connectivity">3. <strong>Network Peering: Hub-and-Spoke Connectivity</strong></h3>
+
+<p>Each spoke VNet is <strong>peered bidirectionally with the hub</strong>, enabling full network access and traffic forwarding between them:</p>
+
+<ul>
+  <li>Hub → Spoke Peering: <code class="language-plaintext highlighter-rouge">hubNetwork-to-SpokeNetworkX</code></li>
+  <li>Spoke → Hub Peering: <code class="language-plaintext highlighter-rouge">SpokeX-to-Hub1</code></li>
+</ul>
+
+<p>These connections enable a simulated enterprise backbone, where the hub can host shared services (e.g., logging, security tools) accessed securely by spoke resources.</p>
+
+<h3 id="4-private-dns-zone-hyperechocloudcom">4. <strong>Private DNS Zone: hyperechocloud.com</strong></h3>
+
+<p>Instead of relying on Azure-provided DNS or static hostnames, a centralized <strong>Private DNS Zone</strong> (<code class="language-plaintext highlighter-rouge">hyperechocloud.com</code>) is created and linked to all VNets.</p>
+
+<p>Each VNet has an associated <code class="language-plaintext highlighter-rouge">virtualNetworkLink</code>, enabling <strong>per-network DNS registration</strong> (<code class="language-plaintext highlighter-rouge">registrationEnabled: true</code>). This allows Azure VMs to automatically register their hostnames into the private DNS zone, improving service discovery for applications operating within this network fabric.</p>
+
+<p>Though modest, this is a powerful enterprise pattern, commonly used in hybrid DNS extension architectures (i.e., when combined with Azure DNS Resolver traffic forwarding or on-prem DNS conditional forwarders).</p>
+
+<h3 id="5-application-security-groups-asgs">5. <strong>Application Security Groups (ASGs)</strong></h3>
+
+<p>The deployment automatically provisions one <strong>Application Security Group</strong> per spoke VM (<code class="language-plaintext highlighter-rouge">Allow-RDM-SpokeX-VM</code>). Though not strictly necessary for basic RDP access via Bastion (already controlled via NSGs), this design enables <em>application-centric security policies</em> to be layered on top in subsequent extensions.</p>
+
+<p>Compared to traditional IP-centric network rules, ASGs allow security configurations to reference named resource groups instead of specific IPs—a useful abstraction in dynamic environments.</p>
+
+<hr />
+
+<h2 id="key-features--observations">Key Features &amp; Observations</h2>
+
+<ul>
+  <li><strong>Scalability by Design</strong>: The <code class="language-plaintext highlighter-rouge">spokeNetworkCount</code> parameter controls the proliferation of spokes, eliminating the need for manual replication in testing diverse VNets.</li>
+  <li><strong>Security-centric Defaults</strong>: NSGs block anything except RDP from the Bastion range; Trusted Launch is supported for UEFI/TPM-secured boot landscapes.</li>
+  <li><strong>Region-agnostic</strong>: The configuration uses <code class="language-plaintext highlighter-rouge">resourceGroup().location</code> by default, ensuring location consistency without manual override.</li>
+  <li><strong>Cloud Native Service Composition</strong>: Does not depend on custom scripts or third-party modules—adheres strictly to Azure-native Bicep/ARM constructs.</li>
+</ul>
+
+<hr />
+
+<h2 id="potential-extensions">Potential Extensions</h2>
+
+<p>This hub-and-spoke configuration offers a strong base, but buildup opportunities abound:</p>
+
+<ul>
+  <li>Add <strong>Azure Firewall or Azure Route Server</strong> in the hub for advanced control.</li>
+  <li>Configure <strong>custom DNS forwarding/resolution</strong> scenarios with Azure DNS Resolver.</li>
+  <li>Integrate <strong>Azure Policy</strong> for compliance or tagging.</li>
+  <li>Implement <strong>Log Analytics agents</strong> on each VM for diagnostics.</li>
+</ul>
+
+<hr />
+
+<h2 id="deployment-context">Deployment Context</h2>
+
+<p>This is intended primarily for <strong>sandbox, proof-of-concept, or educational environments</strong>. It balances production-grade patterns (Bastion + DNS + NSGs + peering) with scriptable flexibility (parameterized spoke count, dynamic names). Operational hardening—including automatic updates, identity integration, and backup strategies—would need to be layered on for long-lived or regulated production use.</p>
+
+<hr />
+
+<h2 id="-infrastructure-source">📁 Infrastructure Source</h2>
+
+<p>Ready to deploy this hub-and-spoke architecture? The complete Bicep template is available for download below:</p>
+
+<h3 id="-download-the-template">🚀 Download the Template</h3>
+
+<p><strong><a href="/cloudbuilds/HubnSpoke_main.bicep">📥 Download main.bicep</a></strong></p>
+
+<h4 id="-quick-start-once-downloaded-you-can-deploy-this-template-using-azure-cli-with"><strong>💡 Quick Start:</strong> Once downloaded, you can deploy this template using Azure CLI with:</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="sb">`</span>az deployment group create <span class="nt">--resource-group</span> &lt;your-rg&gt; <span class="nt">--template-file</span> main.bicep<span class="sb">`</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<p>This Bicep deployment defines and deploys a coherent and scalable <strong>hub-and-spoke network architecture</strong> in Azure with:</p>
+
+<ul>
+  <li>Secure and credential-less access via Azure Bastion</li>
+  <li>Private DNS zone integration for automated name resolution</li>
+  <li>Application and network-level segmentation</li>
+  <li>Multi-spoke VNet support with minimal config duplication</li>
+</ul>
+
+<p>Operators exploring mesh alternatives, zero trust expansion, or hybrid DNS strategies will find this a solid base on which to iterate.</p>
 
 
     <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
       <a class="share__link share__facebook"
-        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/project/keeping-the-cloud-secure"
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/project/deploying-hub-and-spoke-network-architecture-with-azure-bastion"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook-f"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__twitter"
-        href="https://twitter.com/intent/tweet?text=Keeping%20the%20Cloud%20Secure&url=http://localhost:4000/project/keeping-the-cloud-secure"
+        href="https://twitter.com/intent/tweet?text=Deploying%20a%20Bastion-Backed%20Hub-and-Spoke%20Network%20in%20Azure%20Using%20Bicep&url=http://localhost:4000/project/deploying-hub-and-spoke-network-architecture-with-azure-bastion"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-x-twitter"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/project/keeping-the-cloud-secure&amp;media=http://localhost:4000/images/Cloud-Security-1.jpg&amp;description=Keeping%20the%20Cloud%20Secure"
+        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/project/deploying-hub-and-spoke-network-architecture-with-azure-bastion&amp;media=http://localhost:4000/images/Hub-n-Spoke-Topology.png&amp;description=Deploying%20a%20Bastion-Backed%20Hub-and-Spoke%20Network%20in%20Azure%20Using%20Bicep"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" rel="nofollow"><i class="fa-brands fa-pinterest"></i></a>
     </li>
     <li class="share__item">
       <a class="share__link share__linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/project/keeping-the-cloud-secure&title=Keeping%20the%20Cloud%20Secure&summary=&source="
+        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/project/deploying-hub-and-spoke-network-architecture-with-azure-bastion&title=Deploying%20a%20Bastion-Backed%20Hub-and-Spoke%20Network%20in%20Azure%20Using%20Bicep&summary=Learn%20how%20to%20deploy%20a%20secure,%20scalable%20hub-and-spoke%20network%20topology%20in%20Azure%20using%20Bicep%20with%20integrated%20Bastion%20access,%20Private%20DNS,%20and%20spoke%20VM%20provisioning.&source="
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
@@ -251,48 +352,6 @@
     
     
     
-      
-    
-      
-      <article class="project col col-4 col-d-6 col-t-12">
-        <div class="project__content">
-          <a href="/project/user-experience-and-design" class="project__image">
-            
-            <img class="lazy" data-src="/images/Cloud-3.jpg" alt="User Experience and Design">
-          </a>
-          <div class="project__info">
-            
-            <div class="project__label">Design</div>
-            
-            
-            <h3 class="project__title"><a class="project__link" href="/project/user-experience-and-design">User Experience and Design</a></h3>
-            
-          </div>
-        </div>
-      </article>
-      
-      
-      
-    
-      
-      <article class="project col col-4 col-d-6 col-t-12">
-        <div class="project__content">
-          <a href="/project/how-the-cloud-works" class="project__image">
-            
-            <img class="lazy" data-src="/images/Cloud-1-2.jpg" alt="How the Cloud Works?">
-          </a>
-          <div class="project__info">
-            
-            <div class="project__label">Cloud Deployment</div>
-            
-            
-            <h3 class="project__title"><a class="project__link" href="/project/how-the-cloud-works">How the Cloud Works?</a></h3>
-            
-          </div>
-        </div>
-      </article>
-      
-      
       
     
     </div>
