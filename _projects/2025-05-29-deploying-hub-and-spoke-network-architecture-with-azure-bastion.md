@@ -1,8 +1,8 @@
 ---
-title: Deploying a Bastion-Backed Hub-and-Spoke Network in Azure Using Bicep
+title: Hub-and-Spoke Network in Azure Using Bicep
 description: Learn how to deploy a secure, scalable hub-and-spoke network topology in Azure using Bicep with integrated Bastion access, Private DNS, and spoke VM provisioning.
 date: 2025-05-29
-image: "/images/Hub-n-Spoke-Topology.png"
+image: "/images/Hub-n-Spoke-Topology.jpg"
 label: Network Connectivity
 featured: true
 ---
