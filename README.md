@@ -1,70 +1,121 @@
-# Gerous – Modern Portfolio Jekyll Theme
+# HyperEcho Cloud - Personal Portfolio & Blog
 
-Gerous is a modern portfolio theme for Jekyll, designed for creative individuals and professionals. Boost your online visibility with this stylish theme, featuring a premium design and excellent performance, as reflected in its high Lighthouse Speed score. Showcase your top projects using the built-in slider, and add a touch of sophistication with the dark mode. The theme improves user experience by including dedicated sections for FAQs and Testimonials, creating a comprehensive platform to display your portfolio with both style and functionality.
+This is my personal portfolio and blog website built with Jekyll, showcasing my expertise in cloud technologies, cybersecurity, and DevOps practices. The site features technical articles, project showcases, and downloadable resources for the cloud community.
 
-* * *
+---
 
-### Demo
+### 🌐 Live Site
 
-Check the theme in action [Live Demo](https://gerous.netlify.app/) |
-[Artem Sheludko](https://jekyllthemes.io/developers/artem-sheludko)
+Visit the live site: [HyperEcho Cloud](https://your-domain.com) <!-- Update with your actual domain -->
 
-* * *
+---
 
-### Theme features
+### 🚀 What You'll Find Here
 
-- Works with GitHub Pages (host it for free)
-- Dark and light mode
-- No jQuery, only vanilla JS
-- 100% responsive design
-- Clean and modern code
-- Super fast performance
-- Optimized for mobile devices
-- Slider featured projects
-- Section projects
-- Section blog
-- Section testimonials
-- Section FAQ
-- Compatible with modern browsers
-- Post navigation
-- Social sharing buttons
-- Syntax highlighting (supports the Jekyll syntax highlighter)
-- Medium style image zoom
-- Image gallery
-- Tag page
-- Custom logo support
-- Supports video posts
-- Supports contact form (Formspree)
-- Supports MailChimp newsletter
-- Supports Disqus comments
-- Supports Google analytics
-- Font Awesome icons
-- Free Google fonts
+- **Technical Blog Posts**: In-depth articles on Azure, AWS, cybersecurity, and cloud architecture
+- **Project Showcases**: Real-world implementations and Infrastructure as Code (IaC) templates
+- **Downloadable Resources**: Bicep templates, PowerShell scripts, and configuration files
+- **Professional Portfolio**: Highlighting cloud engineering and security expertise
 
-* * *
+### 📖 Recent Content
 
-### Installation
+- Azure Network Security Groups implementation guides
+- Hub-and-Spoke network architecture with Azure Bastion
+- Microsoft Graph PowerShell SDK tutorials
+- Cloud PKI deployment strategies
+- Azure Update Manager best practices
 
-#### Installing Ruby & Jekyll
+---
 
-If this is your first time using Jekyll, please follow the [Jekyll docs](https://jekyllrb.com/docs/installation/) and make sure your local environment (including Ruby) is setup correctly.
+### 🛠 Technical Stack
 
-* * *
+- **Framework**: Jekyll static site generator
+- **Styling**: Sass/SCSS with modern CSS
+- **Hosting**: GitHub Pages compatible
+- **Features**:
+  - Responsive design with dark/light mode
+  - Syntax highlighting for code examples
+  - Downloadable file hosting
+  - SEO optimized
+  - Fast performance (high Lighthouse scores)
 
-### Deployment
+---
 
-To run the theme locally, navigate to the theme directory and run `bundle install` to install the dependencies, then run `jekyll serve` or `bundle exec jekyll serve` to start the Jekyll server.
+### 🏗 Project Structure
 
-I would recommend checking the [Deployment Methods](https://jekyllrb.com/docs/deployment-methods/) page on Jekyll website.
+```
+├── _posts/           # Blog articles
+├── _projects/        # Project showcases
+├── cloudbuilds/      # Downloadable IaC templates
+├── images/           # Site images and diagrams
+├── _sass/            # Styling (migrated to @use module system)
+└── _site/            # Generated site files
+```
 
-* * *
+---
 
-### Documentation
+### 🔧 Local Development
 
-Before using the Gerous theme, please read the attached documentation.
+#### Prerequisites
 
-* * *
+- Ruby 2.7+ with development headers
+- Jekyll and Bundler gems
+- Git
 
-### Support
+#### Setup
 
-<p>If you have any questions or feedback about the theme, please feel free to contact me by mail <a href="mailto:hi.artemsheludko@gmail.com">Contact</a><p>
+```bash
+# Clone the repository
+git clone <repository-url>
+cd Hyperechocloud-Repo
+
+# Install dependencies
+bundle install
+
+# Serve locally
+bundle exec jekyll serve
+
+# Build for production
+bundle exec jekyll build
+```
+
+The site will be available at `http://localhost:4000`
+
+---
+
+### 📝 Recent Updates
+
+- ✅ **Sass Migration**: Successfully migrated from deprecated `@import` to modern `@use`/`@forward` module system
+- ✅ **Build Optimization**: Resolved all Sass deprecation warnings for future compatibility
+- ✅ **File Downloads**: Fixed download links for IaC templates and resources
+- ✅ **Performance**: Maintained fast build times and optimized asset loading
+
+---
+
+### 🤝 Contributing
+
+While this is a personal site, I welcome:
+
+- Issue reports for broken links or technical problems
+- Suggestions for content improvements
+- Feedback on technical accuracy
+
+---
+
+### 📧 Contact
+
+For professional inquiries, collaboration opportunities, or technical discussions:
+
+- Website: [Contact Page](https://your-domain.com/contact) <!-- Update with your actual contact page -->
+- LinkedIn: [Your LinkedIn Profile] <!-- Add your LinkedIn -->
+- Email: [Your Email] <!-- Add your professional email -->
+
+---
+
+### 📄 License
+
+Content is © 2025 HyperEcho Cloud. Code samples and IaC templates are provided under MIT License for educational and professional use.
+
+---
+
+_Built with ❤️ using Jekyll and hosted on GitHub Pages_
