@@ -3,7 +3,7 @@ title: Streamlining Credential Management in Azure AD App Registrations
 description: As organizations grow and adopt cloud services, managing the lifecycle of Azure AD App Registration credentials—namely, secrets and certificates—becomes a critical, yet often cumbersome administrative task. With these credentials being essential for securing API integrations and application access, missing an expiration date can lead to unexpected downtime or security vulnerabilities. This article explores the administrative challenges associated with managing these expirations and demonstrates how a Microsoft Graph PowerShell SDK script can automate the process, ensuring that administrators stay ahead of potential issues.
 date: 2025-02-19 14:50:00 +0300
 image: "/images/Cloud-Tech-1.jpg"
-tags: [Administration, Microsoft Graph, Azure AD, Entra]
+tags: [Administration, Microsoft Graph, Azure AD]
 ---
 
 Organizations leveraging Azure AD App Registrations rely heavily on client secrets and certificates for secure authentication between applications and services. However, these credentials have expiration dates that, if left unchecked, can lead to service outages, security risks, and administrative burden.

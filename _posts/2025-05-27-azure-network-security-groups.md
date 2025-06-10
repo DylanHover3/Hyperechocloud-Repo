@@ -3,16 +3,7 @@ title: Implementing Secure Network Infrastructure with Azure Network Security Gr
 description: Learn how to secure your Azure cloud environments using Network Security Groups (NSGs), including architecture fundamentals, deployment strategies, monitoring, and best practices.
 date: 2025-05-26
 image: "/images/Cloud-15.jpg"
-tags:
-  [
-    Azure,
-    Network Security,
-    NSG,
-    Cloud Security,
-    Infrastructure,
-    Zero Trust,
-    Monitoring,
-  ]
+tags: [NSG, Cloud Security, Zero Trust]
 ---
 
 # Implementing Secure Network Infrastructure with Azure Network Security Groups (NSGs)

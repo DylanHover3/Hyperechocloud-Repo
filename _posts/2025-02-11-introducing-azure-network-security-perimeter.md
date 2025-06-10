@@ -3,7 +3,7 @@ title: Introducing Azure Network Security Perimeter
 description: This article describes the new feature in Azure known as network security perimeters. It dives into comparing this new solution with other existing security tools and demonstrates how to deploy a network security perimeter in your cloud environment.
 date: 2025-02-10 15:01:35 +0300
 image: "/images/Cloud-Security-2.jpg"
-tags: [Security, New Features, Virtual Networks]
+tags: [Security, Virtual Networks]
 ---
 
 As organizations continue their migration to the cloud, securing the digital estate becomes increasingly complex. Microsoft’s new Azure Network Security Perimeter is designed to address these challenges by providing a unified, policy-driven approach to isolate and protect resources. In this article, we explore what the network security perimeter is, how it differs from existing Azure network security tools, its relationship to Private Endpoints, and provide an example of deploying it in an existing environment.
