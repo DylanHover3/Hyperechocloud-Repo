@@ -2,8 +2,8 @@
 title: Getting Started with Azure AI Foundry
 description: Learn how to set up, develop, and scale enterprise-grade AI solutions using Azure AI Foundry — Microsoft's unified PaaS for generative AI and language applications.
 date: 2025-08-05
-image: "/images/placeholder value"
-tags: [Azure, AI Foundry, Machine Learning, Generative AI, Azure OpenAI]
+image: "/images/Cloud-3.jpg"
+tags: [Azure, AI Foundry, Azure OpenAI]
 ---
 
 # Getting Started with Azure AI Foundry
